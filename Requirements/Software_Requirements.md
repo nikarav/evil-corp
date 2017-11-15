@@ -72,15 +72,29 @@ Profit
 
 
 
-#### Digital wallet
-
+Digital wallet
+--------
 Each parent, who registers in our application and signs in his own account, has his personal digital  wallet which helps him to accomplish all the financial transactions related to the tickets of the  different activities. The deposit in the digital wallet can be achieved in two ways. The former is a  _paypal card_ and the latter is with the _debit card_ number in order to deduct the money  immediately from the bank account and transfer them into the digital wallet. Each parent should fill  his digital wallet with credits that are used in the transactions. Each euro corresponds to 1 credit that  means that if he deposits 100 euros then he will have 100 credits in his account. 
 
 Our application  provides plenty of offers and bonus that depends on the utilization of every single account. To begin  with, there is a policy related to the amount of the tickets that the user buys for the different  activities. _More specifically for every 10 tickets that a parent has bought and cashed in_, that  means  10,20,30 etc tickets in total, can have a free ticket of 10 credit value, or a deduction in the  price of a  more expensive ticket equivalent to the price of the offer, in his next order. If the ticket  he wants to  purchase is cheaper, he can acquire it for free. If the next order has more tickets, he can  earn a total  discount of 10 euros(credits). The other offer depends on the amount of the money that  a parent  deposit in his digital wallet. _For every 100 euros(credits) that he pays into his account_  that means  100,200,300 etc in total, he can earn 20 extra credits into his digital wallet. The purpose  of these  bonus is to maximize the utilization of the accounts in order to make this application more  attractive  and facilitate the families, especially the ones that have a lot of members. All in all, a  parent can  withdraw the half of the money that he has in his wallet in 1 year form the last deposit in  order to  avoid the fact that a “shrewd” user could withdraw and deposit constantly the same  amount of  money in order to earn the bonus at each time.
 
 
 Ticket policy
--------------
+--------
+
+### Digital ticket
+A digital ticket is just a 10-digit ID number. Your kids are eligible to participate to an activity by providing the reservation name (probably your name) and the ticket ID. The digital ticket ID or IDs are displayed right after a succesfull payment and also sent to a given email.
+
+### Ticket coupons
+Ticket coupons is a discount which applies to one ticket in you payment. Multiple ticket coupons can be applied on a payment, but only one coupon on each ticket. If the price of a ticket is cheaper than the applied ticket coupon, then the ticket is free of charge.
+
+### Return policy:
+Cancellation of a reservation is only supported for registered users.
+Registered users are eligible for a full-refund in case of cancellation 7 or days prior to the activity. However, cancelling less than a week before the activity you will get back tickets coupon of 80% value of the actual ticket for each canceled ticket.
+
+### Max tickets restrictions
+Registered users are restricted to buy at most 10 tickets at once.
+Group reservations (more than 10 tickets), are not supported by the paying platform directly, and you should sent a special request via the platform.
 
 Functional requirements
 -----------------------
