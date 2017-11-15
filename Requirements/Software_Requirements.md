@@ -1,6 +1,40 @@
 Software Requirements
 =====================
 
+Table of Contents
+-----------------
+
+* [Introduction](#introduction)
+    * [Purpose of Document](#purpose-of-document)
+    * [Intended Audience](#intended-audience)
+* [Goal](#goal)
+* [System Scope and Boundaries](#system-scope-and-boundaries)
+* [User Categories and Characteristics](#user-categories-and-characteristics)
+* [Profit](#profit)
+    * [Ways of making profit](#ways-of-making-profit)
+    * [Transition from zero to big company](#transition-from-zero-to-big-company)
+* [Digital wallet](#digital-wallet)
+* [Ticket policy](#ticket-policy)
+    * [Digital ticket](#digital-ticket)
+    * [Ticket coupons](#ticket-coupons)
+    * [Return policy](#return-policy)
+    * [Max tickets restrictions](#max-tickets-restrictions)
+* [Functional requirements](#functional-requirements)
+    * [Registration](#registration)
+    * [Authentication](#authentication)
+    * [Authorization Levels](#authorization-levels)
+    * [Copyright issues](#copyright-issues)
+    * [Responsive design](#responsive-design)
+    * [User Interface](#user-interface)
+* [Non-functional requirements](#non-functional-requirements)
+    * [Reliability and Availability](#reliability-and-availability)
+    * [Performance](#performance)
+    * [Safety](#safety)
+    * [Security](#security)
+    * [Usability](#usability)
+    * [Extensibility](#extensibility)
+    * [Platform Versatility](#platform-versatility)
+
 Introduction
 ------------
 
