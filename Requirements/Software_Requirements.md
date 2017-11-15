@@ -6,7 +6,7 @@ Introduction
 
 ### Purpose of Document
 
-The purpose of this document is to describe the requirements and functionalities of the platform. It also illustrates the purpose of the platform and explains the constraints and scope of the system. Overall, this document follows the IEEE Standards for Software Requirements Specification. Any suggested changes to the requirements listed in this document should be included in the last version of it.
+The purpose of this document is to describe the requirements and functionalities of the platform. It also illustrates the purpose of the platform and explains the constraints and scope of the system. Any suggested changes to the requirements listed in this document should be included in the last version of it.
 
 ### Intended Audience
 
@@ -55,8 +55,186 @@ Our application  provides plenty of offers and bonus that depends on the utiliza
 Ticket policy
 -------------
 
-Functional requirements 
---------------------------
+Functional requirements
+-----------------------
+
+### Registration
+
+#### Anonymous User
+
+No registration is required to use the platform as an anonymous user.
+However, it is essential in order to access features for registered
+members.
+
+#### Parent
+
+Registering as a parent requires the following identification
+information:
+
+- Full Name
+- Date of Birth
+- Email address
+- Telephone number
+
+In addition, the following information about each one of her children
+is required:
+
+- Full Name
+- Date of Birth
+- Health issues that need to be taken into consideration
+
+To complete the registration, an email confirmation will be required.
+
+#### Provider
+
+Registering as a provider requires the following information:
+
+- Full Name
+- Date of Birth
+- Email address
+- Telephone number
+- Tax registration number
+- Upload a document containing details on the provided services /
+  activities
+
+For a successful registration, the relevant document will have to be
+approved by a special committee. Afterwards, an email will be sent to
+the user confirming the successful registration.
+
+#### Administrator
+
+Registering is not applicable for this user.
+
+
+### Authentication
+
+For registered users, the authentication process requires a username
+and a password, which are specified by the user during registration.
+In case the user forgets her password, she can request a reset via
+an email that will be sent to the address specified during
+registration.
+
+### Authorization Levels
+
+#### Anonymous User
+The anonymous user is limited to browsing the platform. Thus, she is
+not able to purchase tickets, rate activities, write / view comments
+etc. However, she is able to use the contact form to inquire further
+information about the platform.
+
+#### Parent
+The parent can search activities based on a range of criteria such as:
+
+- type
+- distance / location
+- keyword
+- age group
+- price
+
+She can buy available tickets for selected activities using an
+electronic payment method such as PayPal or credit / debit card.
+
+In addition, she can rate, comment on or report the activities which
+she has bought tickets for.
+
+She can modify / update information relevant to her account or cancel
+her membership to the platform by deleting her account.
+
+Finally, she can request for help via a special contact form.
+
+#### Provider
+
+The provider can upload activities / services to the platform. Each
+one of them should include:
+
+- a detailed description
+- location / venue
+- time / dates
+- maximum number of tickets
+- photos
+- videos (optionally)
+
+In addition he can modify / update existing activities that he
+provides, as well as he can modify the details of his account. He can
+cancel his membership by deleting his account. In this case, all
+activities that he provides become _inactive_.
+
+Finally, he can request for help via an appropriate contact form.
+
+#### Moderator account
+
+The moderator has the ability to edit commented posts when they use
+inappropriate language. Moreover, the moderator can set an account,
+whether it is provider or a parent, to high priority in the
+permissions queue (change of access permissions) or even in the lock
+down queue (user account gets locked).
+
+#### Locked user account
+
+For parents, it means that they can no longer log in to the platform.
+For providers, it means that all their activities become inactive and
+they can no longer log in to the platform. In addition, if there are
+pending tickets for an upcoming activity, they are canceled with the
+specified refund policy.
+
+#### Administrator
+
+The administrator has full control over user accounts or information
+uploaded by users. Thus, she is able to:
+
+- approve / lock user accounts
+- approve password reset requests from users
+- delete inappropriate user comments
+- modify users access permissions
+- change user roles e.g. to Moderator
+
+### Copyright issues
+
+#### Photos
+
+A watermark will be automatically added to every photo that is
+uploaded to the platform in order to prevent its use in any other
+context. This functionality will be implemented by an external module
+to the system.
+
+### Responsive design
+
+Responsive design will be used in every aspect of the website so that
+all web pages render well on a variety of devices and window or screen
+sizes.
+
+### User Interface
+
+The front page of the application will be characterized by a number of
+buttons and background operations. Some of them are described below:
+
+#### Login
+
+The login button choice gives to the users the opportunity to access
+their profile. It will be optional for navigation across the site, but
+necessary in order to access privileged services.
+
+#### Contact
+
+A contact button that provides with all the useful information, like
+email, telephone number and address.
+
+#### Help
+
+The help choice consists of questions asked frequently about the
+application services, the credentials it grants to users private data,
+etc.
+
+#### Types of Activities
+
+The front page, as well as every page, will be accommodated, at the
+top, by a variety of categories of activities (sport, music,
+etc). These buttons navigate the user to different pages, accordingly.
+
+#### Side bar
+
+The side bar contains information on short-term events, like date, location,
+tickets remaining, activity theme, etc.
 
 Non-functional requirements
 ---------------------------
