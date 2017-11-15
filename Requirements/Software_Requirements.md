@@ -20,6 +20,10 @@ This document is intended primarily for the following audiences:
 Goal
 ----
 
+The “site_name” constitutes a user-friendly web platform, that is addressed to parents with children, as well as to organizers of children’s activities. In particular, parents can browse through a wide variety of activities and can specify the output of their search attempt, by applying any number of the determined criteria available. For instance, an age restriction, constricts the results within the given age range and a type restraint leads to viewing activities that are associated with the selected type. The organizers of activities can provide the information of their services using the web platform. This information will act as the basis for the search results displayed to the user. 
+
+The platform should be free to use, but parents who wish to book a seat online, should proceed to buy a ticket according to the payment methods.
+
 System Scope and Boundaries
 ---------------------------
 
