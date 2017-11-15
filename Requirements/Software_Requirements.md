@@ -45,7 +45,7 @@ By the term administrator, we mean the user who has a special permission to mana
 Profit
 ------
 
-#### Digital wallet policy
+#### Digital wallet
 
 Each parent, who registers in our application and signs in his own account, has his personal digital  wallet which helps him to accomplish all the financial transactions related to the tickets of the  different activities. The deposit in the digital wallet can be achieved in two ways. The former is a  _paypal card_ and the latter is with the _debit card_ number in order to deduct the money  immediately from the bank account and transfer them into the digital wallet. Each parent should fill  his digital wallet with credits that are used in the transactions. Each euro corresponds to 1 credit that  means that if he deposits 100 euros then he will have 100 credits in his account. 
 
