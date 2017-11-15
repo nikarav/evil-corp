@@ -54,7 +54,7 @@ This document is intended primarily for the following audiences:
 Goal
 ----
 
-The “site_name” constitutes a user-friendly web platform, that is addressed to parents with children, as well as to organizers of children’s activities. In particular, parents can browse through a wide variety of activities and can specify the output of their search attempt, by applying any number of the determined criteria available. For instance, an age restriction, constricts the results within the given age range and a type restraint leads to viewing activities that are associated with the selected type. The organizers of activities can provide the information of their services using the web platform. This information will act as the basis for the search results displayed to the user. 
+The “Playground” constitutes a user-friendly web platform, that is addressed to parents with children, as well as to organizers of children’s activities. In particular, parents can browse through a wide variety of activities and can specify the output of their search attempt, by applying any number of the determined criteria available. For instance, an age restriction, constricts the results within the given age range and a type restraint leads to viewing activities that are associated with the selected type. The organizers of activities can provide the information of their services using the web platform. This information will act as the basis for the search results displayed to the user. 
 
 The platform should be free to use, but parents who wish to book a seat online, should proceed to buy a ticket according to the payment methods.
 
@@ -65,7 +65,7 @@ System Scope and Boundaries
 
 **The boundaries identify** where the system to be sized starts and ends.  The sizing should include everything for which the team is responsible:
 - The system is accessible to all users/guests free of charge. The account registration is also free for every user who wants to enjoy the privilege of buying a ticket.  
-- System’s interface supports only Greek language. 
+- System’s interface supports only the English language. 
 - There will be no real charge of credit cards or any bank account. The system will just virtually change some database’s values in order to display the exchange to the user.
 - Internet access is required for usage of our system services. 
 - The Android and IOS versions will not be available for better resources management (due to lack of time we decided to create and focus on a web app that will efficiently work, and let the other versions for future implementation) and budget constraints. However the web application will be responsive and adaptive to mobile devices via web browsers.
