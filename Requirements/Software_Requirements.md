@@ -137,9 +137,9 @@ Functional requirements
 
 #### Anonymous User
 
-No registration is required to use the platform as an anonymous user.
-However, it is essential in order to access features for registered
-members.
+No registration is required to use the platform as an anonymous user,
+_i.e_ search for events. However, it is essential in order to purchase
+tickets.
 
 #### Parent
 
@@ -149,14 +149,8 @@ information:
 - Full Name
 - Date of Birth
 - Email address
+- Home address
 - Telephone number
-
-In addition, the following information about each one of her children
-is required:
-
-- Full Name
-- Date of Birth
-- Health issues that need to be taken into consideration
 
 To complete the registration, an email confirmation will be required.
 
@@ -164,11 +158,12 @@ To complete the registration, an email confirmation will be required.
 
 Registering as a provider requires the following information:
 
-- Full Name
-- Date of Birth
+- Brand Name
 - Email address
 - Telephone number
+- Address
 - Tax registration number
+- Bank account number
 - Upload a document containing details on the provided services /
   activities
 
@@ -193,24 +188,23 @@ registration.
 
 #### Anonymous User
 The anonymous user is limited to browsing the platform. Thus, she is
-not able to purchase tickets, rate activities, write / view comments
-etc. However, she is able to use the contact form to inquire further
-information about the platform.
+not able to purchase tickets. However, she is able to use the contact
+form to inquire further information about the platform.
 
 #### Parent
 The parent can search activities based on a range of criteria such as:
 
-- type
+- category
 - distance / location
-- keyword
 - age group
 - price
 
-She can buy available tickets for selected activities using an
-electronic payment method such as PayPal or credit / debit card.
+In addition to these, _free text_ search will be available. The
+results of the search query will be displayed on a map.
 
-In addition, she can rate, comment on or report the activities which
-she has bought tickets for.
+The parent can buy available tickets for selected activities using an
+electronic payment method _e.g._ credit / debit card. After a
+successful purchase, the tickets will be emailed to her in PDF format.
 
 She can modify / update information relevant to her account or cancel
 her membership to the platform by deleting her account.
@@ -222,46 +216,39 @@ Finally, she can request for help via a special contact form.
 The provider can upload activities / services to the platform. Each
 one of them should include:
 
-- a detailed description
-- location / venue
-- time / dates
-- maximum number of tickets
-- photos
-- videos (optionally)
+- Name
+- Location / venue
+- Detailed description
+- Photo
+- Date & time
+- Maximum number of tickets
+- Age group
+- Category
+- Ticket price
 
-In addition he can modify / update existing activities that he
-provides, as well as he can modify the details of his account. He can
-cancel his membership by deleting his account. In this case, all
-activities that he provides become _inactive_.
+
+In addition he can view a history of his events, as well as monthly
+reports with the total revenue and total tickets sold per event.
+
+He can modify the details of his account and he can cancel his membership
+by deleting his account. In this case, all activities that he provides
+become _inactive_.
 
 Finally, he can request for help via an appropriate contact form.
-
-#### Moderator account
-
-The moderator has the ability to edit commented posts when they use
-inappropriate language. Moreover, the moderator can set an account,
-whether it is provider or a parent, to high priority in the
-permissions queue (change of access permissions) or even in the lock
-down queue (user account gets locked).
 
 #### Locked user account
 
 For parents, it means that they can no longer log in to the platform.
 For providers, it means that all their activities become inactive and
-they can no longer log in to the platform. In addition, if there are
-pending tickets for an upcoming activity, they are canceled with the
-specified refund policy.
+they can no longer log in to the platform.
 
 #### Administrator
 
-The administrator has full control over user accounts or information
-uploaded by users. Thus, she is able to:
+The administrator is able to manager user accounts. Thus, she is able
+to:
 
 - approve / lock user accounts
 - approve password reset requests from users
-- delete inappropriate user comments
-- modify users access permissions
-- change user roles e.g. to Moderator
 
 ### Copyright issues
 
@@ -278,38 +265,6 @@ Responsive design will be used in every aspect of the website so that
 all web pages render well on a variety of devices and window or screen
 sizes.
 
-### User Interface
-
-The front page of the application will be characterized by a number of
-buttons and background operations. Some of them are described below:
-
-#### Login
-
-The login button choice gives to the users the opportunity to access
-their profile. It will be optional for navigation across the site, but
-necessary in order to access privileged services.
-
-#### Contact
-
-A contact button that provides with all the useful information, like
-email, telephone number and address.
-
-#### Help
-
-The help choice consists of questions asked frequently about the
-application services, the credentials it grants to users private data,
-etc.
-
-#### Types of Activities
-
-The front page, as well as every page, will be accommodated, at the
-top, by a variety of categories of activities (sport, music,
-etc). These buttons navigate the user to different pages, accordingly.
-
-#### Side bar
-
-The side bar contains information on short-term events, like date, location,
-tickets remaining, activity theme, etc.
 
 Non-functional requirements
 ---------------------------
