@@ -94,6 +94,9 @@ By the term administrator, we mean the user who has a special permission to mana
 
 Profit
 ------
+
+**NOTE:** The following section presents a plan for the whole life cylcle of the application. At the current phase, we will ***not implement advertisments and paid promotional features.***
+
 ### Ways of making profit
 - **5% of the paid amount**,for each payment, is reserved as service fee. So the stakeholder receives the 95% of the actual payment.
 - **Advertisements** of 3rd party companies.
