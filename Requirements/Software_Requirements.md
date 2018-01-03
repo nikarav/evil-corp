@@ -126,8 +126,8 @@ A digital ticket is just a 10-digit ID number. Your kids are eligible to partici
 Ticket coupons is a discount which applies to one ticket in you payment. Multiple ticket coupons can be applied on a payment, but only one coupon on each ticket. If the price of a ticket is cheaper than the applied ticket coupon, then the ticket is free of charge.
 
 ### Return policy:
-Cancellation of a reservation is only supported for registered users.
-Registered users are eligible for a full-refund in case of cancellation 7 or days prior to the activity. However, cancelling less than a week before the activity you will get back tickets coupon of 80% value of the actual ticket for each canceled ticket.
+Cancellation of a reservation is not supported by the platform and refund/return cannot be provided in any form.
+Purchasing a ticket is strictly an one-way procedure.
 
 ### Max tickets restrictions
 Registered users are restricted to buy at most 10 tickets at once.
