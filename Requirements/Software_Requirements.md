@@ -65,7 +65,7 @@ System Scope and Boundaries
 
 **The boundaries identify** where the system to be sized starts and ends.  The sizing should include everything for which the team is responsible:
 - The system is accessible to all users/guests free of charge. The account registration is also free for every user who wants to enjoy the privilege of buying a ticket.  
-- System’s interface supports only the English language. 
+- System’s interface supports only the Greek language. 
 - There will be no real charge of credit cards or any bank account. The system will just virtually change some database’s values in order to display the exchange to the user.
 - Internet access is required for usage of our system services. 
 - The Android and IOS versions will not be available for better resources management (due to lack of time we decided to create and focus on a web app that will efficiently work, and let the other versions for future implementation) and budget constraints. However the web application will be responsive and adaptive to mobile devices via web browsers.
@@ -76,7 +76,7 @@ System Scope and Boundaries
 User Categories and Characteristics
 -----------------------------------
 
-Platform users are not required to have specialized computer skills, but they need to have basic knowledge of computers and Internet browsing. Users need to feel comfortable with the English language.
+Platform users are not required to have specialized computer skills, but they need to have basic knowledge of computers and Internet browsing. Users need to feel comfortable with the Greek language.
 
 There are four types of users that interact with the platform: anonymous users, parents, service providers (organizers), and platform administrators.  Each of these four types uses the system in a different way and therefore has non-identical requirements and access permissions.
 
