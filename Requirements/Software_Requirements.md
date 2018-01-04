@@ -81,10 +81,10 @@ Platform users are not required to have specialized computer skills, but they ne
 There are four types of users that interact with the platform: anonymous users, parents, service providers (organizers), and platform administrators.  Each of these four types uses the system in a different way and therefore has non-identical requirements and access permissions.
 
 -  **Anonymous User**  
-Anonymous is a user who visits the platform without logging in. Such users can only search for activities (with or without specifying predefined criteria), read reviews of past activities and check tickets availability. In brief, non-registered users will have read-only access to the platform. However, they will be able to use the contact form to inquire further information.
+Anonymous is a user who visits the platform without logging in. Such users can only search for activities (with or without specifying predefined criteria) and check tickets availability. In brief, non-registered users will have read-only access to the platform. However, they will be able to use the contact form to inquire further information.
 
 -  **Parent**  
-By the term parent, we mean the user who has already logged in the platform and is interested in finding activities for their child. The permissions of a Parent include the access permissions of an Anonymous User. However, a parent has some extra features, such as booking, buying and canceling a ticket, logging in and out of their account, reviewing activities, making comments and communicating with the platform manager.
+By the term parent, we mean the user who has already logged in the platform and is interested in finding activities for their child. The permissions of a Parent include the access permissions of an Anonymous User. However, a parent has some extra features, such as booking and buying a ticket, logging in and out of their account, modifying or deleting their account and communicating with the platform manager.
 
 -  **Organizer (Service Providers)**  
 An organizer is considered to be the registered user who organizes an activity and wants to not only make it known to the public but also sell tickets through the platform. Service providers manage the information about their activities, such as the description, contact information, the amount they would like to receive from each ticket and the number of the available tickets. They are also authorized to communicate with the platform administrator.
@@ -311,7 +311,6 @@ It is crucial that the software satisfies all of the following security requirem
 - In order to support the HTTPS protocol on all pages, the platform shall use self-signed certificates.
 - Parents and Organizers will not be able to change information not related to them. 
 - The platform supports different user categories with different access permissions. These permissions may only be changed by the administrator.
-- CAPTCHA will be used to confirm critical operations, such as ticket purchase.
 - A watermark will be used in the photos that accompany the activities.
 
 ### Usability
