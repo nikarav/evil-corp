@@ -287,7 +287,6 @@ The software shall meet the following performance requirements:
 - The platform shall respond promptly to the actions of the user and manage the data quickly.
 - The data retrieval time should be short.
 - The platform should not decrease the computer performance.
-- The confirmation time of a username - password combination should not exceed 1 second.
 
 ### Safety
 
