@@ -329,6 +329,60 @@ Software Tools
 Architecture
 ---------------------------
 
+Database
+---------------------
+
+For the database implementation, MongoDB will be used, as it supports all the required features. The following objects will be used:
+
+- **Parent**
+  - Username
+  - Encrypted Password
+  - Name
+  - Surname
+  - Date of birth
+  - email
+  - telephone number
+  - home address
+  - Amount of money in wallet
+  - Purchased tickets
+  - user role
+  - Locked status
+- **Provider**
+  - Username
+  - Encrypted Password
+  - Brand Name
+  - email
+  - telephone number
+  - address
+  - tax registration number
+  - document with details on provided services
+  - activities
+  - bank account number
+  - user role
+  - locked status
+- **Administrator**
+  - Username
+  - Encrypted Password
+  - user role
+- **Activity**
+  - Name
+  - Location
+  - Date
+  - Description
+  - Photo
+  - Available tickets
+  - Total tickets
+  - Age group
+  - Category
+  - Ticket price
+  - Active status
+- **Ticket**
+  - Ticket code
+  - Activity id
+  - Parent id
+  - Date of purchase
+
+
 UML
 ----------
 
