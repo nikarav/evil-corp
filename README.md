@@ -17,6 +17,6 @@ providers will be able to promote their activities.
 | Καραβασίλης Νικόλαος   | 3113012 | nikarav@hotmail.com     |
 | Σωτηρίου Δημήτριος     | 3112059 | el12059@mail.ntua.gr    |
 
-## Software Requirements
+## Software and Technical Requirements
 
-1. [Software Requirements Specification](./Requirements/Software_Requirements.md)
+1. [Software and Technical Requirements](./Requirements/Software_Requirements.md)
