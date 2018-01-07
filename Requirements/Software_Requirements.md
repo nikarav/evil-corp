@@ -67,6 +67,7 @@ System Scope and Boundaries
 - System’s interface supports only the Greek language. 
 - There will be no real charge of credit cards or any bank account. The system will just virtually change some database’s values in order to display the exchange to the user.
 - Internet access is required for usage of our system services. 
+- The Android and IOS versions will not be available for better resources management (due to lack of time we decided to create and focus on a web app that will efficiently work, and let the other versions for future implementation) and budget constraints. However the web application will be responsive and adaptive to mobile devices via web browsers.
 - User’s email is required in order to verify the registration.
 - No software installation is required in order to use this application, except for web browsers (new versions recommended).
 - System services are directed only for Athens’ residents , and aimed at children from 3 to 16 years of age.
@@ -109,7 +110,7 @@ Profit
 
 ### Digital wallet
 --------
- A registered user can fill his digital wallet with credits only by using a paypal account. Transcation with a bank account will not be supported. The correspondence between digital wallet credits and real money is 1 by 1 and no fee is applied during the transaction.
+ A registered user can fill his digital wallet with credits only by using a debit/credit account. Transcation with a bank account will be supported. The correspondence between digital wallet credits and real money is 1 by 1 and no fee is applied during the transaction.
 
 Digital wallet includes a reward policy for frequent users.
  - For every 10 tickets that a user has purchaced, 10 bonus point will be added to his wallet as a reward for consistently selecting our platform.
@@ -247,7 +248,7 @@ they can no longer log in to the platform.
 
 #### Administrator
 
-The administrator is able to manager user accounts. Thus, she is able
+The administrator is able to manage user accounts. Thus, she is able
 to:
 
 - approve / lock user accounts
