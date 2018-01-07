@@ -25,7 +25,6 @@ Table of Contents
     * [Authorization Levels](#authorization-levels)
     * [Copyright issues](#copyright-issues)
     * [Responsive design](#responsive-design)
-    * [User Interface](#user-interface)
 * [Non-functional requirements](#non-functional-requirements)
     * [Reliability and Availability](#reliability-and-availability)
     * [Performance](#performance)
