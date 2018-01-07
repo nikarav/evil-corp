@@ -66,7 +66,6 @@ System Scope and Boundaries
 - System’s interface supports only the Greek language. 
 - There will be no real charge of credit cards or any bank account. The system will just virtually change some database’s values in order to display the exchange to the user.
 - Internet access is required for usage of our system services. 
-- The Android and IOS versions will not be available for better resources management (due to lack of time we decided to create and focus on a web app that will efficiently work, and let the other versions for future implementation) and budget constraints. However the web application will be responsive and adaptive to mobile devices via web browsers.
 - User’s email is required in order to verify the registration.
 - No software installation is required in order to use this application, except for web browsers (new versions recommended).
 - System services are directed only for Athens’ residents , and aimed at children from 3 to 16 years of age.
