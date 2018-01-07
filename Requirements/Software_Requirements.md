@@ -80,16 +80,16 @@ Platform users are not required to have specialized computer skills, but they ne
 There are four types of users that interact with the platform: anonymous users, parents, service providers (organizers), and platform administrators.  Each of these four types uses the system in a different way and therefore has non-identical requirements and access permissions.
 
 -  **Anonymous User**  
-Anonymous is a user who visits the platform without logging in. Such users can only search for activities (with or without specifying predefined criteria) and check tickets availability. In brief, non-registered users will have read-only access to the platform. However, they will be able to use the contact form to inquire further information.
+  Anonymous is a user who visits the platform without logging in. Such users can only search for activities (with or without specifying predefined criteria) and check tickets availability. In brief, non-registered users will have read-only access to the platform. However, they will be able to use the contact form to inquire further information.
 
 -  **Parent**  
-By the term parent, we mean the user who has already logged in the platform and is interested in finding activities for their child. The permissions of a Parent include the access permissions of an Anonymous User. However, a parent has some extra features, such as booking and buying a ticket, logging in and out of their account, modifying or deleting their account and communicating with the platform manager.
+  By the term parent, we mean the user who has already logged in the platform and is interested in finding activities for their child. The permissions of a Parent include the access permissions of an Anonymous User. However, a parent has some extra features, such as booking and buying a ticket, logging in and out of their account, modifying or deleting their account and communicating with the platform manager.
 
 -  **Organizer (Service Providers)**  
-An organizer is considered to be the registered user who organizes an activity and wants to not only make it known to the public but also sell tickets through the platform. Service providers manage the information about their activities, such as the description, contact information, the amount they would like to receive from each ticket and the number of the available tickets. They are also authorized to communicate with the platform administrator.
+  An organizer is considered to be the registered user who organizes an activity and wants to not only make it known to the public but also sell tickets through the platform. Service providers manage the information about their activities, such as the description, contact information, the amount they would like to receive from each ticket and the number of the available tickets. They are also authorized to communicate with the platform administrator.
 
--   **Administrator**  
-By the term administrator, we mean the user who has a special permission to manage and control the system. They need to have a better knowledge of the system than the rest of the users. As platform administrators, they have the right to manage the users and assign or revoke permissions to roles. Furthermore, they can reset and block a user's password in case of necessity. Another one of their major responsibilities is the communication with the Parents and Organizers.
+-  **Administrator**  
+  By the term administrator, we mean the user who has a special permission to manage and control the system. They need to have a better knowledge of the system than the rest of the users. As platform administrators, they have the right to manage the users and assign or revoke permissions to roles. Furthermore, they can reset and block a user's password in case of necessity. Another one of their major responsibilities is the communication with the Parents and Organizers.
 
 Profit
 ------
@@ -99,7 +99,7 @@ Profit
 ### Ways of making profit
 - **5% of the paid amount**,for each payment, is reserved as service fee. So the stakeholder receives the 95% of the actual payment.
 - **Advertisements** of 3rd party companies.
--  **Paid promotional features** for stakeholders, displaying an activity at the home page or in the top of a relative search result. The special promotion has limited duration and it’s cost depend on the type of the promotion (home page - search engine) and the it’s duration.
+- **Paid promotional features** for stakeholders, displaying an activity at the home page or in the top of a relative search result. The special promotion has limited duration and it’s cost depend on the type of the promotion (home page - search engine) and the it’s duration.
 
 ### Transition from zero to big company
 - **Early steps:** The registration of both the users and the stakeholders is free of charge, in order to achieve early attraction of users, smooth adoption of the stakeholders and concurrently being ahead of the competition. The only way of making money at this stage, will be only a 5% for each ticket purchase, just to cover a part of the cost of the development and the server or invest it in a marketing campaign.
@@ -302,9 +302,9 @@ It is crucial that the software satisfies all of the following security requirem
 - If a user (initially Anonymous) wishes to register on the platform and the desired username is occupied, they should be asked to choose a different username.
 - Username - password combinations shall never be intercepted. Thus, the messages between the system and the database should be encrypted during log-in communications.
 - For security reasons and to be consistent with international standards, passwords must satisfy the following criteria:
-	1.    Passwords may consist of any combination of ASCII characters.
-	2.    Passwords shall consist of at least 6 and at most 15 characters.
-	3.    Passwords shall be case sensitive.
+  1.    Passwords may consist of any combination of ASCII characters.
+  2.    Passwords shall consist of at least 6 and at most 15 characters.
+  3.    Passwords shall be case sensitive.
 - Passwords shall never be viewable at the point of entry or at any other time.
 - Passwords stored in the database must be encrypted. As a result, unauthorized users will be prevented from obtaining the passwords.
 - The system should keep the database secure.
@@ -327,3 +327,54 @@ The platform should be easily extended. Therefore, the code should be written in
 ### Platform Versatility
 
 The platform shall be versatile in switching between desktop, tablet and mobile interface. It should also be fully functional in all the aforementioned kind of devices. 
+
+Software Tools
+--------------------------------
+
+Architecture
+---------------------------
+
+UML
+----------
+
+### Use Cases
+
+The use case diagrams for the main system actions, as well as for several individual subactions are following below.
+
+#### Overall System
+
+![System](./UML/USE_CASES/System.png)
+
+_There are four types of users, namely Anonymous User, Parent, Provider and Administrator._
+
+#### Registration as a Parent
+
+![Register as Parent](./UML/USE_CASES/Register_as_Parent.png)
+
+#### Registration as a Provider
+
+![Register as Provider](./UML/USE_CASES/Register_as_Provider.png)
+
+#### Upload Activity as Provider
+
+![Upload Activity](./UML/USE_CASES/UploadActivity.png)
+
+#### View activities
+
+![View Activities](./UML/USE_CASES/ViewActivities.png)
+
+_The user can either choose to view all the available activities, or perform a specialised search according to her criteria._
+
+#### Purchase Ticket as Parent
+
+![Purchase Ticket](./UML/USE_CASES/PurchaseTicket.png)
+
+_The procedure to purchase a ticket is as follows: the user selects the desired ticket, then she proceeds to the payment options providing any additional contact options if it is deemed necessary. After the payment is successful, she can access the email address that was provided during her registration into the platform in order to download the ticket in pdf format._
+
+### Components
+
+### Deployment
+
+Wireframes
+----
+
