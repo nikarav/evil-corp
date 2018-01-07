@@ -32,6 +32,20 @@ Table of Contents
     * [Usability](#usability)
     * [Extensibility](#extensibility)
     * [Platform Versatility](#platform-versatility)
+* [Software Tools - Architecture](#software-tools---architecture)
+    * [Introduction](#introduction-1)
+    * [Frontend](#frontend)
+    * [Backend](#backend)
+    * [Communication](#communication)
+    * [Version Control](#version-control)
+    * [Build, libraries, etc](#build-libraries-etc)
+    * [Watermark](#watermark)
+* [Database](#database)
+* [UML](#uml)
+    * [Use Cases](#use-cases)
+    * [Components](#components)
+    * [Deployment](#deployment)
+* [Wireframes](#wireframes)
 
 Introduction
 ------------
@@ -106,7 +120,7 @@ Profit
 
 
 
-### Digital wallet
+Digital wallet
 --------
  A registered user can fill his digital wallet with credits only by using a debit/credit account. Transcation with a bank account will be supported. The correspondence between digital wallet credits and real money is 1 by 1 and no fee is applied during the transaction.
 
