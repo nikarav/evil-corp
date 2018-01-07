@@ -16,7 +16,6 @@ Table of Contents
 * [Digital wallet](#digital-wallet)
 * [Ticket policy](#ticket-policy)
     * [Digital ticket](#digital-ticket)
-    * [Ticket coupons](#ticket-coupons)
     * [Return policy](#return-policy)
     * [Max tickets restrictions](#max-tickets-restrictions)
 * [Functional requirements](#functional-requirements)
@@ -122,9 +121,6 @@ Ticket policy
 
 ### Digital ticket
 A digital ticket is just a 10-digit ID number. Your kids are eligible to participate to an activity by providing the reservation name (probably your name) and the ticket ID. The digital ticket ID or IDs are displayed right after a succesfull payment and also sent to a given email.
-
-### Ticket coupons
-Ticket coupons is a discount which applies to one ticket in you payment. Multiple ticket coupons can be applied on a payment, but only one coupon on each ticket. If the price of a ticket is cheaper than the applied ticket coupon, then the ticket is free of charge.
 
 ### Return policy:
 Cancellation of a reservation is not supported by the platform and refund/return cannot be provided in any form.
