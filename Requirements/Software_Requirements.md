@@ -427,4 +427,41 @@ _The procedure to purchase a ticket is as follows: the user selects the desired 
 
 Wireframes
 ----
+#### Anonymous user search result
+![Anonymous user search result ](./Wireframes/Anonymous_user_search_results.png)
 
+#### Anonymous user activity selection
+![Anonymous_user_activity_selection ](./Wireframes/Anonymous_user_activity_selection.png)
+
+#### Parent registration
+![Parent_registration](./Wireframes/Parent_registration.png)
+
+#### Provider's account
+![Provider's account](./Wireframes/Provider's_account.png)
+
+#### Provider's search results
+![Provider's_search_results](./Wireframes/Provider's_search_results.png)
+
+#### Provider new activity
+![Provider_new_activity](./Wireframes/Provider_new_activity.png)
+
+#### Provider registration
+![Provider registration](./Wireframes/Provider_registration.png)
+
+#### Registered user activity selection
+![Registered user activity selection](./Wireframes/Registered_user_activity_selection.png)
+
+#### Registered user contact
+![Registered user contact](./Wireframes/Registered_user_contact.png)
+
+#### Registered user search results
+![Registered user search results](./Wireframes/Registered_user_search_results.png)
+
+#### Search results map
+![Search results map](./Wireframes/Search_results_map.png)
+
+#### User's reservations
+![User's reservations](./Wireframes/User's_reservations.png)
+
+#### User's wallet
+![ User's wallet](./Wireframes/User's_wallet.png)
