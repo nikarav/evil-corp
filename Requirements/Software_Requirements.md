@@ -121,7 +121,7 @@ Ticket policy
 ### Digital ticket
 A digital ticket is just a 10-digit ID number. Your kids are eligible to participate to an activity by providing the reservation name (probably your name) and the ticket ID. The digital ticket ID or IDs are displayed right after a succesfull payment and also sent to a given email.
 
-### Return policy:
+### Return policy
 Cancellation of a reservation is not supported by the platform and refund/return cannot be provided in any form.
 Purchasing a ticket is strictly an one-way procedure.
 
@@ -323,11 +323,41 @@ The platform should be easily extended. Therefore, the code should be written in
 
 The platform shall be versatile in switching between desktop, tablet and mobile interface. It should also be fully functional in all the aforementioned kind of devices. 
 
-Software Tools
---------------------------------
-
-Architecture
+Software Tools - Architecture
 ---------------------------
+
+### Introduction
+The platform will be built in universal javascript, meaning that the same code will be able to run in both frontend and backend. Server will be running node JS runtime engine and frontend will utilize react library to build the user interface. 
+
+### Frontend
+**React:** Following the react philosophy, the whole application will be build in javascript, making encapsulated reusable components which manage their own state. React uses a virtual DOM that renders only the changed UI elements. Regarding the styling of the UI we use the react-bootstrap framework through a CDN. 
+
+**Redux:** Instead of using an MVC, we adopt the Redux way of thinking. We estimate that our app will scale big enough, so it’s worth to introduce the concepts of the famous state container, Redux. So the structure of the frontend part will be split in actions, reducers, components and containers.
+
+**React-router:** By using react-router library in the frontend, we will handle history, routing and even client side routing.
+
+### Backend
+**Web Framework:** Implementing the routing responses in plain javascript will be pain in the ass without a web Framework. We selected to work with the express framework as it handles routing, middlewares and endpoint in quite straightforward way.
+
+**React-Router in server side:** We gonna use this library also in backend in order to implement server side rendering of our app.
+
+**Database:** For ease of use and speed  we will use a no NoSQL database, mongodb. It is famous, with big community and well-document and supports geolocation queries. Using this type of db we are able to skip the E-R diagram design and save time at the initial development phase.
+
+**Authentication:** Implementing login and signup functionality will be quite easy with the node js middleware library, passport.
+
+### Communication
+In order to achieve seamless UI interaction we use javascript promises to make asynchronous https request to backend server. The format of the received and sent data is JSON. That type of communication is widespread and it’s known as AJAX.
+All communication events will be driven by the RESTful design principles.
+
+### Version Control
+For version control, git is used exclusively. In order to test new features without breaking the existing code and collaborate without interference, we use branches and we merge them one by one to the master branch when appropriate. At this stage we don’t use pull request as all the members of the team have the same level of privilege. 
+
+### Build, libraries, etc
+In order to simplify the library management we are going to use the famous javascript package management, npm. Regarding the build process, webpack is a great tool to automate it and to pack all the assets in a single bundle.js file, both for development and production builds. 
+
+### Watermark
+The utility implementing the watermark on image will be built using a pre existing library. After that it will be compiled and then added as a binary dependency to our main project.
+
 
 Database
 ---------------------
