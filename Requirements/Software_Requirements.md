@@ -110,9 +110,11 @@ Profit
 
 ### Digital wallet
 --------
- The deposit in the digital wallet can be achieved in only one way. This is a  _paypal card_ in order to deduct the money  immediately from the bank account and transfer them into the digital wallet. Each parent should fill  his digital wallet with credits. Each euro corresponds to 1 credit that  means that if he deposits 100 euros then he will have 100 credits in his account. 
+ A registered user can fill his digital wallet with credits only by using a paypal account. Transcation with a bank account will not be supported. The correspondence between digital wallet credits and real money is 1 by 1 and no fee is applied during the transaction.
 
-There is a bonus policy related to the amount of the tickets that the user buys for the different  activities. _For every 10 tickets that a parent has bought and cashed in_, that  means  10,20,30 etc tickets in total, can have a free ticket of 10 credit value, or a deduction in the  price of a  more expensive ticket equivalent to the price of the offer, in his next order. If the ticket  he wants to  purchase is cheaper, he can acquire it for free. If the next order has more tickets, he can  earn a total  discount of 10 euros(credits). The other offer depends on the amount of the money that  a parent  deposit in his digital wallet. _For every 100 euros(credits) that he pays into his account_  that means  100,200,300 etc in total, he can earn 20 extra credits into his digital wallet. The purpose  of these  bonus is to maximize the utilization of the accounts in order to make this application more  attractive  and facilitate the families, especially the ones that have a lot of members.
+Digital wallet includes a reward policy for frequent users.
+ - For every 10 tickets that a user has purchaced, 10 bonus point will be added to his wallet as a reward for consistently selecting our platform.
+ - If the user makes deposit that exceed 100 euros, 7 bonus point are added to his digital wallet. Also, if he makes a deposit of 50-100 euros 3 points will be offered as a bonus.
 
 
 Ticket policy
