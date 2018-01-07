@@ -421,6 +421,7 @@ _The user can either choose to view all the available activities, or perform a s
 _The procedure to purchase a ticket is as follows: the user selects the desired ticket, then she proceeds to the payment options providing any additional contact options if it is deemed necessary. After the payment is successful, she can access the email address that was provided during her registration into the platform in order to download the ticket in pdf format._
 
 ### Components
+![Component](./UML/USE_CASES/component-diagram.png)
 
 ### Deployment
 
