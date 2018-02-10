@@ -1,0 +1,8 @@
+{
+  "name": "Playground",
+  "description": "A web application that facilitates search of activities for children, built with Node.js using Express 4 with MongoDB, and ReactJS in Flux, using Webpack as a module bundler",
+  "keywords": ["node", "express", "static", "react", "webpack", "mongodb"],
+  "addons" : [
+  	"mongolab"
+  ]
+}
