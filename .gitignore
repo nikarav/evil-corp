@@ -1,0 +1,9 @@
+src/node_modules
+src/npm-debug.log
+src/.tmp
+src/.idea
+src/public
+src/compiled
+src/*.swp
+src/*~
+src/.vscode
