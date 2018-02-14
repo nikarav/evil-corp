@@ -6,8 +6,7 @@ import initPassport from './init/passport';
 import initExpress from './init/express';
 import initRoutes from './init/routes';
 
-// TODO
-// import renderMiddleware from './render/middleware';
+import renderMiddleware from './render/middleware';
 
 const app = express();
 
@@ -49,7 +48,6 @@ initRoutes(app);
  * renderMiddleware matches the URL with react-router and renders the app into
  * HTML
  */
-// TODO
-// app.get('*', renderMiddleware);
+app.get('*', renderMiddleware);
 
 app.listen(app.get('port'));
