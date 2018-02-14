@@ -16,39 +16,39 @@ const ticketController = controllers && controllers.ticketController;
 export default (app) => {
   // login routes
   if (userController) {
-    app.post('/sessions', userController.login);
-    app.delete('/sessions', userController.logout);
+    app.post('/api/sessions', userController.login);
+    app.delete('/api/sessions', userController.logout);
   } else {
     console.warn(unsupportedMessage('login routes'));
   }
 
   // parent routes
   if (parentController) {
-    app.post('/parents', parentController.parentSignup);
-    app.get('/parent', parentController.authorizeParent, parentController.parentData);
-    app.get('/parent/credits', parentController.authorizeParent, parentController.getCredits);
-    app.post('/parent/credits', parentController.authorizeParent, parentController.addCredits);
+    app.post('/api/parents', parentController.parentSignup);
+    app.get('/api/parent', parentController.authorizeParent, parentController.parentData);
+    app.get('/api/parent/credits', parentController.authorizeParent, parentController.getCredits);
+    app.post('/api/parent/credits', parentController.authorizeParent, parentController.addCredits);
   } else {
     console.warn(unsupportedMessage('parent routes'));
   }
 
   // provider routes
   if (providerController) {
-    app.post('/providers', providerController.providerSignup);
-    app.get('/provider', providerController.authorizeProvider, providerController.providerData);
+    app.post('/api/providers', providerController.providerSignup);
+    app.get('/api/provider', providerController.authorizeProvider, providerController.providerData);
   } else {
     console.warn(unsupportedMessage('provider routes'));
   }
 
   if (ticketController) {
-    app.post('/activity', activityController.postActivity);
+    app.post('/api/activity', activityController.postActivity);
   } else {
     console.warn(unsupportedMessage('ticket routes'));
   }
 
   // ticket routes
   if (ticketController) {
-    app.post('/parent/ticket', ticketController.buyTicket);
+    app.post('/api/parent/ticket', ticketController.buyTicket);
   } else {
     console.warn(unsupportedMessage('ticket routes'));
   }
