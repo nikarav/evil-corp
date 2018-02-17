@@ -28,6 +28,7 @@ export default (app) => {
     app.get('/api/parent', parentController.authorizeParent, parentController.parentData);
     app.get('/api/parent/credits', parentController.authorizeParent, parentController.getCredits);
     app.post('/api/parent/credits', parentController.authorizeParent, parentController.addCredits);
+    app.post('/api/parent/changeProfile', parentController.authorizeParent, parentController.changeProfile);
   } else {
     console.warn(unsupportedMessage('parent routes'));
   }
@@ -36,11 +37,12 @@ export default (app) => {
   if (providerController) {
     app.post('/api/providers', providerController.providerSignup);
     app.get('/api/provider', providerController.authorizeProvider, providerController.providerData);
+    app.post('/api/provider/changeProfile',providerController.authorizeProvider, providerController.changeProfile);
   } else {
     console.warn(unsupportedMessage('provider routes'));
   }
 
-  if (ticketController) {
+  if (activityController) {
     app.post('/api/activity', activityController.postActivity);
   } else {
     console.warn(unsupportedMessage('ticket routes'));
