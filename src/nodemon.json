@@ -1,7 +1,7 @@
 {
     "verbose": true,
     "watch": [
-      "app/routes.jsx",
+      "app/routes.js",
       "server",
       "webpack"
     ],
