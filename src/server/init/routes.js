@@ -5,6 +5,7 @@ import passport from 'passport';
 import unsupportedMessage from '../db/unsupportedMessage';
 import { controllers, passport as passportConfig } from '../db';
 import activity_model from '../db/mongo/models/activity_model';
+import administrator_model from '../db/mongo/models/administrator_model';
 
 const userController = controllers && controllers.userController;
 const parentController = controllers && controllers.parentController;
@@ -28,6 +29,7 @@ export default (app) => {
     app.get('/api/parent', parentController.authorizeParent, parentController.parentData);
     app.get('/api/parent/credits', parentController.authorizeParent, parentController.getCredits);
     app.post('/api/parent/credits', parentController.authorizeParent, parentController.addCredits);
+    app.post('/api/parent/changeProfile', parentController.authorizeParent, parentController.changeProfile);
   } else {
     console.warn(unsupportedMessage('parent routes'));
   }
@@ -36,8 +38,15 @@ export default (app) => {
   if (providerController) {
     app.post('/api/providers', providerController.providerSignup);
     app.get('/api/provider', providerController.authorizeProvider, providerController.providerData);
+    app.post('/api/provider/changeProfile', providerController.authorizeProvider, providerController.changeProfile);
   } else {
     console.warn(unsupportedMessage('provider routes'));
+  }
+
+  if (administratorController) {
+    app.post('/api/administrators', administratorController.administratorSignup);
+  } else {
+    console.warn(unsupportedMessage('administrator routes'));
   }
 
   if (ticketController) {
