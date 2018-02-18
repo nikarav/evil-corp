@@ -1,6 +1,9 @@
 import Activity from '../models/activity_model';
+import ProviderProfile from '../models/provider_model';
 
 export function postActivity(req, res, next) {
+  const profileId = req.user.profile.id;
+  const providerId = req.user.id;
   const activity = new Activity({
     name: req.body.name,
     location: req.body.location,
@@ -13,15 +16,20 @@ export function postActivity(req, res, next) {
     max_age: req.body.max_age,
     tags: req.body.tags,
     price: req.body.price,
+    provider: providerId
   });
+
 
   activity.save((err) => {
     if (err) return next(err);
+
+    ProviderProfile.findByIdAndUpdate(profileId, { $push: { "activities": activity } }, { new: true}, (err, profile) => {
+       if (err) return next(err);
+    });
     return res.sendStatus(200);
-  });
+   });
 }
 
 export default {
   postActivity
 };
-
