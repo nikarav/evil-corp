@@ -51,6 +51,12 @@ export default (app) => {
     console.warn(unsupportedMessage('administrator routes'));
   }
 
+  if (userController) {
+    app.post('/api/login', userController.login);
+  } else {
+    console.warn(unsupportedMessage('user routes'));
+  }
+
   if (activityController) {
     app.post('/api/activity', activityController.postActivity);
   } else {
