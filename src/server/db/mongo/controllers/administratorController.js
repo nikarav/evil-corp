@@ -46,8 +46,36 @@ export function authorizeAdministrator(req, res, next) {
   return res.sendStatus(401);
 }
 
+export function changeEmail(req, res, next) {
+  const email= req.body.email;
+	const profileId = req.user.profile.id;
+	if (validator.isEmail(email)) {
+	 AdministratorProfile.findByIdAndUpdate(profileId, { $set: { "email": email } }, { new: true}, (err, profile) => {
+      if (err) return next(err);
+	    const emailUpdated = profile.email;
+
+      return res.send({ email: emailUpdated });
+    }
+  );
+} else {
+    return res.sendStatus(400);
+  }
+
+}
+
+export function administratorData(req, res) {
+  const user = req.user;
+  const data = {
+    username: user.username,
+    profile: user.profile
+  };
+
+  return res.send(data);
+}
 
 export default {
   administratorSignup,
-  authorizeAdministrator
+  authorizeAdministrator,
+  changeEmail,
+  administratorData
 };

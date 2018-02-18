@@ -45,6 +45,8 @@ export default (app) => {
 
   if (administratorController) {
     app.post('/api/administrators', administratorController.administratorSignup);
+    app.get('/api/administrator', administratorController.authorizeAdministrator, administratorController.administratorData);
+    app.post('/api/administrator/changeEmail', administratorController.authorizeAdministrator, administratorController.changeEmail);
   } else {
     console.warn(unsupportedMessage('administrator routes'));
   }
