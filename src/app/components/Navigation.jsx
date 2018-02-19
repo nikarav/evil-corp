@@ -4,10 +4,7 @@ import { Button } from 'react-bootstrap';
 
 const Navigation = () => {
   return (
-    <Route render={({ staticContext }) => {
-      if (staticContext) {
-        staticContext.status = 404;
-      }
+    <Route render={() => {
       return (
         <div>
           <h1>Navigation Page</h1>
