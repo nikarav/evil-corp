@@ -65,7 +65,8 @@ export default (app) => {
 
   // ticket routes
   if (ticketController) {
-    app.post('/api/parent/ticket', ticketController.buyTicket);
+    app.post('/api/parent/ticket/buy', parentController.authorizeParent, ticketController.buyTicket);
+    app.get('/api/parent/ticket/:ticketId/pdf/', parentController.authorizeParent, ticketController.generatePdf);
   } else {
     console.warn(unsupportedMessage('ticket routes'));
   }

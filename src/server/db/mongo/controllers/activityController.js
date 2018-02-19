@@ -3,7 +3,6 @@ import ProviderProfile from '../models/provider_model';
 
 export function postActivity(req, res, next) {
   const profileId = req.user.profile.id;
-  const providerId = req.user.id;
   const activity = new Activity({
     name: req.body.name,
     location: req.body.location,
@@ -16,7 +15,7 @@ export function postActivity(req, res, next) {
     max_age: req.body.max_age,
     tags: req.body.tags,
     price: req.body.price,
-    provider: providerId
+    provider: profileId
   });
 
 
