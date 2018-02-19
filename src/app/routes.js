@@ -1,5 +1,6 @@
 import HomePage from './components/HomePage';
 import Navigation from './components/Navigation';
+import SignUp from './components/SignUp'
 
 const routes = [
   {
@@ -10,6 +11,11 @@ const routes = [
   {
     path: '/nav',
     component: Navigation,
+    exact: true
+  },
+  {
+    path: '/signup',
+    component: SignUp,
     exact: true
   }
 ];
