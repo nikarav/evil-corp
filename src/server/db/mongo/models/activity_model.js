@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { USER_TYPES } from '../../../../config/userTypes';
 
 const ActivitySchema = new mongoose.Schema({
   name: { type: String, required: true },
@@ -12,6 +13,7 @@ const ActivitySchema = new mongoose.Schema({
   max_age: { type: Number, min: 0, max: 17, default: 17 },
   tags: [String],
   price: { type: Number, min: 0, required: true },
+  provider: { type: mongoose.Schema.Types.ObjectId, ref: USER_TYPES.Provider, require: true },
   locked: { type: Boolean, default: false } // true in case provider is locked
 });
 
@@ -34,4 +36,3 @@ ActivitySchema.set('toObject', { virtuals: true });
 );
  */
 export default mongoose.model('Activity', ActivitySchema);
-
