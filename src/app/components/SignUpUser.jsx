@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Control } from 'react-redux-form';
 
-class SignUpForm extends React.Component {
+class SignUpUser extends React.Component {
   handleSubmit(values) {
     // Do anything you want with the form value
     console.log(values);
@@ -10,16 +10,11 @@ class SignUpForm extends React.Component {
   render() {
     return (
       <Form
-        model="user"
+        model="userForm.user"
         onSubmit={(val) => this.handleSubmit(val)}
       >
         <label>Your name?</label>
-        <Control.text model="user.name" />
-
-        <label>
-          <Control.checkbox model="user.remember" />
-          Remember me
-        </label>
+        <Control.text model=".firstName" />
 
         <button>Submit!</button>
       </Form>
@@ -27,4 +22,4 @@ class SignUpForm extends React.Component {
   }
 }
 
-export default SignUpForm;
+export default SignUpUser;

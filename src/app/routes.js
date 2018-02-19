@@ -1,6 +1,6 @@
 import HomePage from './components/HomePage';
 import Navigation from './components/Navigation';
-import SignUp from './components/SignUp'
+import Users from './components/Users'
 
 const routes = [
   {
@@ -14,8 +14,8 @@ const routes = [
     exact: true
   },
   {
-    path: '/signup',
-    component: SignUp,
+    path: '/users',
+    component: Users,
     exact: true
   }
 ];

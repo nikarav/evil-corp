@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { routerReducer as routing } from 'react-router-redux';
 import * as types from '../types';
-import { combineForms } from 'react-redux-form';
+import { modelReducer, formReducer, combineForms} from 'react-redux-form';
 
 const isFetching = (state = false, action) => {
   switch (action.type) {
@@ -14,16 +14,30 @@ const isFetching = (state = false, action) => {
       return state;
   }
 };
-const initialUser = {
+
+const initialProviderState = {
   firstName: '',
   lastName: '',
- };
+  age: '',
+  gender: ''
+};
+
+const initialUserSate = {
+  firstName: '',
+  lastName: ''
+};
 
 // Combine reducers with routeReducer which keeps track of
 // router state
 const rootReducer = combineReducers({
   isFetching: isFetching,
-  user: combineForms({ user: initialUser, })
+  userForm: combineForms({
+      user: initialUserSate,
+    }, 'userForm'
+  ),
+  providerForm: combineForms({
+    user: initialProviderState,
+    }, 'providerForm'),
 });
 
 export default rootReducer;
