@@ -1,5 +1,4 @@
 import React from 'react';
-import createMemoryHistory from 'history/createMemoryHistory';
 import { renderToString } from 'react-dom/server';
 import axios from 'axios';
 import { StaticRouter } from 'react-router-dom';
@@ -18,7 +17,6 @@ import { sessionId } from '../../config/secrets';
  */
 export default function render(req, res) {
   const authenticated = req.isAuthenticated();
-  const history = createMemoryHistory();
 
   // TODO Maybe we need to change store
   const store = configureStore({
