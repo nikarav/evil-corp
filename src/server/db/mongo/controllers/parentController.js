@@ -3,6 +3,7 @@ import User from '../models/user_model';
 import ParentProfile from '../models/parent_model';
 import { USER_TYPES } from '../../../../config/userTypes';
 import validator from 'validator';
+import bcrypt from 'bcrypt-nodejs';
 /**
  * POST /signup
  * Create a new local account
@@ -87,15 +88,17 @@ export function parentData(req, res) {
 }
 
 export function changeProfile(req, res, next) {
-  const name= req.body.name;
-  const surname= req.body.surname;
-  const email= req.body.email;
-  const telephone= req.body.telephone;
-  const address= req.body.address;
-  const birthday= req.body.birthday;
+  var objForUpdate = {};
+  if (req.body.name) objForUpdate.name = req.body.name;
+  if (req.body.surname) objForUpdate.surname = req.body.surname;
+  if (req.body.email) objForUpdate.email = req.body.email;
+  if (req.body.telephone) objForUpdate.telephone = req.body.telephone;
+  if (req.body.address) objForUpdate.address = req.body.address;
+  if (req.body.birthday) objForUpdate.birthday = req.body.birthday;
+
 	const profileId = req.user.profile.id;
-	if (validator.isEmail(email) && telephone.length>7) {
-	 ParentProfile.findByIdAndUpdate(profileId, { $set: { "name": name, "surname": surname, "email": email, "telephone": telephone, "address": address, "birthday": birthday  } }, { new: true}, (err, profile) => {
+	if (!(req.body.email) || !(req.body.telephone) || (validator.isEmail(req.body.email) && (req.body.telephone).length>7)) {
+	 ParentProfile.findByIdAndUpdate(profileId, { $set: objForUpdate}, { new: true}, (err, profile) => {
       if (err) return next(err);
       const nameUpdated = profile.name;
 	    const surnameUpdated = profile.surname;
@@ -113,11 +116,40 @@ export function changeProfile(req, res, next) {
 
 }
 
+const saltRounds = 10;
+var salt = bcrypt.genSaltSync(saltRounds);
+
+export function changeCredentials(req, res, next) {
+  var objForUpdate = {};
+  if (req.body.username) objForUpdate.username = req.body.username;
+  if (req.body.password) {
+
+  var hash = bcrypt.hashSync(req.body.password, salt);
+  objForUpdate.password = hash;
+  }
+	const profileId=req.user.id;
+	if(!(req.body.password) || (req.body.password).length > 3 ){
+	User.findByIdAndUpdate(profileId, { $set: objForUpdate}, {new: true}, (err,profile) => {
+	 if (err) return next(err);
+	 const usernameUpdated = profile.username;
+	 const passwordUpdated= profile.password;
+
+	 return res.send({username: usernameUpdated, password: passwordUpdated});
+	 }
+	);
+}  else {
+     return res.sendStatus(400);
+}
+
+}
+
+
 export default {
   parentSignup,
   authorizeParent,
   parentData,
   addCredits,
   getCredits,
-  changeProfile
+  changeProfile,
+  changeCredentials
 };
