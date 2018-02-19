@@ -3,13 +3,15 @@ import parentController from './parentController';
 import providerController from './providerController';
 import activityController from './activityController';
 import ticketController from './ticketController';
+import administratorController from './administratorController'
 
 export {
   userController,
   parentController,
   providerController,
   activityController,
-  ticketController
+  ticketController,
+  administratorController
 };
 
 export default {
@@ -17,5 +19,6 @@ export default {
   parentController,
   providerController,
   activityController,
-  ticketController
+  ticketController,
+  administratorController
 };

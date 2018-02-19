@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import User from '../models/user_model';
 import ParentProfile from '../models/parent_model';
 import { USER_TYPES } from '../../../../config/userTypes';
-
+import validator from 'validator';
 /**
  * POST /signup
  * Create a new local account
@@ -86,10 +86,38 @@ export function parentData(req, res) {
   return res.send(data);
 }
 
+export function changeProfile(req, res, next) {
+  const name= req.body.name;
+  const surname= req.body.surname;
+  const email= req.body.email;
+  const telephone= req.body.telephone;
+  const address= req.body.address;
+  const birthday= req.body.birthday;
+	const profileId = req.user.profile.id;
+	if (validator.isEmail(email) && telephone.length>7) {
+	 ParentProfile.findByIdAndUpdate(profileId, { $set: { "name": name, "surname": surname, "email": email, "telephone": telephone, "address": address, "birthday": birthday  } }, { new: true}, (err, profile) => {
+      if (err) return next(err);
+      const nameUpdated = profile.name;
+	    const surnameUpdated = profile.surname;
+	    const emailUpdated = profile.email;
+	    const telephoneUpdated = profile.telephone;
+	    const addressUpdated = profile.address;
+	    const birthdayUpdated = profile.birthday;
+
+      return res.send({ name: nameUpdated, surname: surnameUpdated,  email: emailUpdated, telephone: telephoneUpdated, address: addressUpdated, birthday: birthdayUpdated });
+    }
+  );
+} else {
+    return res.sendStatus(400);
+  }
+
+}
+
 export default {
   parentSignup,
   authorizeParent,
   parentData,
   addCredits,
-  getCredits
+  getCredits,
+  changeProfile
 };
