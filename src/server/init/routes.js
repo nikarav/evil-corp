@@ -44,8 +44,10 @@ export default (app) => {
   }
 
   if (administratorController) {
-    app.post('/api/administrators', administratorController.administratorSignup);
+    app.post('/api/administrators', administratorController.administratorSignup);  // only for backend
     app.get('/api/administrator', administratorController.authorizeAdministrator, administratorController.administratorData);
+    app.post('/api/administrator/lockUnlockUser', administratorController.lockUnlockUser);
+    app.post('/api/administrator/checkIfLocked', administratorController.checkIfLocked);
     app.post('/api/administrator/changeEmail', administratorController.authorizeAdministrator, administratorController.changeEmail);
   } else {
     console.warn(unsupportedMessage('administrator routes'));
