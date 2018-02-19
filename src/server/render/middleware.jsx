@@ -28,7 +28,7 @@ export default function render(req, res) {
       message: '',
       isLogin: true
     }
-  }, history);
+  });
 
   /* Give the user's session to the server to use */
   if (req.cookies[sessionId]) {
