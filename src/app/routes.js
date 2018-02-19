@@ -1,9 +1,16 @@
-import NotFound from './components/NotFound';
+import HomePage from './components/HomePage';
+import Navigation from './components/Navigation';
 
 const routes = [
   {
-    path: '*',
-    component: NotFound
+    path: '/',
+    component: HomePage,
+    exact: true
+  },
+  {
+    path: '/nav',
+    component: Navigation,
+    exact: true
   }
 ];
 

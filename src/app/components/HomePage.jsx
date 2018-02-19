@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 
-const NotFound = () => {
+const HomePage = () => {
   return (
     <Route render={({ staticContext }) => {
       if (staticContext) {
@@ -9,7 +9,7 @@ const NotFound = () => {
       }
       return (
         <div>
-          <h1>404 : Not Found</h1>
+          <h1>Starter Page</h1>
         </div>
       );
     }}
@@ -17,4 +17,4 @@ const NotFound = () => {
   );
 };
 
-export default NotFound;
+export default HomePage;
