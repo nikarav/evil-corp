@@ -10,10 +10,10 @@ const routes = [
       exact: true
     },
     {
-      path: '/nav',
-      component: Navigation,
-      exact: true
-    },
+    path: '/nav',
+    component: Navigation,
+    exact: true
+  },
     {
       path: '/users',
       component: Users,

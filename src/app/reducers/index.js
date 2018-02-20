@@ -16,6 +16,12 @@ const isFetching = (state = false, action) => {
   }
 };
 
+const initialActivityState = {
+    name: '',
+    location:'',
+    description: ''.
+};
+
 const initialProviderState = {
   brand_name: '',
   email: '',
