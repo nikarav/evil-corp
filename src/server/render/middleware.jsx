@@ -20,12 +20,12 @@ export default function render(req, res) {
 
   // TODO Maybe we need to change store
   const store = configureStore({
-    user: {
-      authenticated,
-      isWaiting: false,
-      message: '',
-      isLogin: true
-    }
+    // user: {
+    //   authenticated,
+    //   isWaiting: false,
+    //   message: '',
+    //   isLogin: true
+    // }
   });
 
   /* Give the user's session to the server to use */
