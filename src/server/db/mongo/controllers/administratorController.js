@@ -1,6 +1,10 @@
 import mongoose from 'mongoose';
 import User from '../models/user_model';
 import AdministratorProfile from '../models/administrator_model';
+import { sendEmail } from '../controllers/emailController';
+import ParentProfile from '../models/parent_model';
+import ProviderProfile from '../models/provider_model';
+import Activity from '../models/activity_model';
 import { USER_TYPES } from '../../../../config/userTypes';
 import validator from 'validator';
 /**
@@ -73,9 +77,175 @@ export function administratorData(req, res) {
   return res.send(data);
 }
 
+export function lockUnlockUser(req, res, next){
+    const username = req.body.username;
+    User.findOne({ username: username }, (findErr, existingUser) => {
+      if (!existingUser) {
+        const response = "Το Username δεν αντιστοιχεί σε χρήστη."
+        return res.send({ response });
+      }
+      const userProfile = existingUser;
+      const role = userProfile.user_role;
+      const profileId = userProfile.profile;
+      const parent = role === USER_TYPES.Parent;
+      const provider = role === USER_TYPES.Provider;
+      if(parent) {
+        ParentProfile.findById(profileId, (err, profile) => {
+          if (err) return next(err);
+          const lockedUpdated = !profile.locked;
+          ParentProfile.findByIdAndUpdate(profileId, { $set: { "locked": lockedUpdated } }, { new: true}, (err, profile) => {
+            if (err) return next(err);
+          });
+          const parentEmail = profile.email;
+          if(lockedUpdated) {
+            const emailBody = 'Καλησπέρα σας, ο λογαριασμός με όνομα χρήστη ' + username + ' στην πλατφόρμα PLAYGROUND έχει κλειδωθεί.';
+            const subject = 'Κλείδωμα χρήστη στην πλατφόρμα PLAYGROUND';
+            const mailOptions = {
+              from: 'admin@playground.com',
+              to: parentEmail,
+              text: emailBody,
+              subject: subject,
+            };
+            sendEmail(mailOptions);
+          }
+          else {
+            const emailBody = 'Καλησπέρα σας, ο λογαριασμός με όνομα χρήστη ' + username + ' στην πλατφόρμα PLAYGROUND έχει ξεκλειδωθεί.';
+            const subject = 'Ξεκλείδωμα χρήστη στην πλατφόρμα PLAYGROUND';
+            const mailOptions = {
+              from: 'admin@playground.com',
+              to: parentEmail,
+              text: emailBody,
+              subject: subject,
+            };
+            sendEmail(mailOptions);
+          }
+          return res.send({ locked: lockedUpdated });
+        });
+     }
+     else if (provider) {
+       ProviderProfile.findById(profileId, (err, profile) => {
+         if (err) return next(err);
+         const lockedUpdated = !profile.locked;
+         ProviderProfile.findByIdAndUpdate(profileId, { $set: { "locked": lockedUpdated } }, { new: true}, (err, profile) => {
+           if (err) return next(err);
+         });
+         const activities = profile.activities;
+         const arrayLength = activities.length;
+         for (var i = 0; i < arrayLength; i++) {
+            var activityId = activities[i];
+            Activity.findByIdAndUpdate(activityId,  { $set: { "locked": lockedUpdated } }, { new: true}, (err, profile) => {
+              if (err) return next(err);
+            });
+         }
+         const providerEmail = profile.email;
+         if(lockedUpdated){
+           const emailBody = 'Καλησπέρα σας, ο λογαριασμός με όνομα χρήστη ' + username + ' στην πλατφόρμα PLAYGROUND έχει κλειδωθεί.';
+           const subject = 'Κλείδωμα χρήστη στην πλατφόρμα PLAYGROUND';
+           const mailOptions = {
+             from: 'admin@playground.com',
+             to: providerEmail,
+             text: emailBody,
+             subject: subject,
+           };
+           sendEmail(mailOptions);
+         }
+         else{
+           const emailBody = 'Καλησπέρα σας, ο λογαριασμός με όνομα χρήστη ' + username + ' στην πλατφόρμα PLAYGROUND έχει ξεκλειδωθεί.';
+           const subject = 'Ξεκλείδωμα χρήστη στην πλατφόρμα PLAYGROUND';
+           const mailOptions = {
+             from: 'admin@playground.com',
+             to: providerEmail,
+             text: emailBody,
+             subject: subject,
+           };
+           sendEmail(mailOptions);
+         }
+       return res.send({ locked: lockedUpdated });
+       });
+     }
+     else{
+       const response = "Το Username δεν αντιστοιχεί σε Γονέα / Διοργανωτή Δραστηριοτήτων."
+       return res.send({ response });
+     }
+    });
+}
+
+export function checkIfLocked(req, res, next){
+    const username = req.body.username;
+    User.findOne({ username: username }, (findErr, existingUser) => {
+      if (!existingUser) {
+        const response = "Το Username δεν αντιστοιχεί σε χρήστη."
+        return res.send({ response });
+      }
+      const userProfile = existingUser;
+      const role = userProfile.user_role;
+      const profileId = userProfile.profile;
+      const parent = role === USER_TYPES.Parent;
+      const provider = role === USER_TYPES.Provider;
+      if(parent) {
+        ParentProfile.findById(profileId, (err, profile) => {
+          if (err) return next(err);
+          const locked = profile.locked;
+          return res.send({ locked: locked });
+        });
+     }
+     else if (provider) {
+       ProviderProfile.findById(profileId, (err, profile) => {
+         if (err) return next(err);
+         const locked = profile.locked;
+         return res.send({ locked: locked });
+       });
+     }
+     else{
+       const response = "Το Username δεν αντιστοιχεί σε Γονέα / Διοργανωτή Δραστηριοτήτων."
+       return res.send({ response });
+     }
+    });
+}
+
+export function approveProvider(req, res, next){
+    const username = req.body.username;
+    User.findOne({ username: username }, (findErr, existingUser) => {
+      if (!existingUser) {
+        const response = "Το Username δεν αντιστοιχεί σε χρήστη."
+        return res.send({ response });
+      }
+      const userProfile = existingUser;
+      const role = userProfile.user_role;
+      const profileId = userProfile.profile;
+      const provider = role === USER_TYPES.Provider;
+      if (provider) {
+        ProviderProfile.findByIdAndUpdate(profileId, { $set: { "locked": false, "activated": true } }, { new: true}, (err, profile) => {
+          if (err) return next(err);
+          const lockedUpdated = profile.locked;
+          const activatedUpdated = profile.activated;
+          //return res.send({ locked: lockedUpdated });
+          const providerEmail = profile.email;
+          const emailBody = 'Καλησπέρα σας, ο λογαριασμός με όνομα χρήστη ' + username + ' στην πλατφόρμα PLAYGROUND έχει ενεργοποιηθεί.';
+          const mailOptions = {
+            from: 'admin@playground.com',
+            to: providerEmail,
+            text: emailBody,
+            subject: 'ΕΓΓΡΑΦΗ ΣΤΗΝ ΠΛΑΤΦΟΡΜΑ PLAYGROUND',
+          };
+          sendEmail(mailOptions);
+          return res.send({ activated: activatedUpdated });
+        });
+      }
+      else{
+        const response = "Το Username δεν αντιστοιχεί σε Διοργανωτή Δραστηριοτήτων."
+        return res.send({ response });
+      }
+     });
+}
+
+
 export default {
   administratorSignup,
   authorizeAdministrator,
   changeEmail,
-  administratorData
+  administratorData,
+  lockUnlockUser,
+  checkIfLocked,
+  approveProvider
 };
