@@ -34,14 +34,14 @@ const initialProviderState = {
 };
 
 const initialUserSate = {
-  name: '',
-  surname: '',
-  email: '',
-  telephone: '',
-  address: '',
-  birthday: '',
-  username: '',
-  password: ''
+  name: 'manolis',
+  surname: 'anastasiou',
+  email: 'manolisan28@gmail.com',
+  telephone: '6979978425',
+  address: 'Kallistratous 18',
+  birthday: '22',
+  username: 'manolis',
+  password: 'pass'
 };
 
 // Combine reducers with routeReducer which keeps track of
@@ -50,12 +50,17 @@ const rootReducer = combineReducers({
   isFetching,
   user,
   userForm: combineForms({
-      user: initialUserSate,
+    user: initialUserSate,
     }, 'userForm'
   ),
   providerForm: combineForms({
     user: initialProviderState,
-    }, 'providerForm'),
+    }, 'providerForm'
+  ),
+  logInForm: combineForms({
+    user: {username: '', password: ''},
+    }, 'logInForm'
+  )
 });
 
 export default rootReducer;

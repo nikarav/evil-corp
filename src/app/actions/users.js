@@ -1,5 +1,4 @@
 import authService from '../authService';
-
 import * as types from '../types';
 
 // LOGIN actions
@@ -115,7 +114,7 @@ export function manualLogin(data) {
   return (dispatch) => {
     dispatch(beginLogin());
 
-    return authService().login(data)
+    return authService().logIn(data)
       .then((response) => {
           dispatch(loginSuccess('You have been successfully logged in'));
           //dispatch(push('/'));
