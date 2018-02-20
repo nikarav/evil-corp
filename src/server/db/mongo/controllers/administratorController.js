@@ -96,7 +96,30 @@ export function lockUnlockUser(req, res, next){
           ParentProfile.findByIdAndUpdate(profileId, { $set: { "locked": lockedUpdated } }, { new: true}, (err, profile) => {
             if (err) return next(err);
           });
-        return res.send({ locked: lockedUpdated });
+          const parentEmail = profile.email;
+          if(lockedUpdated) {
+            const emailBody = 'Καλησπέρα σας, ο λογαριασμός με όνομα χρήστη ' + username + ' στην πλατφόρμα PLAYGROUND έχει κλειδωθεί.';
+            const subject = 'Κλείδωμα χρήστη στην πλατφόρμα PLAYGROUND';
+            const mailOptions = {
+              from: 'admin@playground.com',
+              to: parentEmail,
+              text: emailBody,
+              subject: subject,
+            };
+            sendEmail(mailOptions);
+          }
+          else {
+            const emailBody = 'Καλησπέρα σας, ο λογαριασμός με όνομα χρήστη ' + username + ' στην πλατφόρμα PLAYGROUND έχει ξεκλειδωθεί.';
+            const subject = 'Ξεκλείδωμα χρήστη στην πλατφόρμα PLAYGROUND';
+            const mailOptions = {
+              from: 'admin@playground.com',
+              to: parentEmail,
+              text: emailBody,
+              subject: subject,
+            };
+            sendEmail(mailOptions);
+          }
+          return res.send({ locked: lockedUpdated });
         });
      }
      else if (provider) {
@@ -113,6 +136,29 @@ export function lockUnlockUser(req, res, next){
             Activity.findByIdAndUpdate(activityId,  { $set: { "locked": lockedUpdated } }, { new: true}, (err, profile) => {
               if (err) return next(err);
             });
+         }
+         const providerEmail = profile.email;
+         if(lockedUpdated){
+           const emailBody = 'Καλησπέρα σας, ο λογαριασμός με όνομα χρήστη ' + username + ' στην πλατφόρμα PLAYGROUND έχει κλειδωθεί.';
+           const subject = 'Κλείδωμα χρήστη στην πλατφόρμα PLAYGROUND';
+           const mailOptions = {
+             from: 'admin@playground.com',
+             to: providerEmail,
+             text: emailBody,
+             subject: subject,
+           };
+           sendEmail(mailOptions);
+         }
+         else{
+           const emailBody = 'Καλησπέρα σας, ο λογαριασμός με όνομα χρήστη ' + username + ' στην πλατφόρμα PLAYGROUND έχει ξεκλειδωθεί.';
+           const subject = 'Ξεκλείδωμα χρήστη στην πλατφόρμα PLAYGROUND';
+           const mailOptions = {
+             from: 'admin@playground.com',
+             to: providerEmail,
+             text: emailBody,
+             subject: subject,
+           };
+           sendEmail(mailOptions);
          }
        return res.send({ locked: lockedUpdated });
        });
