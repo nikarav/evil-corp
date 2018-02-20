@@ -11,7 +11,7 @@ const Users = () => {
         return (
           <div>
             <SignUpUser />
-            <SignUpProvider/>
+            {/* <SignUpProvider/> */}
           </div>
           );  }
     }
