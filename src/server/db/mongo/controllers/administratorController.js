@@ -239,6 +239,33 @@ export function approveProvider(req, res, next){
      });
 }
 
+export function rejectProvider(req, res, next){
+    const username = req.body.username;
+    User.findOne({ username: username }, (findErr, existingUser) => {
+      if (!existingUser) {
+        const response = "Το Username δεν αντιστοιχεί σε χρήστη."
+        return res.send({ response });
+      }
+      const userProfile = existingUser;
+      const role = userProfile.user_role;
+      const profileId = userProfile.profile;
+      const provider = role === USER_TYPES.Provider;
+      if (provider) {
+        ProviderProfile.findByIdAndRemove(profileId, (err, profile) => {
+          if (err) return next(err);
+        });
+        const profileIdNew = userProfile._id;
+        User.findByIdAndRemove(profileIdNew, (err, profile) => {
+          if (err) return next(err);
+        });
+        return res.sendStatus(200);
+      }
+      else{
+        const response = "Το Username δεν αντιστοιχεί σε Διοργανωτή Δραστηριοτήτων."
+        return res.send({ response });
+      }
+     });
+}
 
 export default {
   administratorSignup,
@@ -247,5 +274,6 @@ export default {
   administratorData,
   lockUnlockUser,
   checkIfLocked,
-  approveProvider
+  approveProvider,
+  rejectProvider
 };

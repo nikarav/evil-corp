@@ -52,6 +52,7 @@ export default (app) => {
     app.post('/api/administrator/checkIfLocked', administratorController.checkIfLocked);
     app.post('/api/administrator/changeEmail', administratorController.authorizeAdministrator, administratorController.changeEmail);
     app.post('/api/administrator/approveProvider', administratorController.approveProvider);
+    app.post('/api/administrator/rejectProvider', administratorController.rejectProvider);
   } else {
     console.warn(unsupportedMessage('administrator routes'));
   }
