@@ -19,7 +19,7 @@ const isFetching = (state = false, action) => {
 const initialActivityState = {
     name: '',
     location:'',
-    description: ''.
+    description: '',
 };
 
 const initialProviderState = {
