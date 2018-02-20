@@ -30,7 +30,7 @@ export default (app) => {
     app.get('/api/parent/credits', parentController.authorizeParent, parentController.getCredits);
     app.post('/api/parent/credits', parentController.authorizeParent, parentController.addCredits);
     app.post('/api/parent/changeProfile', parentController.authorizeParent, parentController.changeProfile);
-    app.post('/api/parent/changeCredentials', parentController.authorizeParent, parentController.changeCredentials);  
+    app.post('/api/parent/changeCredentials', parentController.authorizeParent, parentController.changeCredentials);
   } else {
     console.warn(unsupportedMessage('parent routes'));
   }
@@ -51,6 +51,7 @@ export default (app) => {
     app.post('/api/administrator/lockUnlockUser', administratorController.lockUnlockUser);
     app.post('/api/administrator/checkIfLocked', administratorController.checkIfLocked);
     app.post('/api/administrator/changeEmail', administratorController.authorizeAdministrator, administratorController.changeEmail);
+    app.post('/api/administrator/approveProvider', administratorController.approveProvider);
   } else {
     console.warn(unsupportedMessage('administrator routes'));
   }

@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import User from '../models/user_model';
 import AdministratorProfile from '../models/administrator_model';
-//import UserProfile from '../models/user_model';
+import { sendEmail } from '../controllers/emailController';
 import ParentProfile from '../models/parent_model';
 import ProviderProfile from '../models/provider_model';
 import Activity from '../models/activity_model';
@@ -81,7 +81,8 @@ export function lockUnlockUser(req, res, next){
     const username = req.body.username;
     User.findOne({ username: username }, (findErr, existingUser) => {
       if (!existingUser) {
-        return res.sendStatus(409);
+        const response = "Το Username δεν αντιστοιχεί σε χρήστη."
+        return res.send({ response });
       }
       const userProfile = existingUser;
       const role = userProfile.user_role;
@@ -117,7 +118,7 @@ export function lockUnlockUser(req, res, next){
        });
      }
      else{
-       const response = "Username does not correspond to parent/provider"
+       const response = "Το Username δεν αντιστοιχεί σε Γονέα / Διοργανωτή Δραστηριοτήτων."
        return res.send({ response });
      }
     });
@@ -127,7 +128,8 @@ export function checkIfLocked(req, res, next){
     const username = req.body.username;
     User.findOne({ username: username }, (findErr, existingUser) => {
       if (!existingUser) {
-        return res.sendStatus(409);
+        const response = "Το Username δεν αντιστοιχεί σε χρήστη."
+        return res.send({ response });
       }
       const userProfile = existingUser;
       const role = userProfile.user_role;
@@ -149,11 +151,48 @@ export function checkIfLocked(req, res, next){
        });
      }
      else{
-       const response = "Username does not correspond to parent/provider"
+       const response = "Το Username δεν αντιστοιχεί σε Γονέα / Διοργανωτή Δραστηριοτήτων."
        return res.send({ response });
      }
     });
 }
+
+export function approveProvider(req, res, next){
+    const username = req.body.username;
+    User.findOne({ username: username }, (findErr, existingUser) => {
+      if (!existingUser) {
+        const response = "Το Username δεν αντιστοιχεί σε χρήστη."
+        return res.send({ response });
+      }
+      const userProfile = existingUser;
+      const role = userProfile.user_role;
+      const profileId = userProfile.profile;
+      const provider = role === USER_TYPES.Provider;
+      if (provider) {
+        ProviderProfile.findByIdAndUpdate(profileId, { $set: { "locked": false, "activated": true } }, { new: true}, (err, profile) => {
+          if (err) return next(err);
+          const lockedUpdated = profile.locked;
+          const activatedUpdated = profile.activated;
+          //return res.send({ locked: lockedUpdated });
+          const providerEmail = profile.email;
+          const emailBody = 'Καλησπέρα σας, ο λογαριασμός με όνομα χρήστη ' + username + ' στην πλατφόρμα PLAYGROUND έχει ενεργοποιηθεί.';
+          const mailOptions = {
+            from: 'admin@playground.com',
+            to: providerEmail,
+            text: emailBody,
+            subject: 'ΕΓΓΡΑΦΗ ΣΤΗΝ ΠΛΑΤΦΟΡΜΑ PLAYGROUND',
+          };
+          sendEmail(mailOptions);
+          return res.send({ activated: activatedUpdated });
+        });
+      }
+      else{
+        const response = "Το Username δεν αντιστοιχεί σε Διοργανωτή Δραστηριοτήτων."
+        return res.send({ response });
+      }
+     });
+}
+
 
 export default {
   administratorSignup,
@@ -161,5 +200,6 @@ export default {
   changeEmail,
   administratorData,
   lockUnlockUser,
-  checkIfLocked
+  checkIfLocked,
+  approveProvider
 };

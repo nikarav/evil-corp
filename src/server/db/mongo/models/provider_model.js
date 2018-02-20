@@ -13,7 +13,8 @@ const ProviderProfileSchema = new mongoose.Schema({
   tax_registration: { type: String, required: true },
   legal_document: {data: Buffer, contentType: String},
   bank_iban: { type: String, required: true },
-  locked: { type: Boolean, default: false },
+  locked: { type: Boolean, default: true },
+  activated: { type: Boolean, default: false },
   activities: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Activity' }],
 });
 
