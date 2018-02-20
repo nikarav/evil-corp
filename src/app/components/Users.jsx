@@ -2,16 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Control, Form } from 'react-redux-form';
 import { Route } from 'react-router-dom';
-import SignUpUser from './SignUpUser';
-import SignUpProvider from './SignUpProvider';
+import SignUpUserForm from '../containers/SignUpUserForm';
+import SignUpProviderForm from '../containers/SignUpProviderForm';
 
 const Users = () => {
     return (
       <Route render={() => {
         return (
           <div>
-            <SignUpUser />
-            {/* <SignUpProvider/> */}
+            <SignUpUserForm />
+            <SignUpProviderForm/>
           </div>
           );  }
     }

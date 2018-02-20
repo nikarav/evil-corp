@@ -12,7 +12,7 @@ export default () => {
         password
       }
     }),
-    signUp: ({ name, surname, email, telephone, address, birthday, username, password }) => client.request({
+    signUpUser: ({ name, surname, email, telephone, address, birthday, username, password }) => client.request({
       method: 'POST',
       url: '/api/parents',
       data: {
@@ -24,6 +24,20 @@ export default () => {
         birthday,
         username,
         password
+      }
+    }),
+    signUpProvider: ( {brand_name, email, telephone, address, tax_registration, bank_iban, username, password}) => client.request({
+      method: 'POST',
+      url: 'api/providers',
+      data: {
+        brand_name,
+        email,
+        telephone,
+        address,
+        tax_registration,
+        bank_iban,
+        username,
+        password,
       }
     }),
     logOut: () => client.request({

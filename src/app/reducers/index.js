@@ -17,10 +17,14 @@ const isFetching = (state = false, action) => {
 };
 
 const initialProviderState = {
-  firstName: '',
-  lastName: '',
-  age: '',
-  gender: ''
+  brand_name: '',
+  email: '',
+  telephone: '',
+  address: '',
+  tax_registration: '',
+  bank_iban: '',
+  username: '',
+  password: '',
 };
 
 const initialUserSate = {
