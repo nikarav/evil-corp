@@ -5,6 +5,7 @@ import moment from 'moment';
 import Ticket from '../models/ticket_model';
 import Activity from '../models/activity_model';
 import ParentProfile from '../models/parent_model';
+import { sendEmail } from '../controllers/emailController';
 
 
 function generateTicketNumber(string) {
@@ -42,7 +43,7 @@ export function buyTicket(req, res, next) {
   });
 }
 
-export function generatePdf(req, res, next) {
+export function generateAndEmailPdf(req, res, next) {
   const ticketId = req.params.ticketId;
   Ticket.findById(ticketId).populate('parent')
                            .populate({ path: 'activity', populate: { path: 'provider' }})
@@ -50,6 +51,7 @@ export function generatePdf(req, res, next) {
     if (err) return next(err);
 
     const parentFullname = `${ticket.parent.name} ${ticket.parent.surname}`;
+    const parentEmail = ticket.parent.email;
     const price = ticket.activity.price;
     const activityName = ticket.activity.name;
     const activityDate = moment(ticket.activity.date).format('DD-MM-YYYY, Ώρα: HH:mm');
@@ -61,6 +63,14 @@ export function generatePdf(req, res, next) {
     const barcodeImg = codes.create('ean13', ticketNumber);
 
     const doc = new PDFDocument();
+    const pdfData = [];
+
+    doc.on('data', (data) => {
+      if (data) {
+        pdfData.push(data);
+      }
+    });
+
     doc.registerFont('font', 'server/fonts/dejavusans.ttf');
     doc.fontSize(24);
     doc.text('PLAYGROUND E-TICKET').moveDown(1);
@@ -75,12 +85,30 @@ export function generatePdf(req, res, next) {
     const filename = `ticket-${date}.pdf`;
     res.setHeader('Content-disposition', `attachment; filename="${filename}"`);
     res.setHeader('Content-type', 'application/pdf');
+
+    const emailBody = 'Καλησπέρα σας, στο συνημμένο αρχείο μπορείτε να βρείτε το ηλεκτρονικό σας εισιτήριο.';
+
+    doc.on('end', () => {
+      const pdfBuffer = Buffer.concat(pdfData);
+      const mailOptions = {
+        from: 'ticketservice@playground.com',
+        to: parentEmail,
+        text: emailBody,
+        subject: 'PLAYGROUND E-TICKET',
+        attachments: [{
+          filename,
+          content: pdfBuffer,
+        }]
+      };
+      sendEmail(mailOptions);
+    });
+
     doc.pipe(res);
-    return doc.end();
+    doc.end();
   });
 }
 
 export default {
   buyTicket,
-  generatePdf
+  generateAndEmailPdf
 };
