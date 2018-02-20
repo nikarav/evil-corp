@@ -30,6 +30,7 @@ export default (app) => {
     app.get('/api/parent/credits', parentController.authorizeParent, parentController.getCredits);
     app.post('/api/parent/credits', parentController.authorizeParent, parentController.addCredits);
     app.post('/api/parent/changeProfile', parentController.authorizeParent, parentController.changeProfile);
+    app.post('/api/parent/changeCredentials', parentController.authorizeParent, parentController.changeCredentials);
   } else {
     console.warn(unsupportedMessage('parent routes'));
   }
@@ -39,14 +40,18 @@ export default (app) => {
     app.post('/api/providers', providerController.providerSignup);
     app.get('/api/provider', providerController.authorizeProvider, providerController.providerData);
     app.post('/api/provider/changeProfile', providerController.authorizeProvider, providerController.changeProfile);
+    app.post('/api/provider/changeCredentials', providerController.authorizeProvider ,providerController.changeCredentials);
   } else {
     console.warn(unsupportedMessage('provider routes'));
   }
 
   if (administratorController) {
-    app.post('/api/administrators', administratorController.administratorSignup);
+    app.post('/api/administrators', administratorController.administratorSignup);  // only for backend
     app.get('/api/administrator', administratorController.authorizeAdministrator, administratorController.administratorData);
+    app.post('/api/administrator/lockUnlockUser', administratorController.lockUnlockUser);
+    app.post('/api/administrator/checkIfLocked', administratorController.checkIfLocked);
     app.post('/api/administrator/changeEmail', administratorController.authorizeAdministrator, administratorController.changeEmail);
+    app.post('/api/administrator/approveProvider', administratorController.approveProvider);
   } else {
     console.warn(unsupportedMessage('administrator routes'));
   }
@@ -66,7 +71,7 @@ export default (app) => {
   // ticket routes
   if (ticketController) {
     app.post('/api/parent/ticket/buy', parentController.authorizeParent, ticketController.buyTicket);
-    app.get('/api/parent/ticket/:ticketId/pdf/', parentController.authorizeParent, ticketController.generatePdf);
+    app.get('/api/parent/ticket/:ticketId/pdf/', parentController.authorizeParent, ticketController.generateAndEmailPdf);
   } else {
     console.warn(unsupportedMessage('ticket routes'));
   }
