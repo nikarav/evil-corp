@@ -13,7 +13,7 @@ const Users = () => {
           <div>
             <SignUpUserForm />
             <SignUpProviderForm />
-            <LogInForm />
+            {/* <LogInForm /> */}
           </div>
           );  }
     }

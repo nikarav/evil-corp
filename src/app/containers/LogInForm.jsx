@@ -66,16 +66,4 @@ class LogInForm extends React.Component {
   }
 }
 
-// Function passed in to `connect` to subscribe to Redux store updates.
-// Any time it updates, mapStateToProps is called.
-function mapStateToProps({user}) {
-  return {
-    user
-  };
-}
-
-// Connects React component to the redux store
-// It does not modify the component class passed to it
-// Instead, it returns a new, connected component class, for you to use.
-
-export default connect(mapStateToProps, {manualLogin, logOut})(LogInForm);
+export default LogInForm;
