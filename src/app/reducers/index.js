@@ -23,14 +23,14 @@ const initialActivityState = {
 };
 
 const initialProviderState = {
-  brand_name: '',
-  email: '',
-  telephone: '',
-  address: '',
-  tax_registration: '',
-  bank_iban: '',
-  username: '',
-  password: '',
+  brand_name: 'manolisAE',
+  email: 'manolis.company@mail.com',
+  telephone: '+302105435',
+  address: 'grafeio',
+  tax_registration: 'tax_reg',
+  bank_iban: '5039',
+  username: 'manolis_com',
+  password: 'pass_com',
 };
 
 const initialUserSate = {

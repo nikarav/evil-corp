@@ -1,18 +1,6 @@
 import { combineReducers } from 'redux';
 import * as types from '../types';
 
-const isLogin = (
-  state = true,
-  action
-) => {
-  switch (action.type) {
-    case types.TOGGLE_LOGIN_MODE:
-      return !state;
-    default:
-      return state;
-  }
-};
-
 const message = (
   state = '',
   action
@@ -40,13 +28,16 @@ const isWaiting = (
   switch (action.type) {
     case types.MANUAL_LOGIN:
     case types.SIGNUP_USER:
+    case types.SIGNUP_PROVIDER:
     case types.LOGOUT:
       return true;
     case types.LOGIN_SUCCESS:
     case types.SIGNUP_SUCCESS_USER:
+    case types.SIGNUP_SUCCESS_PROVIDER:
     case types.LOGOUT_SUCCESS:
     case types.LOGIN_ERROR:
     case types.SIGNUP_ERROR_USER:
+    case types.SIGNUP_ERROR_PROVIDER:
     case types.LOGOUT_ERROR:
       return false;
     default:
@@ -73,7 +64,6 @@ const authenticated = (
 };
 
 const userReducer = combineReducers({
-  isLogin,
   isWaiting,
   authenticated,
   message
