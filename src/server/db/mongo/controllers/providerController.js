@@ -167,6 +167,13 @@ export function resetPassword(req, res, next){
    });
 }
 
+export function getActivities(req, res, next) {
+  const profileId = req.user.profile.id;
+  ProviderProfile.findById(profileId).populate('activities').exec((err, profile) => {
+    if (err) return next(err);
+    return res.send(profile.activities);
+  });
+}
 
 export default {
   providerSignup,
@@ -175,5 +182,6 @@ export default {
   changeProfile,
   changeCredentials,
   forgotPassword,
-  resetPassword
+  resetPassword,
+  getActivities
 };

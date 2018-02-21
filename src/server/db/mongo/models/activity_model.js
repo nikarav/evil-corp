@@ -15,24 +15,21 @@ const ActivitySchema = new mongoose.Schema({
   price: { type: Number, min: 0, required: true },
   provider: { type: mongoose.Schema.Types.ObjectId, ref: USER_TYPES.Provider, require: true },
   locked: { type: Boolean, default: false } // true in case provider is locked
+}, {
+  toJSON: {
+  virtuals: true
+  },
+  toObject: {
+  virtuals: true
+  }
 });
 
-ActivitySchema.set('toJSON', { virtuals: true });
-ActivitySchema.set('toObject', { virtuals: true });
-
-/* ActivitySchema.pre('save', (next) => {
-  const activity = this;
-  if (!activity.isNew()) next();
-  activity.available_tickets = activity.total_tickets;
-  next();
+ActivitySchema.virtual('is_active').get(function () {
+  return Date.now() < this.date;
 });
- */
-/* ActivitySchema.virtual('is_active').get(() =>
-  Date.now() < this.date
-);
- */
-/* ActivitySchema.virtual('sold_tickets').get(() =>
-  this.total_tickets - this.available_tickets
-);
- */
+
+ActivitySchema.virtual('sold_tickets').get(function () {
+  return this.total_tickets - this.available_tickets;
+});
+
 export default mongoose.model('Activity', ActivitySchema);
