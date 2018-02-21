@@ -1,6 +1,5 @@
-import HomePage from './components/HomePage';
-import Navigation from './components/Navigation';
-import Users from './components/Users'
+import HomePage from './pages/HomePage';
+import Users from './pages/Users'
 import MenuExample from './components/ActivitiesListView';
 
 const routes = [
@@ -11,7 +10,7 @@ const routes = [
     },
     {
     path: '/nav',
-    component: Navigation,
+    component: HomePage,
     exact: true
   },
     {
