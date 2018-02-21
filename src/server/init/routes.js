@@ -32,7 +32,7 @@ export default (app) => {
     app.post('/api/parent/credits', parentController.authorizeParent, parentController.addCredits);
     app.post('/api/parent/changeProfile', parentController.authorizeParent, parentController.changeProfile);
     app.post('/api/parent/changeCredentials', parentController.authorizeParent, parentController.changeCredentials);
-    app.post('/parent/reset/:token', parentController.authorizeParent, parentController.resetPassword);
+    app.post('/api/parent/reset/:token', parentController.authorizeParent, parentController.resetPassword);
 
   } else {
     console.warn(unsupportedMessage('parent routes'));
@@ -45,7 +45,7 @@ export default (app) => {
     app.get('/api/provider', providerController.authorizeProvider, providerController.providerData);
     app.post('/api/provider/changeProfile', providerController.authorizeProvider, providerController.changeProfile);
     app.post('/api/provider/changeCredentials', providerController.authorizeProvider, providerController.changeCredentials);
-    app.post('/provider/reset/:token', providerController.authorizeProvider, providerController.resetPassword);
+    app.post('/api/provider/reset/:token', providerController.authorizeProvider, providerController.resetPassword);
     app.get('/api/provider/activities', providerController.authorizeProvider, providerController.getActivities);
   } else {
     console.warn(unsupportedMessage('provider routes'));
