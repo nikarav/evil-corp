@@ -15,33 +15,54 @@ class LogInForm extends React.Component {
   }
 
   render() {
-    return (
-      <div>
-        <h1> Log in Form </h1>
-        <Form
-          model="logInForm.user"
-          onSubmit={(val) => this.handleSubmit(val)}
-        >
-          <div className="field">
-              <label>Username</label>
-              <Control.text
-                model=".username"
-                placeholder="username"
-                required
-                validateOn="blur"
-              />
 
-              <label> Password </label>
-              <Control.text model=".password" />
-          </div>
+    if (!this.props.user.authenticated_user && !this.props.user.authenticated_provider) {
+      return (
+        <div>
+          <h1> Log in Form </h1>
+          <Form
+            model="logInForm.user"
+            onSubmit={(val) => this.handleSubmit(val)}
+          >
+            <div className="field">
+                <label>Username</label>
+                <Control.text
+                  model=".username"
+                  placeholder="username"
+                  required
+                  validateOn="blur"
+                />
 
-          <button type="submit">Log in!</button>
-        </Form>
-        <Button onClick={() => this.props.logOut()} >
-          Log out
-        </Button>
-      </div>
-    );
+                <label> Password </label>
+                <Control.text model=".password" />
+            </div>
+
+            <button type="submit">Log in!</button>
+          </Form>
+        </div>
+      );
+    }
+    else if (this.props.user.authenticated_user)
+      return(
+        <div>
+          <h1> You are logged in as a Parent!</h1>
+          <Button onClick={() => this.props.logOut()} >
+            Log out
+          </Button>
+        </div>
+      );
+
+    else if (this.props.user.authenticated_provider)
+      return(
+        <div>
+          <h1> You are logged in as a provider!</h1>
+          <Button onClick={() => this.props.logOut()} >
+            Log out
+          </Button>
+        </div>
+       );
+    else
+      return(<div> <h1> Un wanted state of loggin! logged in as BOTH parent and provider </h1> </div>);
   }
 }
 

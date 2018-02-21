@@ -10,7 +10,8 @@ const message = (
     case types.MANUAL_LOGIN_USER:
     case types.SIGNUP_USER:
     case types.LOGOUT:
-    case types.LOGIN_SUCCESS:
+    case types.LOGIN_SUCCESS_USER:
+    case types.LOGIN_SUCCESS_PROVIDER:
     case types.SIGNUP_SUCCESS_USER:
       return '';
     case types.LOGIN_ERROR:
@@ -31,7 +32,8 @@ const isWaiting = (
     case types.SIGNUP_PROVIDER:
     case types.LOGOUT:
       return true;
-    case types.LOGIN_SUCCESS:
+    case types.LOGIN_SUCCESS_PARENT:
+    case types.LOGIN_SUCCESS_PROVIDER:
     case types.SIGNUP_SUCCESS_USER:
     case types.SIGNUP_SUCCESS_PROVIDER:
     case types.LOGOUT_SUCCESS:
@@ -45,13 +47,13 @@ const isWaiting = (
   }
 };
 
-const authenticated = (
+const authenticated_user = (
   state = false,
   action
 ) => {
   switch (action.type) {
-    case types.LOGIN_SUCCESS:
-    case types.SIGNUP_SUCCESS_USER:
+    case types.LOGIN_SUCCESS_USER:
+    case types.SIGNUP_SUCCESS_USER:       // auto log in on sign up
     case types.LOGOUT_ERROR:
       return true;
     case types.LOGIN_ERROR:
@@ -63,9 +65,28 @@ const authenticated = (
   }
 };
 
+const authenticated_provider = (
+  state = false,
+  action
+) => {
+  switch (action.type) {
+    case types.LOGIN_SUCCESS_PROVIDER:
+    case types.LOGOUT_ERROR:
+      return true;
+    case types.SIGNUP_SUCCESS_PROVIDER:       // NO auto log in on sign up
+    case types.LOGIN_ERROR:
+    case types.SIGNUP_ERROR_USER:
+    case types.LOGOUT_SUCCESS:
+      return false;
+    default:
+      return state;
+  }
+};
+
 const userReducer = combineReducers({
   isWaiting,
-  authenticated,
+  authenticated_user,
+  authenticated_provider,
   message
 });
 

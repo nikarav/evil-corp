@@ -7,9 +7,16 @@ function beginLogin() {
   return { type: types.MANUAL_LOGIN };
 }
 
-function loginSuccess(message) {
+function loginSuccessUser(message) {
   return {
-    type: types.LOGIN_SUCCESS,
+    type: types.LOGIN_SUCCESS_USER,
+    message
+  };
+}
+
+function loginSuccessProvider(message) {
+  return {
+    type: types.LOGIN_SUCCESS_PROVIDER,
     message
   };
 }
@@ -112,13 +119,18 @@ export function manualLogin(data) {
     dispatch(beginLogin());
 
     return authService().logIn(data)
-      .then((response) => {
-          dispatch(loginSuccess('You have been successfully logged in'));
-          //browserHistory.push('/');
-      })
-      .catch((err) => {
-        dispatch(loginError('Oops! Invalid username or password'));
-      });
+        .then((response) => {
+            if (response.data.user_role == 'Parent')
+              dispatch(loginSuccessUser('You have been successfully logged in as a parent!'));
+            else if (response.data.user_role == 'Provider')
+              dispatch(loginSuccessProvider('You have been successfully logged in as a parent'));
+            else
+              console.log("Not supported type of login");
+            //browserHistory.push('/');
+        })
+        .catch((err) => {
+          dispatch(loginError('Oops! Invalid username or password'));
+        });
   };
 }
 

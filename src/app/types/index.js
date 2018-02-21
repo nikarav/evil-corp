@@ -16,7 +16,8 @@ export const SIGNUP_ERROR_PROVIDER = 'SIGNUP_ERROR_PROVIDER';
 
 //  LOGIN (BOTH for user and provider)
 export const MANUAL_LOGIN = 'MANUAL_LOGIN';
-export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_SUCCESS_USER = 'LOGIN_SUCCESS_USER';
+export const LOGIN_SUCCESS_PROVIDER = 'LOGIN_SUCCESS_PROVIDER';
 export const LOGIN_ERROR = 'LOGIN_ERROR';
 
 // LOGOUT (BOTH for user and provider)
