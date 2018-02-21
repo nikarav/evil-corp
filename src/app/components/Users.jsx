@@ -4,6 +4,7 @@ import { Control, Form } from 'react-redux-form';
 import { Route } from 'react-router-dom';
 import SignUpUserForm from '../containers/SignUpUserForm';
 import SignUpProviderForm from '../containers/SignUpProviderForm';
+import LogInForm from '../containers/LogInForm';
 
 const Users = () => {
     return (
@@ -11,7 +12,8 @@ const Users = () => {
         return (
           <div>
             <SignUpUserForm />
-            <SignUpProviderForm/>
+            <SignUpProviderForm />
+            <LogInForm />
           </div>
           );  }
     }

@@ -1,12 +1,8 @@
 import authService from '../authService';
-
 import * as types from '../types';
+import { browserHistory } from 'react-router';
 
 // LOGIN actions
-export function toggleLoginMode() {
-  return { type: types.TOGGLE_LOGIN_MODE };
-}
-
 function beginLogin() {
   return { type: types.MANUAL_LOGIN };
 }
@@ -78,7 +74,7 @@ function signUpProviderSuccess(message) {
 
 // ---------------------------------- user triggered functions ---------------------------------------------------
 
-// user triggerd function -> signUp
+// user triggerd function -> SIGNUP user
 export function signUpUser(data) {
   return (dispatch) => {
     dispatch(beginSignUpUser());
@@ -86,7 +82,7 @@ export function signUpUser(data) {
     return authService().signUpUser(data)
       .then((response) => {
           dispatch(signUpUserSuccess('You have successfully registered an account as a PARENT!'));
-        //dispatch(push('/'));
+          //browserHistory.push('/');
       })
       .catch((err) => {
         dispatch(signUpUserError('Oops! Something went wrong when signing up as a PARENT'));
@@ -94,7 +90,7 @@ export function signUpUser(data) {
   };
 }
 
-// user triggerd function -> signUp
+// user triggerd function -> SIGNUP provider
 export function signUpProvider(data) {
   return (dispatch) => {
     dispatch(beginSignUpProvider());
@@ -102,7 +98,7 @@ export function signUpProvider(data) {
     return authService().signUpProvider(data)
       .then((response) => {
           dispatch(signUpProviderSuccess('You have successfully registered an account as a PROVIDER!'));
-        //dispatch(push('/'));
+          //browserHistory.push('/');
       })
       .catch((err) => {
         dispatch(signUpProviderError('Oops! Something went wrong when signing up as a PROVIDER'));
@@ -110,15 +106,15 @@ export function signUpProvider(data) {
   };
 }
 
-// user triggerd function -> manual login
+// user triggerd function -> manual LOGIN
 export function manualLogin(data) {
   return (dispatch) => {
     dispatch(beginLogin());
 
-    return authService().login(data)
+    return authService().logIn(data)
       .then((response) => {
           dispatch(loginSuccess('You have been successfully logged in'));
-          //dispatch(push('/'));
+          //browserHistory.push('/');
       })
       .catch((err) => {
         dispatch(loginError('Oops! Invalid username or password'));
