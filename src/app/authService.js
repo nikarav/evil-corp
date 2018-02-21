@@ -18,7 +18,7 @@ export default () => {
         password
       }
     }),
-    signUpProvider: ( {brand_name, email, telephone, address, tax_registration, bank_iban, username, password}) => client.request({
+    signUpProvider: ({brand_name, email, telephone, address, tax_registration, bank_iban, username, password}) => client.request({
       method: 'POST',
       url: 'api/providers',
       data: {

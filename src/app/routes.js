@@ -1,6 +1,9 @@
+import { connect } from 'react-redux';
 import HomePage from './pages/HomePage';
-import Users from './pages/Users'
+import Navigation from './containers/Navigation';
+import Users from './pages/Users';
 import MenuExample from './components/ActivitiesListView';
+import ActivitiesShow from './pages/ActivitiesShow';
 
 const routes = [
     {
@@ -10,7 +13,7 @@ const routes = [
     },
     {
     path: '/nav',
-    component: HomePage,
+    component: Navigation,
     exact: true
   },
     {
@@ -37,6 +40,11 @@ const routes = [
       path: '/Contact',
       component: HomePage,
       exact: true
+    },
+    {
+        path: '/act',
+        component: ActivitiesShow,
+        exact: true
     }
     ];
 export default routes;

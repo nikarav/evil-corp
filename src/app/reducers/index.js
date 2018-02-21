@@ -3,6 +3,7 @@ import { routerReducer as routing } from 'react-router-redux';
 import * as types from '../types';
 import { modelReducer, formReducer, combineForms} from 'react-redux-form';
 import user from '../reducers/user';
+import ActivityList from '../reducers/ActivityShow';
 
 const isFetching = (state = false, action) => {
   switch (action.type) {
@@ -18,8 +19,17 @@ const isFetching = (state = false, action) => {
 
 const initialActivityState = {
     name: '',
-    location:'',
+    location: '',
     description: '',
+    date: '',
+    photo: '',
+    total_tickets: '',
+    available_tickets: '',
+    min_age: '',
+    max_age: '',
+    tags: '',
+    price: '',
+    provider: '',
 };
 
 const initialProviderState = {
@@ -60,7 +70,8 @@ const rootReducer = combineReducers({
   logInForm: combineForms({
     user: {username: '', password: ''},
     }, 'logInForm'
-  )
+  ),
+     ActivityList,
 });
 
 export default rootReducer;

@@ -4,13 +4,10 @@ import createRestApiClient from './createRestApiClient';
 export default () => {
     const client = createRestApiClient().withConfig({ baseURL: apiEndpoint });
     return {
-        login: ({ email, password }) => client.request({
-            method: 'POST',
-            url: '/sessions',
-            data: {
-                email,
-                password
-            }
+        fetchPosts: () => client.request({
+            method: 'GET',
+            url: '/api/activities',
+            headers: []
         }),
         signUp: ({ name, surname, email, telephone, address, birthday, username, password }) => client.request({
             method: 'POST',
