@@ -1,6 +1,5 @@
 import HomePage from './pages/HomePage';
-import Navigation from './components/Navigation';
-import Users from './components/Users'
+import Users from './pages/Users'
 import MenuExample from './components/ActivitiesListView';
 
 const routes = [

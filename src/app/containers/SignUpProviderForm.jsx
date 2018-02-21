@@ -2,6 +2,7 @@ import React from 'react';
 import { Form, Control, Errors, combineForms } from 'react-redux-form';
 import { signUpProvider } from '../actions/users';
 import { connect } from 'react-redux';
+import { Button, FormControl } from 'react-bootstrap';
 
 
 // TODO:
@@ -69,9 +70,9 @@ class SignUpProviderForm extends React.Component {
           />
         </div>
 
-        <button type="submit">
+        <Button type="submit">
           Submit
-        </button>
+        </Button>
       </Form>
         </div>
     );

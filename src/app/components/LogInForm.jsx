@@ -42,27 +42,14 @@ class LogInForm extends React.Component {
           </Form>
       );
     }
-    else if (this.props.user.authenticated_user)
+    else if (this.props.user.authenticated_user || this.props.user.authenticated_provider)
       return(
-        <div>
-          <h1> You are logged in as a Parent!</h1>
           <Button onClick={() => this.props.logOut()} >
             Log out
           </Button>
-        </div>
       );
-
-    else if (this.props.user.authenticated_provider)
-      return(
-        <div>
-          <h1> You are logged in as a provider!</h1>
-          <Button onClick={() => this.props.logOut()} >
-            Log out
-          </Button>
-        </div>
-       );
     else
-      return(<div> <h1> Un wanted state of loggin! logged in as BOTH parent and provider </h1> </div>);
+      return(<div> Un wanted state of loggin! logged in as BOTH parent and provider </div>);
   }
 }
 

@@ -1,16 +1,18 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import Navigation from '../components/Navigation'
+import Navigation from '../containers/Navigation'
+import { Block } from 'jsxstyle'
 
 const HomePage = () => {
   return (
     <Route
         render={() => {
       return (
-        <div>
+        <Block
+          marginTop={60}>
           <Navigation />
           <h1>Starter Page</h1>
-        </div>
+        </Block>
       );
     }}
     />
