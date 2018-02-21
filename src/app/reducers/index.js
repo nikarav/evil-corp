@@ -23,25 +23,25 @@ const initialActivityState = {
 };
 
 const initialProviderState = {
-  brand_name: '',
-  email: '',
-  telephone: '',
-  address: '',
-  tax_registration: '',
-  bank_iban: '',
-  username: '',
-  password: '',
+  brand_name: 'manolisAE',
+  email: 'manolis.company@mail.com',
+  telephone: '+302105435',
+  address: 'grafeio',
+  tax_registration: 'tax_reg',
+  bank_iban: '5039',
+  username: 'manolis_com',
+  password: 'pass_com',
 };
 
 const initialUserSate = {
-  name: '',
-  surname: '',
-  email: '',
-  telephone: '',
-  address: '',
-  birthday: '',
-  username: '',
-  password: ''
+  name: 'manolis',
+  surname: 'anastasiou',
+  email: 'manolisan28@gmail.com',
+  telephone: '6979978425',
+  address: 'Kallistratous 18',
+  birthday: '22',
+  username: 'manolis',
+  password: 'pass'
 };
 
 // Combine reducers with routeReducer which keeps track of
@@ -50,12 +50,17 @@ const rootReducer = combineReducers({
   isFetching,
   user,
   userForm: combineForms({
-      user: initialUserSate,
+    user: initialUserSate,
     }, 'userForm'
   ),
   providerForm: combineForms({
     user: initialProviderState,
-    }, 'providerForm'),
+    }, 'providerForm'
+  ),
+  logInForm: combineForms({
+    user: {username: '', password: ''},
+    }, 'logInForm'
+  )
 });
 
 export default rootReducer;
