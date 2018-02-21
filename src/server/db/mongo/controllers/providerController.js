@@ -37,7 +37,7 @@ import bcrypt from 'bcrypt-nodejs';
         if (_saveErr) return next(_saveErr);
         return req.logIn(user, (loginErr) => {
           if (loginErr) return res.sendStatus(401);
-          return res.sendStatus(200);
+          return res.status(200).send({ user_role: USER_TYPES.Provider });
         });
       });
     });
