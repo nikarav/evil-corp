@@ -71,7 +71,8 @@ export default (app) => {
   }
 
   if (activityController) {
-    app.post('/api/activity', activityController.postActivity);
+    app.post('/api/activity', providerController.authorizeProvider, activityController.postActivity);
+    app.get('/api/activities', activityController.getAllActivities);
   } else {
     console.warn(unsupportedMessage('ticket routes'));
   }

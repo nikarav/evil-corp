@@ -29,6 +29,15 @@ export function postActivity(req, res, next) {
    });
 }
 
+// TODO Currently the functionality very limited
+export function getAllActivities(req, res, next) {
+  Activity.find({}, (err, activities) => {
+    if (err) return next(err);
+    return res.send(activities);
+  });
+}
+
 export default {
-  postActivity
+  postActivity,
+  getAllActivities
 };
