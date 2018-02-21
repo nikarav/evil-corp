@@ -2,10 +2,11 @@ import React from 'react';
 import { Form, Control, Errors } from 'react-redux-form';
 import { connect } from 'react-redux';
 import { manualLogin, logOut } from '../actions/users';
-import { Button } from 'react-bootstrap';
+import { Button, FormControl } from 'react-bootstrap';
 
 // TODO:
 // Add error checking in forms and control restrictions
+
 
 class LogInForm extends React.Component {
   handleSubmit(values) {
@@ -18,28 +19,27 @@ class LogInForm extends React.Component {
 
     if (!this.props.user.authenticated_user && !this.props.user.authenticated_provider) {
       return (
-        <div>
-          <h1> Log in Form </h1>
           <Form
             model="logInForm.user"
             onSubmit={(val) => this.handleSubmit(val)}
           >
-            <div className="field">
-                <label>Username</label>
-                <Control.text
+                <Control
                   model=".username"
                   placeholder="username"
                   required
                   validateOn="blur"
+                  component={FormControl}
                 />
 
-                <label> Password </label>
-                <Control.text model=".password" />
-            </div>
+                <Control
+                  type="password"
+                  model=".password"
+                  placeholder="password"
+                  component={FormControl}
+                />
 
-            <button type="submit">Log in!</button>
+            <Button type="submit">Log in!</Button>
           </Form>
-        </div>
       );
     }
     else if (this.props.user.authenticated_user)
