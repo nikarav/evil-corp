@@ -4,6 +4,7 @@ import ParentProfile from '../models/parent_model';
 import { USER_TYPES } from '../../../../config/userTypes';
 import validator from 'validator';
 import bcrypt from 'bcrypt-nodejs';
+import { sendEmail } from '../controllers/emailController';
 /**
  * POST /signup
  * Create a new local account
@@ -143,6 +144,25 @@ export function changeCredentials(req, res, next) {
 
 }
 
+export function messageToPlatform(req, res, next) {
+  const profileId = req.user.profile.id;
+  const username = req.user.username;
+  const subject = req.body.subject;
+  const message = req.body.message;
+  ParentProfile.findById(profileId, (err, profile) => {
+    if (err) return next(err);
+    const email = profile.email;
+    const emailBody = 'username: ' + username + '\n email: ' + email + '. \n ' + message;
+    const mailOptions = {
+      from: 'system@playground.com',
+      to: 'admin@playground.com',
+      text: emailBody,
+      subject: subject,
+    };
+    sendEmail(mailOptions);
+    return res.sendStatus(200);
+  });
+}
 
 export default {
   parentSignup,
@@ -151,5 +171,6 @@ export default {
   addCredits,
   getCredits,
   changeProfile,
-  changeCredentials
+  changeCredentials,
+  messageToPlatform
 };

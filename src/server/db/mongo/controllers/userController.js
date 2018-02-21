@@ -1,4 +1,5 @@
 import passport from 'passport';
+import { sendEmail } from '../controllers/emailController';
 
 /**
  * POST /login
@@ -28,8 +29,23 @@ export function logout(req, res) {
   res.sendStatus(200);
 }
 
+export function messageToPlatform(req, res, next) {
+  const email = req.body.email;
+  const subject = req.body.subject;
+  const message = req.body.message;
+  const emailBody = 'email: ' + email + '. \n ' + message;
+  const mailOptions = {
+    from: 'system@playground.com',
+    to: 'admin@playground.com',
+    text: emailBody,
+    subject: subject,
+  };
+  sendEmail(mailOptions);
+  return res.sendStatus(200);
+}
 
 export default {
   login,
   logout,
+  messageToPlatform
 };

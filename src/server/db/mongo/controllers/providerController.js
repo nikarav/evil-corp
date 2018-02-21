@@ -4,6 +4,7 @@ import ProviderProfile from '../models/provider_model';
 import { USER_TYPES } from '../../../../config/userTypes';
 import validator from 'validator';
 import bcrypt from 'bcrypt-nodejs';
+import { sendEmail } from '../controllers/emailController';
 /**
  * POST /signup
  * Create a new local account
@@ -35,6 +36,15 @@ import bcrypt from 'bcrypt-nodejs';
       if (saveErr) return next(saveErr);
       return user.save((_saveErr) => {
         if (_saveErr) return next(_saveErr);
+        const emailBody = 'Καλησπέρα σας, ο λογαριασμός με όνομα χρήστη ' + req.body.username + ' στην πλατφόρμα PLAYGROUND χρειάζεται έγκριση.';
+        const subject = 'Έγκριση Διοργανωτή Δραστηριοτήτων';
+        const mailOptions = {
+          from: 'system@playground.com',
+          to: 'admin@playground.com',
+          text: emailBody,
+          subject: subject,
+        };
+        sendEmail(mailOptions);
         return req.logIn(user, (loginErr) => {
           if (loginErr) return res.sendStatus(401);
           return res.status(200).send({ user_role: USER_TYPES.Provider });
@@ -119,11 +129,31 @@ export function changeCredentials(req, res, next) {
 
 }
 
+export function messageToPlatform(req, res, next) {
+  const profileId = req.user.profile.id;
+  const username = req.user.username;
+  const subject = req.body.subject;
+  const message = req.body.message;
+  ProviderProfile.findById(profileId, (err, profile) => {
+    if (err) return next(err);
+    const email = profile.email;
+    const emailBody = 'username: ' + username + '\n email: ' + email + '. \n ' + message;
+    const mailOptions = {
+      from: 'system@playground.com',
+      to: 'admin@playground.com',
+      text: emailBody,
+      subject: subject,
+    };
+    sendEmail(mailOptions);
+    return res.sendStatus(200);
+  });
+}
 
 export default {
   providerSignup,
   authorizeProvider,
   providerData,
   changeProfile,
-  changeCredentials
+  changeCredentials,
+  messageToPlatform
 };
