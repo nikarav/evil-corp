@@ -26,11 +26,14 @@ export default (app) => {
   // parent routes
   if (parentController) {
     app.post('/api/parents', parentController.parentSignup);
+    app.get('/api/parent/forgot', parentController.authorizeParent, parentController.forgotPassword);
     app.get('/api/parent', parentController.authorizeParent, parentController.parentData);
     app.get('/api/parent/credits', parentController.authorizeParent, parentController.getCredits);
     app.post('/api/parent/credits', parentController.authorizeParent, parentController.addCredits);
     app.post('/api/parent/changeProfile', parentController.authorizeParent, parentController.changeProfile);
     app.post('/api/parent/changeCredentials', parentController.authorizeParent, parentController.changeCredentials);
+    app.post('/parent/reset/:token', parentController.authorizeParent, parentController.resetPassword);
+
   } else {
     console.warn(unsupportedMessage('parent routes'));
   }
@@ -38,9 +41,11 @@ export default (app) => {
   // provider routes
   if (providerController) {
     app.post('/api/providers', providerController.providerSignup);
+    app.get('/api/provider/forgot', providerController.authorizeProvider, providerController.forgotPassword);
     app.get('/api/provider', providerController.authorizeProvider, providerController.providerData);
     app.post('/api/provider/changeProfile', providerController.authorizeProvider, providerController.changeProfile);
     app.post('/api/provider/changeCredentials', providerController.authorizeProvider ,providerController.changeCredentials);
+    app.post('/provider/reset/:token', providerController.authorizeProvider, providerController.resetPassword);
   } else {
     console.warn(unsupportedMessage('provider routes'));
   }
@@ -53,6 +58,7 @@ export default (app) => {
     app.post('/api/administrator/changeEmail', administratorController.authorizeAdministrator, administratorController.changeEmail);
     app.post('/api/administrator/approveProvider', administratorController.approveProvider);
     app.post('/api/administrator/rejectProvider', administratorController.rejectProvider);
+    app.post('/api/administrator/forgot', administratorController.forgotPassword);
   } else {
     console.warn(unsupportedMessage('administrator routes'));
   }

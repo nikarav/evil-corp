@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import User from '../models/user_model';
 import ParentProfile from '../models/parent_model';
+import { sendEmail } from '../controllers/emailController';
 import { USER_TYPES } from '../../../../config/userTypes';
 import validator from 'validator';
 import bcrypt from 'bcrypt-nodejs';
@@ -143,6 +144,56 @@ export function changeCredentials(req, res, next) {
 
 }
 
+export function forgotPassword(req, res){
+      const user = req.user;
+        const data = {
+          email:user.profile.email,
+          username:user.username
+        };
+        const emailBody = 'Καλησπέρα σας, ο λογαριασμός με όνομα χρήστη ' + data.username + ' στην πλατφόρμα PLAYGROUND έκανε αίτηση ανάκλησης κωδικού.';
+        const subject = 'Ανάκληση κωδικού χρήστη στην πλατφόρμα PLAYGROUND';
+        const mailOptions = {
+          from: data.email,
+          to: 'admin@playground.com',
+          text: emailBody,
+          subject: subject,
+        };
+        sendEmail(mailOptions);
+        return res.sendStatus(200);
+}
+
+
+export function resetPassword(req, res, next){
+
+   User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }).populate('profile').exec((err, user)=> {
+     if (!user) {
+       return res.status(404).send("To token έχει λήξει");
+     }
+     console.log(user);
+     console.log(user.profile.email);
+     user.password = req.body.password;
+     user.resetPasswordToken = undefined;
+     user.resetPasswordExpires = undefined;
+
+     user.save((_saveErr) => {
+       if (_saveErr) return next(_saveErr);
+  
+     });
+
+
+   var mailOptions = {
+     from: 'admin@playground.com',
+     to: user.profile.email,
+     text: 'Καλησπέρα,\n\n' +
+       'Επιβεβαίωση ότι ο κωδικός του χρήστη ' + user.username + ' έχει αλλάξει.\n',
+     subject: 'Ο κωδικός έχει αλλάξει'
+   };
+
+      sendEmail(mailOptions);
+      return res.sendStatus(200);
+   });
+}
+
 
 export default {
   parentSignup,
@@ -151,5 +202,7 @@ export default {
   addCredits,
   getCredits,
   changeProfile,
-  changeCredentials
+  changeCredentials,
+  forgotPassword,
+  resetPassword
 };

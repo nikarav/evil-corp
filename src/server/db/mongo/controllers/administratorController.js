@@ -7,6 +7,8 @@ import ProviderProfile from '../models/provider_model';
 import Activity from '../models/activity_model';
 import { USER_TYPES } from '../../../../config/userTypes';
 import validator from 'validator';
+import crypto from 'crypto';
+import async from 'async';
 /**
  * POST /signup
  * Create a new local account
@@ -267,6 +269,48 @@ export function rejectProvider(req, res, next){
      });
 }
 
+export function forgotPassword(req, res, next){
+
+  var buf=crypto.randomBytes(20)
+  var token = buf.toString('hex');
+
+    User.findOne({ username: req.body.username }).populate('profile').exec((findErr, user) => {
+      if (!user) {
+        return res.status(404).send("Κανένας χρήστης δεν βρέθηκε με αυτό το όνομα");
+      }
+      user.resetPasswordToken = token;
+      user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+
+      user.save(function(err) {
+          if (err) return next(err);
+      });
+    if(user.user_role=="Parent"){
+      var emailBody= 'Με αυτό το μέιλ γίνεται ανάκληση κωδικού χρήστη.\n\n' +
+        'Κάντε κλικ σε αυτό τον σύνδεσμο η αντιγράψτε το στον φυλλομετρητή σας\n\n' +
+        'http://' + req.headers.host + '/parent/reset/' + token + '\n\n'
+    }
+
+    else {
+      var emailBody= 'Με αυτό το μέιλ γίνεται ανάκληση κωδικού χρήστη.\n\n' +
+        'Κάντε κλικ σε αυτό τον σύνδεσμο η αντιγράψτε το στον φυλλομετρητή σας\n\n' +
+        'http://' + req.headers.host + '/provider/reset/' + token + '\n\n'
+
+    }
+
+
+    const mailOptions = {
+      from: 'admin@playground.com',
+      to: user.profile.email,
+      text: emailBody,
+      subject: 'Ανάκληση κωδικού χρήστη'
+    };
+      sendEmail(mailOptions);
+      return res.sendStatus(200);
+    });
+  }
+
+
+
 export default {
   administratorSignup,
   authorizeAdministrator,
@@ -275,5 +319,6 @@ export default {
   lockUnlockUser,
   checkIfLocked,
   approveProvider,
-  rejectProvider
+  rejectProvider,
+  forgotPassword
 };
