@@ -310,7 +310,34 @@ export function forgotPassword(req, res, next){
     });
   }
 
-
+  export function userData(req, res, next) {
+    const username = req.body.username;
+    User.findOne({ username: username }, (findErr, existingUser) => {
+      if (!existingUser) {
+        return res.sendStatus(400);
+      }
+      const userProfile = existingUser;
+      const role = userProfile.user_role;
+      const profileId = userProfile.profile;
+      const parent = role === USER_TYPES.Parent;
+      const provider = role === USER_TYPES.Provider;
+      if(parent) {
+        ParentProfile.findById(profileId, (err, profile) => {
+          if (err) return next(err);
+          return res.send({ profile });
+        });
+     }
+     else if (provider) {
+       ProviderProfile.findById(profileId, (err, profile) => {
+         if (err) return next(err);
+         return res.send({ profile });
+       });
+     }
+     else{
+       return res.sendStatus(400);
+     }
+    });
+  }
 
 export default {
   administratorSignup,
@@ -321,5 +348,6 @@ export default {
   checkIfLocked,
   approveProvider,
   rejectProvider,
-  forgotPassword
+  forgotPassword,
+  userData
 };
