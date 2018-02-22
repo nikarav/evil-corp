@@ -1,4 +1,4 @@
-import { apiEndpoint } from '../config/app';
+import { apiEndpoint } from '../../config/app';
 import createRestApiClient from './createRestApiClient';
 
 export default () => {

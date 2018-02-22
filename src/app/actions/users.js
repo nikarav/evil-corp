@@ -1,4 +1,4 @@
-import authService from '../authService';
+import authService from '../services/authService';
 import * as types from '../types';
 import { browserHistory } from 'react-router';
 

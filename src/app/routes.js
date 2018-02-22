@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import HomePage from './pages/HomePage';
-import Navigation from './containers/Navigation';
+import ParentProfile from './pages/ParentProfile';
 import Users from './pages/Users';
 import MenuExample from './components/ActivitiesListView';
 import ActivitiesShow from './pages/ActivitiesShow';
@@ -8,16 +8,11 @@ import ActivitiesShow from './pages/ActivitiesShow';
 const routes = [
     {
       path: '/',
-      component: MenuExample,
+      component: HomePage,
       exact: true
     },
     {
-    path: '/nav',
-    component: Navigation,
-    exact: true
-  },
-    {
-      path: '/users',
+      path: '/register',
       component: Users,
       exact: true
     },
@@ -33,7 +28,7 @@ const routes = [
     },
     {
       path: '/MyWallet',
-      component: HomePage,
+      component: ParentProfile,
       exact: true
     },
     {

@@ -15,7 +15,7 @@ class Navigation extends React.Component {
     let sign_up_button = null;
     if (!this.props.user.authenticated_user && !this.props.user.authenticated_provider){
       sign_up_button = <Nav pullRight>
-                        <LinkContainer to="/users">
+                        <LinkContainer to="/register">
                         <NavItem eventKey={1}> Εγγραφή </NavItem>
                         </LinkContainer></Nav>;
     } else {
@@ -82,9 +82,11 @@ class Navigation extends React.Component {
 
         {this.props.user.authenticated_provider &&
           <Nav pullRight>
+            <NavItem eventKey={1}>
             <Button>
-              Νέα Δραστηριότητα +
+              Νέα Δραστηριότητα
             </Button>
+             </NavItem>
           </Nav>
 
         }

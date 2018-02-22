@@ -1,8 +1,8 @@
 import * as types from '../types/ActivityTypes';
 import * as typesindex from '../types/index';
-/* import ActivityService from '../ActivityService'; */
+/* import ActivityService from '../services/ActivityService'; */
 import { apiEndpoint } from '../../config/app';
-import createRestApiClient from '../createRestApiClient';
+import createRestApiClient from '../services/createRestApiClient';
 
 export function fetchPosts() {
   const client = createRestApiClient().withConfig({ baseURL: apiEndpoint });
