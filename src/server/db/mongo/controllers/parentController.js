@@ -54,8 +54,14 @@ export function authorizeParent(req, res, next) {
 }
 
 export function addCredits(req, res, next) {
-  const credits = Number(req.body.credits);
+  var credits = Number(req.body.credits);
   const profileId = req.user.profile.id;
+  if(credits >= 50 && credits <= 100) {
+    credits += 3;
+  }
+  else if (credits > 100) {
+    credits += 7;
+  }
   if (!isNaN(credits) && credits > 0) {
     ParentProfile.findByIdAndUpdate(profileId, { $inc: { credits } }, { new: true}, (err, profile) => {
       if (err) return next(err);
