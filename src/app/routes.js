@@ -4,6 +4,7 @@ import ParentProfile from './pages/ParentProfile';
 import Users from './pages/Users';
 import MenuExample from './components/ActivitiesListView';
 import ActivitiesShow from './pages/ActivitiesShow';
+import MapPage from './pages/MapPage';
 
 const routes = [
     {
@@ -39,6 +40,11 @@ const routes = [
     {
         path: '/act',
         component: ActivitiesShow,
+        exact: true
+    },
+    {
+        path: '/map',
+        component: MapPage,
         exact: true
     }
     ];
