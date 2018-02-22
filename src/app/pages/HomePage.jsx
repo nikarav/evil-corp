@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import Navigation from '../containers/Navigation'
-import { Block } from 'jsxstyle'
+import Navigation from '../containers/Navigation';
+import { Block } from 'jsxstyle';
 
 const HomePage = () => {
   return (

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
 // import Header from '../containers/HeaderContainer.js';
-import PostDetailsContainer from '../containers/ActivitiesListContainer';
+import ActivitiesList from '../components/ActivitiesList';
 
 
 const ActivitiesShow = () => {
@@ -11,7 +11,7 @@ const ActivitiesShow = () => {
           render={() => {
             return (
               <div className="container">
-                <PostDetailsContainer id={this.props.params.id} />
+                <ActivitiesList />
               </div>
             );
           }

@@ -1,9 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { getActivities } from '../actions/ActivityShow';
 
-class ActivitiesList extends Component {
+class ActivitiesList extends React.Component {
   componentWillMount() {
-      this.props.fetchPosts();
+      this.props.getActivities();
   }
 
   renderPosts(posts) {
@@ -37,5 +39,11 @@ class ActivitiesList extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+    return {
+        postsList: state.ActivityList.postsList
+    };
+};
 
-export default ActivitiesList;
+export default connect(mapStateToProps, getActivities())(ActivitiesList);
+
