@@ -1,23 +1,25 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
-// import Header from '../containers/HeaderContainer.js';
-import PostDetailsContainer from '../containers/ActivitiesListContainer';
+import Navigation from '../containers/Navigation';
+import { Block } from 'jsxstyle';
+import ActivitiesList from '../components/ActivitiesList';
 
 
 const ActivitiesShow = () => {
-    return (
-      <Route
-          render={() => {
-            return (
-              <div className="container">
-                <PostDetailsContainer id={this.props.params.id} />
-              </div>
-            );
-          }
-        }
-        />
-    );
+  return (
+    <Route
+        render={() => {
+      return (
+        <Block
+          marginTop={60}>
+          <Navigation />
+          <h1> ActivitiesList </h1>
+          <ActivitiesList />
+        </Block>
+      );
+    }}
+    />
+  );
 };
 
 

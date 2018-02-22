@@ -59,6 +59,7 @@ const initialUserSate = {
 const rootReducer = combineReducers({
   isFetching,
   user,
+  ActivityList,
   userForm: combineForms({
     user: initialUserSate,
     }, 'userForm'
@@ -71,7 +72,6 @@ const rootReducer = combineReducers({
     user: {username: '', password: ''},
     }, 'logInForm'
   ),
-     ActivityList,
 });
 
 export default rootReducer;
