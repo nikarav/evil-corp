@@ -17,28 +17,48 @@ function generateTicketNumber(string) {
 
 export function buyTicket(req, res, next) {
   const activityId = req.body.activityId;
+  const numberOfTickets = Number(req.body.numberOfTickets);
   const profileId = req.user.profile.id;
   const ticket = new Ticket({
     activity: activityId,
-    parent: profileId
+    parent: profileId,
+    numberOfTickets: numberOfTickets
   });
   // Generate ticket barcode number
   ticket.ticketNumber = generateTicketNumber(ticket.id);
 
+  if( numberOfTickets <=0 || numberOfTickets >10){
+    return res.status(400).send('Number of tickets should be between 1 and 10.');
+  }
   Activity.findById(activityId, (err, data) => {
     if (!data) return res.status(400).send('Unavailable activity');
     if (err) return next(err);
     if (data.available_tickets <= 0) return res.status(400).send('Sold out');
-    return data.update({ $inc: { available_tickets: -1 } }, (err) => {
+    if (data.available_tickets < numberOfTickets) return res.status(400).send('Not enough tickets');
+    const price = data.price;
+    ParentProfile.findById(profileId, (err, profile) => {
       if (err) return next(err);
-      ticket.save((err) => {
+      const credits = profile.credits;
+      if( credits < (price * numberOfTickets)){
+        return res.status(400).send('Not enough credits');
+      }
+      const before_div = parseInt((profile.numberOfTickets)/10);
+      const after_div = parseInt((profile.numberOfTickets + numberOfTickets)/10);
+      var creditsUpdated = credits - price * numberOfTickets;
+      if( before_div != after_div) {
+        var creditsUpdated = creditsUpdated + 10;
+      }
+      return data.update({ $inc: { available_tickets: -numberOfTickets } }, (err) => {
         if (err) return next(err);
-        return ParentProfile.findByIdAndUpdate(
-          profileId, { $push: { tickets: ticket} }, { new: true }, (err, profile) => {
+        ticket.save((err) => {
           if (err) return next(err);
-          return res.send(profile);
+          return ParentProfile.findByIdAndUpdate(
+            profileId, { $push: { tickets: ticket}, $inc: { numberOfTickets: +numberOfTickets}, $set: { credits: creditsUpdated } }, { new: true }, (err, profile) => {
+              if (err) return next(err);
+              return res.send(profile);
+            });
+          });
         });
-      });
     });
   });
 }
@@ -58,6 +78,7 @@ export function generateAndEmailPdf(req, res, next) {
     const providerBrand = ticket.activity.provider.brand_name;
     const date = moment(Date.now()).format('YYYY-MM-DD');
     const ticketNumber = ticket.ticketNumber;
+    const numberOfTickets = ticket.numberOfTickets;
 
     codes.loadModules(['ean2', 'ean5', 'ean8', 'ean13']);
     const barcodeImg = codes.create('ean13', ticketNumber);
@@ -79,7 +100,9 @@ export function generateAndEmailPdf(req, res, next) {
     doc.font('font').text(`ΟΝΟΜΑΤΕΠΩΝΥΜΟ: ${parentFullname}`).moveDown(0.5);
     doc.font('font').text(`ΔΡΑΣΤΗΡΙΟΤΗΤΑ: ${activityName}`).moveDown(0.5);
     doc.font('font').text(`ΠΑΡΟΧΟΣ: ${providerBrand}`).moveDown(0.5);
-    doc.font('font').text(`ΤΙΜΗ ΕΙΣΙΤΗΡΙΟΥ: ${price}€`).moveDown(0.5);
+    doc.font('font').text(`ΑΡΙΘΜΟΣ ΕΙΣΙΤΗΡΙΩΝ: ${numberOfTickets}€`).moveDown(0.5);
+    doc.font('font').text(`ΤΙΜΗ ΚΑΘΕ ΕΙΣΙΤΗΡΙΟΥ: ${price}€`).moveDown(0.5);
+    doc.font('font').text(`ΣΥΝΟΛΙΚΟ ΚΟΣΤΟΣ: ${price * numberOfTickets}€`).moveDown(0.5);
     doc.font('font').text(`ΗΜΕΡΟΜΗΝΙΑ: ${activityDate}`);
 
     const filename = `ticket-${date}.pdf`;

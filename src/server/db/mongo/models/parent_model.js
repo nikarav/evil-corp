@@ -15,6 +15,7 @@ const ParentProfileSchema = new mongoose.Schema({
   credits: { type: Number, default: 0, min: 0},
   locked: { type: Boolean, default: false },
   tickets: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Ticket', default: [] }],
+  numberOfTickets: { type: Number, default: 0, min: 0},
 });
 
 export default mongoose.model(USER_TYPES.Parent, ParentProfileSchema);
