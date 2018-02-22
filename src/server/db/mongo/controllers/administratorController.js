@@ -246,14 +246,23 @@ export function rejectProvider(req, res, next){
       const profileId = userProfile.profile;
       const provider = role === USER_TYPES.Provider;
       if (provider) {
-        ProviderProfile.findByIdAndRemove(profileId, (err, profile) => {
+        ProviderProfile.findById(profileId, (err, profile) => {
           if (err) return next(err);
+          const activated = profile.activated;
+          if(!activated){
+            ProviderProfile.findByIdAndRemove(profileId, (err, profile) => {
+              if (err) return next(err);
+            });
+            const profileIdNew = userProfile._id;
+            User.findByIdAndRemove(profileIdNew, (err, profile) => {
+              if (err) return next(err);
+            });
+            return res.sendStatus(200);
+          }
+          else{
+            return res.sendStatus(400);
+          }
         });
-        const profileIdNew = userProfile._id;
-        User.findByIdAndRemove(profileIdNew, (err, profile) => {
-          if (err) return next(err);
-        });
-        return res.sendStatus(200);
       }
       else{
         return res.sendStatus(400);
