@@ -19,6 +19,7 @@ export default (app) => {
   if (userController) {
     app.post('/api/sessions', userController.login);
     app.delete('/api/sessions', userController.logout);
+    app.post('/api/user/sendMessage', userController.messageToPlatform);
   } else {
     console.warn(unsupportedMessage('login routes'));
   }
@@ -33,6 +34,7 @@ export default (app) => {
     app.post('/api/parent/changeProfile', parentController.authorizeParent, parentController.changeProfile);
     app.post('/api/parent/changeCredentials', parentController.authorizeParent, parentController.changeCredentials);
     app.post('/api/parent/reset/:token', parentController.authorizeParent, parentController.resetPassword);
+    app.post('/api/parent/sendMessage', parentController.authorizeParent, parentController.messageToPlatform);
 
   } else {
     console.warn(unsupportedMessage('parent routes'));
@@ -47,6 +49,7 @@ export default (app) => {
     app.post('/api/provider/changeCredentials', providerController.authorizeProvider, providerController.changeCredentials);
     app.post('/api/provider/reset/:token', providerController.authorizeProvider, providerController.resetPassword);
     app.get('/api/provider/activities', providerController.authorizeProvider, providerController.getActivities);
+    app.post('/api/provider/sendMessage', providerController.authorizeProvider ,providerController.messageToPlatform);
   } else {
     console.warn(unsupportedMessage('provider routes'));
   }

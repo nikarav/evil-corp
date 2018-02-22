@@ -83,8 +83,7 @@ export function lockUnlockUser(req, res, next){
     const username = req.body.username;
     User.findOne({ username: username }, (findErr, existingUser) => {
       if (!existingUser) {
-        const response = "Το Username δεν αντιστοιχεί σε χρήστη."
-        return res.send({ response });
+        return res.sendStatus(400);
       }
       const userProfile = existingUser;
       const role = userProfile.user_role;
@@ -166,8 +165,7 @@ export function lockUnlockUser(req, res, next){
        });
      }
      else{
-       const response = "Το Username δεν αντιστοιχεί σε Γονέα / Διοργανωτή Δραστηριοτήτων."
-       return res.send({ response });
+      return res.sendStatus(400);
      }
     });
 }
@@ -176,8 +174,7 @@ export function checkIfLocked(req, res, next){
     const username = req.body.username;
     User.findOne({ username: username }, (findErr, existingUser) => {
       if (!existingUser) {
-        const response = "Το Username δεν αντιστοιχεί σε χρήστη."
-        return res.send({ response });
+        return res.sendStatus(400);
       }
       const userProfile = existingUser;
       const role = userProfile.user_role;
@@ -199,8 +196,7 @@ export function checkIfLocked(req, res, next){
        });
      }
      else{
-       const response = "Το Username δεν αντιστοιχεί σε Γονέα / Διοργανωτή Δραστηριοτήτων."
-       return res.send({ response });
+       return res.sendStatus(400);
      }
     });
 }
@@ -209,8 +205,7 @@ export function approveProvider(req, res, next){
     const username = req.body.username;
     User.findOne({ username: username }, (findErr, existingUser) => {
       if (!existingUser) {
-        const response = "Το Username δεν αντιστοιχεί σε χρήστη."
-        return res.send({ response });
+        return res.sendStatus(400);
       }
       const userProfile = existingUser;
       const role = userProfile.user_role;
@@ -234,9 +229,8 @@ export function approveProvider(req, res, next){
           return res.send({ activated: activatedUpdated });
         });
       }
-      else{
-        const response = "Το Username δεν αντιστοιχεί σε Διοργανωτή Δραστηριοτήτων."
-        return res.send({ response });
+      else {
+        return res.sendStatus(400);
       }
      });
 }
@@ -245,8 +239,7 @@ export function rejectProvider(req, res, next){
     const username = req.body.username;
     User.findOne({ username: username }, (findErr, existingUser) => {
       if (!existingUser) {
-        const response = "Το Username δεν αντιστοιχεί σε χρήστη."
-        return res.send({ response });
+        return res.sendStatus(400);
       }
       const userProfile = existingUser;
       const role = userProfile.user_role;
@@ -263,8 +256,7 @@ export function rejectProvider(req, res, next){
         return res.sendStatus(200);
       }
       else{
-        const response = "Το Username δεν αντιστοιχεί σε Διοργανωτή Δραστηριοτήτων."
-        return res.send({ response });
+        return res.sendStatus(400);
       }
      });
 }

@@ -177,7 +177,7 @@ export function resetPassword(req, res, next){
 
      user.save((_saveErr) => {
        if (_saveErr) return next(_saveErr);
-  
+
      });
 
 
@@ -194,6 +194,25 @@ export function resetPassword(req, res, next){
    });
 }
 
+export function messageToPlatform(req, res, next) {
+  const profileId = req.user.profile.id;
+  const username = req.user.username;
+  const subject = req.body.subject;
+  const message = req.body.message;
+  ParentProfile.findById(profileId, (err, profile) => {
+    if (err) return next(err);
+    const email = profile.email;
+    const emailBody = 'username: ' + username + '\n email: ' + email + '. \n ' + message;
+    const mailOptions = {
+      from: 'system@playground.com',
+      to: 'admin@playground.com',
+      text: emailBody,
+      subject: subject,
+    };
+    sendEmail(mailOptions);
+    return res.sendStatus(200);
+  });
+}
 
 export default {
   parentSignup,
@@ -204,5 +223,6 @@ export default {
   changeProfile,
   changeCredentials,
   forgotPassword,
-  resetPassword
+  resetPassword,
+  messageToPlatform
 };
