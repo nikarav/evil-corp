@@ -7,4 +7,4 @@ src/compiled
 src/*.swp
 src/*~
 src/.vscode
-src/package-lock.json
+src/package
