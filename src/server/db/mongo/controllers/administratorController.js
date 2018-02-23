@@ -288,13 +288,13 @@ export function forgotPassword(req, res, next){
     if(user.user_role=="Parent"){
       var emailBody= 'Με αυτό το μέιλ γίνεται ανάκληση κωδικού χρήστη.\n\n' +
         'Κάντε κλικ σε αυτό τον σύνδεσμο η αντιγράψτε το στον φυλλομετρητή σας\n\n' +
-        'http://' + req.headers.host + '/parent/reset/' + token + '\n\n'
+        'http://' + req.headers.host + '/api/parent/reset/' + token + '\n\n'
     }
 
     else {
       var emailBody= 'Με αυτό το μέιλ γίνεται ανάκληση κωδικού χρήστη.\n\n' +
         'Κάντε κλικ σε αυτό τον σύνδεσμο η αντιγράψτε το στον φυλλομετρητή σας\n\n' +
-        'http://' + req.headers.host + '/provider/reset/' + token + '\n\n'
+        'http://' + req.headers.host + '/api/provider/reset/' + token + '\n\n'
 
     }
 

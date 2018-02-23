@@ -27,13 +27,13 @@ export default (app) => {
   // parent routes
   if (parentController) {
     app.post('/api/parents', parentController.parentSignup);
-    app.get('/api/parent/forgot', parentController.authorizeParent, parentController.forgotPassword);
+    app.post('/api/parent/forgot', parentController.forgotPassword);
     app.get('/api/parent', parentController.authorizeParent, parentController.parentData);
     app.get('/api/parent/credits', parentController.authorizeParent, parentController.getCredits);
     app.post('/api/parent/credits', parentController.authorizeParent, parentController.addCredits);
     app.post('/api/parent/changeProfile', parentController.authorizeParent, parentController.changeProfile);
     app.post('/api/parent/changeCredentials', parentController.authorizeParent, parentController.changeCredentials);
-    app.post('/api/parent/reset/:token', parentController.authorizeParent, parentController.resetPassword);
+    app.post('/api/parent/reset/:token', parentController.resetPassword);
     app.post('/api/parent/sendMessage', parentController.authorizeParent, parentController.messageToPlatform);
 
   } else {
@@ -43,11 +43,11 @@ export default (app) => {
   // provider routes
   if (providerController) {
     app.post('/api/providers', providerController.providerSignup);
-    app.get('/api/provider/forgot', providerController.authorizeProvider, providerController.forgotPassword);
+    app.post('/api/provider/forgot', providerController.forgotPassword);
     app.get('/api/provider', providerController.authorizeProvider, providerController.providerData);
     app.post('/api/provider/changeProfile', providerController.authorizeProvider, providerController.changeProfile);
     app.post('/api/provider/changeCredentials', providerController.authorizeProvider, providerController.changeCredentials);
-    app.post('/api/provider/reset/:token', providerController.authorizeProvider, providerController.resetPassword);
+    app.post('/api/provider/reset/:token', providerController.resetPassword);
     app.get('/api/provider/activities', providerController.authorizeProvider, providerController.getActivities);
     app.post('/api/provider/sendMessage', providerController.authorizeProvider ,providerController.messageToPlatform);
   } else {
