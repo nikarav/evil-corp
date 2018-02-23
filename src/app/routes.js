@@ -5,6 +5,7 @@ import Users from './pages/Users';
 import MenuExample from './components/ActivitiesListView';
 import ActivitiesShow from './pages/ActivitiesShow';
 import ActivityNew from './pages/ActivityNew';
+import MapPage from './pages/MapPage';
 
 const routes = [
     {
@@ -46,6 +47,11 @@ const routes = [
         path: '/provider/new',
         component: ActivityNew,
         exact: true
+    },
+    {
+      path: '/map',
+      component: MapPage,
+      exact: true
     }
     ];
 export default routes;

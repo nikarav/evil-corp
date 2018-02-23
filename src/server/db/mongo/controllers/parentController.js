@@ -54,8 +54,14 @@ export function authorizeParent(req, res, next) {
 }
 
 export function addCredits(req, res, next) {
-  const credits = Number(req.body.credits);
+  var credits = Number(req.body.credits);
   const profileId = req.user.profile.id;
+  if(credits >= 50 && credits <= 100) {
+    credits += 3;
+  }
+  else if (credits > 100) {
+    credits += 7;
+  }
   if (!isNaN(credits) && credits > 0) {
     ParentProfile.findByIdAndUpdate(profileId, { $inc: { credits } }, { new: true}, (err, profile) => {
       if (err) return next(err);
@@ -145,7 +151,11 @@ export function changeCredentials(req, res, next) {
 }
 
 export function forgotPassword(req, res){
-      const user = req.user;
+
+    User.findOne({ username: req.body.username }).populate('profile').exec((findErr, user) => {
+        if (!user) {
+          return res.status(404).send("Κανένας χρήστης δεν βρέθηκε με αυτό το όνομα");
+        }
         const data = {
           email:user.profile.email,
           username:user.username
@@ -160,8 +170,8 @@ export function forgotPassword(req, res){
         };
         sendEmail(mailOptions);
         return res.sendStatus(200);
+})
 }
-
 
 export function resetPassword(req, res, next){
 
