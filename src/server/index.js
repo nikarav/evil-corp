@@ -5,6 +5,14 @@ import { connect } from './db';
 import initPassport from './init/passport';
 import initExpress from './init/express';
 import initRoutes from './init/routes';
+import http from 'http';
+import fs from 'fs';
+import https from 'https';
+
+var privateKey  = fs.readFileSync('server/sslcert/mykey.key', 'utf8');
+var certificate = fs.readFileSync('server/sslcert/mykey.crt', 'utf8');
+//'server/sslcert/...'
+var credentials = {key: privateKey, cert: certificate};
 
 import renderMiddleware from './render/middleware';
 
@@ -50,4 +58,9 @@ initRoutes(app);
  */
 app.get('*', renderMiddleware);
 
-app.listen(app.get('port'));
+//app.listen(app.get('port'));
+var httpServer=http.createServer(app);
+httpServer.listen(app.get('port'));
+console.log(credentials);
+var httpsServer = https.createServer(credentials, app);
+httpsServer.listen(8443);
