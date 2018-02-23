@@ -5,7 +5,7 @@ export function postActivity(req, res, next) {
   const profileId = req.user.profile.id;
   const activity = new Activity({
     name: req.body.name,
-    location: req.body.location,
+    location: req.body.location.split(',').map(x => parseFloat(x)),
     description: req.body.description,
     date: req.body.date,
     photo: req.body.photo,
