@@ -1,0 +1,60 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number: 1 (0x1)
+        Signature Algorithm: md5WithRSAEncryption
+        Issuer: C=GR, ST=Attica, L=Athens, O=NTUA, OU=NETMODE, CN=NETMODE COURSE CA - 2008/emailAddress=root@netmode.ntua.gr
+        Validity
+            Not Before: Nov 19 15:20:21 2017 GMT
+            Not After : Nov 19 15:20:21 2018 GMT
+        Subject: C=Gr, ST=Attica, O=netmode, OU=ntua, CN=kostas/emailAddress=kostas@gmail.com
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+            RSA Public Key: (512 bit)
+                Modulus (512 bit):
+                    00:cd:f2:e6:11:15:33:5d:37:d7:e4:9d:b0:be:2d:
+                    7b:6f:75:27:02:aa:ad:0c:ad:c6:ef:0f:0f:10:6f:
+                    86:71:56:89:48:74:03:28:bc:b4:42:7c:9c:b4:67:
+                    4e:9b:cc:7b:39:e4:3b:4f:54:ce:14:0a:25:30:c4:
+                    63:20:0f:35:29
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            Netscape Comment: 
+                OpenSSL Generated Certificate
+            X509v3 Subject Key Identifier: 
+                68:52:F6:8B:3E:AE:20:57:BA:7D:4D:97:BA:6C:6E:C8:0C:F5:49:1C
+            X509v3 Authority Key Identifier: 
+                DirName:/C=GR/ST=Attica/L=Athens/O=NTUA/OU=NETMODE/CN=NETMODE COURSE CA - 2008/emailAddress=root@netmode.ntua.gr
+                serial:92:C5:2F:BC:2E:8F:01:13
+
+    Signature Algorithm: md5WithRSAEncryption
+        27:06:f2:a0:25:0f:89:6b:37:bd:fa:bd:92:d0:e2:a1:51:37:
+        02:b6:20:3a:2a:5a:37:05:9a:a1:c2:45:7d:ab:22:a4:34:ed:
+        3a:95:ce:be:53:dd:ac:08:a2:55:0b:6d:0c:45:b0:0d:70:5d:
+        f5:4b:3f:73:68:b2:20:20:69:1f:72:42:f9:70:9f:71:59:23:
+        71:19:de:7b:8b:d5:73:ee:bd:e2:dc:fd:17:44:ba:e6:d8:76:
+        3d:4f:b4:9f:42:7f:44:73:43:d9:7c:89:59:72:31:6d:71:fd:
+        b3:85:7f:9e:02:8c:8d:55:05:cb:00:d2:ae:8a:4b:25:3e:b4:
+        7c:a6
+-----BEGIN CERTIFICATE-----
+MIIDVDCCAr2gAwIBAgIBATANBgkqhkiG9w0BAQQFADCBmDELMAkGA1UEBhMCR1Ix
+DzANBgNVBAgTBkF0dGljYTEPMA0GA1UEBxMGQXRoZW5zMQ0wCwYDVQQKEwROVFVB
+MRAwDgYDVQQLEwdORVRNT0RFMSEwHwYDVQQDExhORVRNT0RFIENPVVJTRSBDQSAt
+IDIwMDgxIzAhBgkqhkiG9w0BCQEWFHJvb3RAbmV0bW9kZS5udHVhLmdyMB4XDTE3
+MTExOTE1MjAyMVoXDTE4MTExOTE1MjAyMVowcTELMAkGA1UEBhMCR3IxDzANBgNV
+BAgTBkF0dGljYTEQMA4GA1UEChMHbmV0bW9kZTENMAsGA1UECxMEbnR1YTEPMA0G
+A1UEAxMGa29zdGFzMR8wHQYJKoZIhvcNAQkBFhBrb3N0YXNAZ21haWwuY29tMFww
+DQYJKoZIhvcNAQEBBQADSwAwSAJBAM3y5hEVM1031+SdsL4te291JwKqrQytxu8P
+DxBvhnFWiUh0Ayi8tEJ8nLRnTpvMeznkO09UzhQKJTDEYyAPNSkCAwEAAaOCARYw
+ggESMAkGA1UdEwQCMAAwLAYJYIZIAYb4QgENBB8WHU9wZW5TU0wgR2VuZXJhdGVk
+IENlcnRpZmljYXRlMB0GA1UdDgQWBBRoUvaLPq4gV7p9TZe6bG7IDPVJHDCBtwYD
+VR0jBIGvMIGsoYGepIGbMIGYMQswCQYDVQQGEwJHUjEPMA0GA1UECBMGQXR0aWNh
+MQ8wDQYDVQQHEwZBdGhlbnMxDTALBgNVBAoTBE5UVUExEDAOBgNVBAsTB05FVE1P
+REUxITAfBgNVBAMTGE5FVE1PREUgQ09VUlNFIENBIC0gMjAwODEjMCEGCSqGSIb3
+DQEJARYUcm9vdEBuZXRtb2RlLm50dWEuZ3KCCQCSxS+8Lo8BEzANBgkqhkiG9w0B
+AQQFAAOBgQAnBvKgJQ+Jaze9+r2S0OKhUTcCtiA6Klo3BZqhwkV9qyKkNO06lc6+
+U92sCKJVC20MRbANcF31Sz9zaLIgIGkfckL5cJ9xWSNxGd57i9Vz7r3i3P0XRLrm
+2HY9T7SfQn9Ec0PZfIlZcjFtcf2zhX+eAoyNVQXLANKuikslPrR8pg==
+-----END CERTIFICATE-----
