@@ -310,6 +310,49 @@ export function forgotPassword(req, res, next){
     });
   }
 
+  export function userData(req, res, next) {
+    const username = req.body.username;
+    User.findOne({ username: username }, (findErr, existingUser) => {
+      if (!existingUser) {
+        return res.sendStatus(400);
+      }
+      const userProfile = existingUser;
+      const role = userProfile.user_role;
+      const profileId = userProfile.profile;
+      const parent = role === USER_TYPES.Parent;
+      const provider = role === USER_TYPES.Provider;
+      if(parent) {
+        ParentProfile.findById(profileId, (err, profile) => {
+          if (err) return next(err);
+          return res.send({ profile });
+        });
+     }
+     else if (provider) {
+       ProviderProfile.findById(profileId, (err, profile) => {
+         if (err) return next(err);
+         return res.send({ profile });
+       });
+     }
+     else{
+       return res.sendStatus(400);
+     }
+    });
+  }
+
+
+export function providersForApproval(req, res, next){
+  ProviderProfile.find({activated: false}, {_id: 1}, (findErr, providers) => {
+    if (!providers) {
+      return res.sendStatus(400);
+    }
+    User.find({ profile: { $in: providers } }, {_id: 0, username:1}, (findErr, existingUser) => {
+      if (!existingUser) {
+        return res.sendStatus(400);
+      }
+      return res.send(existingUser);
+    });
+  });
+}
 
 
 export default {
@@ -321,5 +364,7 @@ export default {
   checkIfLocked,
   approveProvider,
   rejectProvider,
-  forgotPassword
+  forgotPassword,
+  userData,
+  providersForApproval
 };
