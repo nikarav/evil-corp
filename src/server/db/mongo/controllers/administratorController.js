@@ -339,6 +339,22 @@ export function forgotPassword(req, res, next){
     });
   }
 
+
+export function providersForApproval(req, res, next){
+  ProviderProfile.find({activated: false}, {_id: 1}, (findErr, providers) => {
+    if (!providers) {
+      return res.sendStatus(400);
+    }
+    User.find({ profile: { $in: providers } }, {_id: 0, username:1}, (findErr, existingUser) => {
+      if (!existingUser) {
+        return res.sendStatus(400);
+      }
+      return res.send(existingUser);
+    });
+  });
+}
+
+
 export default {
   administratorSignup,
   authorizeAdministrator,
@@ -349,5 +365,6 @@ export default {
   approveProvider,
   rejectProvider,
   forgotPassword,
-  userData
+  userData,
+  providersForApproval
 };

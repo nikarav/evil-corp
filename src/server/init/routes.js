@@ -64,6 +64,7 @@ export default (app) => {
     app.post('/api/administrator/rejectProvider', administratorController.rejectProvider);
     app.post('/api/administrator/forgot', administratorController.forgotPassword);
     app.post('/api/administrator/userData', administratorController.userData);
+    app.get('/api/administrator/providersForApproval', administratorController.providersForApproval);
   } else {
     console.warn(unsupportedMessage('administrator routes'));
   }
