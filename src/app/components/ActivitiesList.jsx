@@ -6,6 +6,7 @@ import { getActivities } from '../actions/ActivityShow';
 class ActivitiesList extends React.Component {
   componentWillMount() {
       this.props.getActivities();
+      console.log(this.props);
   }
 
   renderPosts(posts) {

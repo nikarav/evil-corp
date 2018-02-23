@@ -5,6 +5,7 @@ import {LinkContainer } from 'react-router-bootstrap';
 import { connect } from 'react-redux';
 import { manualLogin, logOut } from '../actions/users';
 import LogInForm from '../components/LogInForm';
+import ActivityNew from '../pages/ActivityNew';
 import '../Css/App.css';
 
 class Navigation extends React.Component {
@@ -80,11 +81,9 @@ class Navigation extends React.Component {
 
             {this.props.user.authenticated_provider &&
             <Nav pullRight>
-              <NavItem eventKey={1}>
-                <Button>
-              Νέα Δραστηριότητα
-            </Button>
-              </NavItem>
+              <LinkContainer to="/provider/new">
+                <NavItem eventKey={1}> Νέα Δραστηριότητα </NavItem>
+              </LinkContainer>
             </Nav>
 
         }
