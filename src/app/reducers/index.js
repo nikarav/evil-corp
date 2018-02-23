@@ -4,6 +4,7 @@ import * as types from '../types';
 import { modelReducer, formReducer, combineForms} from 'react-redux-form';
 import user from '../reducers/user';
 import ActivityList from '../reducers/ActivityShow';
+import parent from '../reducers/parent';
 
 const isFetching = (state = false, action) => {
   switch (action.type) {
@@ -60,6 +61,7 @@ const rootReducer = combineReducers({
   isFetching,
   user,
   ActivityList,
+  parent,
   userForm: combineForms({
     user: initialUserSate,
     }, 'userForm'
