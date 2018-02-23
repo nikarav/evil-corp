@@ -1,10 +1,13 @@
 import express from 'express';
 import webpack from 'webpack';
+import https from 'https';
+import fs from 'fs';
 import { isDebug } from '../config/app';
 import { connect } from './db';
 import initPassport from './init/passport';
 import initExpress from './init/express';
 import initRoutes from './init/routes';
+import { ENV } from '../config/env';
 
 import renderMiddleware from './render/middleware';
 
@@ -42,6 +45,15 @@ initExpress(app);
  */
 initRoutes(app);
 
+/* HTTPS Support */
+const privateKey = fs.readFileSync('server/sslcert/key.key', 'utf8');
+const certificate = fs.readFileSync('server/sslcert/key.crt', 'utf8');
+
+const credentials = {
+  key: privateKey,
+  cert: certificate
+};
+
 /*
  * This is where the magic happens. We take the locals data we have already
  * fetched and seed our stores with data.
@@ -50,4 +62,8 @@ initRoutes(app);
  */
 app.get('*', renderMiddleware);
 
-app.listen(app.get('port'));
+if (ENV === 'production') {
+  https.createServer(credentials, app).listen(app.get('port'));
+} else {
+  app.listen(app.get('port'));
+}
