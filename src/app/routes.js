@@ -2,7 +2,6 @@ import { connect } from 'react-redux';
 import HomePage from './pages/HomePage';
 import ParentProfile from './pages/ParentProfile';
 import Users from './pages/Users';
-import MenuExample from './components/ActivitiesListView';
 import ActivitiesShow from './pages/ActivitiesShow';
 import ActivityNew from './pages/ActivityNew';
 import MapPage from './pages/MapPage';
@@ -25,7 +24,7 @@ const routes = [
     },
     {
       path: '/Offers',
-      component: HomePage,
+      component: ActivitiesShow,
       exact: true
     },
     {
