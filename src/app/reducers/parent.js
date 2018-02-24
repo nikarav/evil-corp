@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
-import * as types from '../types/index';
+import * as types from '../types/parentTypes';
+import { combineForms} from 'react-redux-form';
 
 const message = (
   state = '',
@@ -26,24 +27,20 @@ const credits = (
   action
 ) => {
   switch (action.type) {
+
     case types.GET_CREDITS:
     case types.ADD_CREDITS:
     case types.GET_CREDITS_FAILURE:
     case types.ADD_CREDITS_FAILURE:
       return state;
-
     case types.GET_CREDITS_SUCCESS:
-      return action.message;
     case types.ADD_CREDITS_SUCCESS:
-      return state;
-      //return action.message;
+      return action.message;
     default:
       return state;
 
   }
 }
-
-
 
 
 const parentReducer = combineReducers({

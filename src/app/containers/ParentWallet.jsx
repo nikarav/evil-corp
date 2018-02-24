@@ -13,20 +13,36 @@ class ParentWallet extends React.Component {
     this.props.getCredits();
   }
 
+  handleSubmit(values) {
+    console.log(values);
+    this.props.addCredits(values);
+  }
+
   render() {
 
-
-
     return (
-      <Inline>
-        Το πορτοφόλι μου
-        Πόντοι: {this.props.parent.credits}
+      <Block>
+        <h1> Το πορτοφόλι μου </h1>
+        <Inline>
+          Πόντοι: {this.props.parent.credits}
+        </Inline>
+        <Inline>
+          <Form
+            model="parentProfileForm.user"
+            onSubmit={(val) => this.handleSubmit(val)}
+          >
+                <Control
+                  model=".credits"
+                  placeholder="credits e.g. 10"
+                  required
+                  validateOn="blur"
+                  // component={FormControl}
+                />
 
-        {/* <FormControl>
-
-        </FormControl>
-        <Button></Button> */}
-      </Inline>
+            <Button type="submit">Add credits!</Button>
+          </Form>
+        </Inline>
+      </Block>
     );
   }
 }

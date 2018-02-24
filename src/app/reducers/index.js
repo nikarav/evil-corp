@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { routerReducer as routing } from 'react-router-redux';
 import * as types from '../types';
-import { modelReducer, formReducer, combineForms} from 'react-redux-form';
+import { combineForms} from 'react-redux-form';
 import user from '../reducers/user';
 import ActivityList from '../reducers/ActivityShow';
 import parent from '../reducers/parent';
@@ -55,13 +55,27 @@ const initialUserSate = {
   password: 'pass'
 };
 
-// Combine reducers with routeReducer which keeps track of
-// router state
+const initialParentProfileForm = {
+  credits: 0,
+  name: '',
+  surname: '',
+  email: '',
+  telephone: '',
+  address: '',
+  birthday: '',
+  username: '',
+  password: ''
+}
+
 const rootReducer = combineReducers({
   isFetching,
   user,
   ActivityList,
   parent,
+  parentProfileForm: combineForms({
+    user: initialParentProfileForm,
+  }, 'parentProfileForm'
+  ),
   userForm: combineForms({
     user: initialUserSate,
     }, 'userForm'

@@ -29,9 +29,10 @@ function beginAddCredits() {
     };
 }
 
-function addCreditsSuccess() {
+function addCreditsSuccess(credits) {
     return {
         type: types.ADD_CREDITS_SUCCESS,
+        message: credits
     };
 }
 
@@ -50,7 +51,8 @@ export function getCredits() {
 
         return parentService().getCredits()
             .then((response) => {
-                dispatch(getCreditsSuccess(response.data));
+              console.log(response.data.credits);
+              dispatch(getCreditsSuccess(response.data.credits));
             })
             .catch((err) => {
                 dispatch(getCreditsFailure(err));
@@ -64,7 +66,7 @@ export function addCredits(credits) {
 
         return parentService().addCredits(credits)
             .then((response) => {
-                dispatch(addCreditsSuccess());
+                dispatch(addCreditsSuccess(response.data.credits));
             })
             .catch((err) => {
                 dispatch(addCreditsFailure(err));
