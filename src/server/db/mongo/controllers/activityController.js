@@ -2,19 +2,26 @@ import Activity from '../models/activity_model';
 import ProviderProfile from '../models/provider_model';
 
 export function postActivity(req, res, next) {
+  // TODO maybe perform some error checking
+  const formName = 'newActivityForm.post';
   const profileId = req.user.profile.id;
+  const photoData = req.file.buffer;
+  const photoType = req.file.mimetype;
   const activity = new Activity({
-    name: req.body.name,
-    location: req.body.location.split(',').map(x => parseFloat(x)),
-    description: req.body.description,
-    date: req.body.date,
-    photo: req.body.photo,
-    total_tickets: req.body.total_tickets,
-    available_tickets: req.body.total_tickets,
-    min_age: req.body.min_age,
-    max_age: req.body.max_age,
-    tags: req.body.tags,
-    price: req.body.price,
+    name: req.body[formName + '.name'],
+    location: req.body[formName + '.location'].split(',').map(x => parseFloat(x)),
+    description: req.body[formName + '.description'],
+    date: req.body[formName + '.date'],
+    photo: {
+      data: photoData,
+      contentType: photoType
+    },
+    total_tickets: req.body[formName + '.total_tickets'],
+    available_tickets: req.body[formName + '.total_tickets'],
+    min_age: req.body[formName + '.min_age'],
+    max_age: req.body[formName + '.max_age'],
+    tags: req.body['user.tags'],
+    price: req.body[formName + '.price'],
     provider: profileId
   });
 
@@ -22,11 +29,11 @@ export function postActivity(req, res, next) {
   activity.save((err) => {
     if (err) return next(err);
 
-    ProviderProfile.findByIdAndUpdate(profileId, { $push: { "activities": activity } }, { new: true}, (err, profile) => {
+    return ProviderProfile.findByIdAndUpdate(profileId, { $push: { "activities": activity } }, { new: true}, (err, profile) => {
        if (err) return next(err);
+       return res.sendStatus(200);
     });
-    return res.sendStatus(200);
-   });
+  });
 }
 
 // TODO Currently the functionality very limited
