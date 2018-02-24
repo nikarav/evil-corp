@@ -29,7 +29,7 @@ const routes = [
       exact: true
     },
     {
-      path: '/MyWallet',
+      path: '/MyProfile',
       component: ParentProfile,
       exact: true
     },

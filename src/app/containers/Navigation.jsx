@@ -10,7 +10,6 @@ import '../Css/App.css';
 
 class Navigation extends React.Component {
 
-
   render() {
     let sign_up_button = null;
     if (!this.props.user.authenticated_user && !this.props.user.authenticated_provider) {
@@ -56,8 +55,8 @@ class Navigation extends React.Component {
                 <NavItem eventKey={2} > Προσφορές </NavItem>
               </LinkContainer>
 
-              <LinkContainer to="/MyWallet">
-                <NavItem eventKey={3}> Προτοφόλι </NavItem>
+              <LinkContainer to="/MyProfile">
+                <NavItem eventKey={3}> Το προφίλ μου </NavItem>
               </LinkContainer>
 
               <LinkContainer to="/Contact">
