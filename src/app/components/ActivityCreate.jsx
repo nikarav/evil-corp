@@ -6,10 +6,10 @@ import { Button, FormControl } from 'react-bootstrap';
 
 
 class ActivityCreate extends React.Component {
-  handleSubmit(values) {
-    // Do anything you want with the form value
-    this.props.createActivity(values);
-    console.log(values);
+  handleSubmit(values, event) {
+    const formData = new FormData(event.target);
+    this.props.createActivity(formData);
+    event.preventDefault();
   }
 
   render() {
@@ -18,7 +18,8 @@ class ActivityCreate extends React.Component {
         <h1> Nea Drastiriotita </h1>
         <Form
           model="newActivityForm.post"
-          onSubmit={val => this.handleSubmit(val)}
+          encType="multipart/form-data"
+          onSubmit={(val, event) => this.handleSubmit(val, event)}
         >
           <div className="field">
             <label> Όνομα Δραστηριότητας</label>
