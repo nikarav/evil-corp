@@ -10,7 +10,9 @@ import { addCredits, getCredits } from '../actions/parents'
 
 class ParentWallet extends React.Component {
   componentWillMount() {
-    this.props.getCredits();
+    if (this.props.user.authenticated_user){
+      this.props.getCredits();
+    }
   }
 
   handleSubmit(values) {
@@ -19,31 +21,39 @@ class ParentWallet extends React.Component {
   }
 
   render() {
+      if(this.props.user.authenticated_user) {
+        return (
+          <Block>
+            <h1> Το πορτοφόλι μου </h1>
+            <Inline>
+              Πόντοι: {this.props.parent.credits}
+            </Inline>
+            <Inline>
+              <Form
+                model="parentProfileForm.user"
+                onSubmit={(val) => this.handleSubmit(val)}
+              >
+                    <Control
+                      model=".credits"
+                      placeholder="credits e.g. 10"
+                      required
+                      validateOn="blur"
+                      // component={FormControl}
+                    />
 
-    return (
-      <Block>
-        <h1> Το πορτοφόλι μου </h1>
-        <Inline>
-          Πόντοι: {this.props.parent.credits}
-        </Inline>
-        <Inline>
-          <Form
-            model="parentProfileForm.user"
-            onSubmit={(val) => this.handleSubmit(val)}
-          >
-                <Control
-                  model=".credits"
-                  placeholder="credits e.g. 10"
-                  required
-                  validateOn="blur"
-                  // component={FormControl}
-                />
-
-            <Button type="submit">Add credits!</Button>
-          </Form>
-        </Inline>
-      </Block>
-    );
+                <Button type="submit">Add credits!</Button>
+              </Form>
+            </Inline>
+          </Block>
+        );
+        }
+        else {
+          return(
+            <Block>
+              You are not logged in as a parent. Please log in as parent
+            </Block>
+          );
+      }
   }
 }
 
@@ -51,7 +61,8 @@ class ParentWallet extends React.Component {
 // Any time it updates, mapStateToProps is called.
 function mapStateToProps(state) {
   return {
-    parent: state.parent
+    parent: state.parent,
+    user: state.user
   };
 }
 

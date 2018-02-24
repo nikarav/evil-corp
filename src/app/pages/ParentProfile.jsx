@@ -17,10 +17,6 @@ const ParentProfile = () => {
               margin={30}>
               <ParentWallet/>
             </Inline>
-            <Inline
-              margin={30}>
-              second section
-            </Inline>
           </Block>
           );  }
     }
