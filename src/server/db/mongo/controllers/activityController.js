@@ -1,3 +1,4 @@
+import path from 'path';
 import Activity from '../models/activity_model';
 import ProviderProfile from '../models/provider_model';
 
@@ -29,7 +30,7 @@ export function postActivity(req, res, next) {
   activity.save((err) => {
     if (err) return next(err);
 
-    return ProviderProfile.findByIdAndUpdate(profileId, { $push: { "activities": activity } }, { new: true}, (err, profile) => {
+    return ProviderProfile.findByIdAndUpdate(profileId, { $push: { activities: activity } }, { new: true}, (err, profile) => {
        if (err) return next(err);
        return res.sendStatus(200);
     });
@@ -40,11 +41,42 @@ export function postActivity(req, res, next) {
 export function getAllActivities(req, res, next) {
   Activity.find({}, (err, activities) => {
     if (err) return next(err);
-    return res.send(activities);
+    const activitiesWithPhoto = activities.map((a) => {
+      const activity = a.toJSON();
+      const photoPath = path.join('/api/activity', activity.id, '/photo');
+      return Object.assign({}, activity, { photo: photoPath });
+    });
+    return res.send(activitiesWithPhoto);
+  });
+}
+
+export function getActivity(req, res, next) {
+  const activityId = req.params.activityId;
+  Activity.findById(activityId, (err, activity) => {
+    if (err) return next(err);
+    const photoPath = path.join('/api/activity', activity.id, '/photo');
+    const activityUpdated = Object.assign({}, activity.toJSON(), { photo: photoPath });
+    return res.send(activityUpdated);
+  });
+}
+
+export function getActivityPhoto(req, res, next) {
+  const activityId = req.params.activityId;
+  Activity.findById(activityId, (err, activity) => {
+    if (err) return next(err);
+    const photoData = activity.photo.data;
+    if (photoData) {
+      const contentType = activity.photo.contentType || 'application/octet-stream';
+      res.setHeader('Content-type', contentType);
+      return res.send(photoData);
+    }
+    return res.sendStatus(404);
   });
 }
 
 export default {
   postActivity,
+  getActivity,
+  getActivityPhoto,
   getAllActivities
 };
