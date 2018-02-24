@@ -4,11 +4,8 @@ import * as types from '../types';
 import { combineForms} from 'react-redux-form';
 import user from '../reducers/user';
 import ActivityList from '../reducers/ActivityShow';
-<<<<<<< HEAD
 import ActivityCreate from '../reducers/ActivityCreate';
-=======
 import parent from '../reducers/parent';
->>>>>>> parent_page
 
 const isFetching = (state = false, action) => {
   switch (action.type) {
