@@ -24,3 +24,8 @@ export const LOGIN_ERROR = 'LOGIN_ERROR';
 export const LOGOUT = 'LOGOUT';
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 export const LOGOUT_ERROR = 'LOGOUT_ERROR';
+
+// FORGOT
+export const FORGOT = 'FORGOT';
+export const FORGOT_SUCCESS = 'FORGOT_SUCCESS';
+export const FORGOT_ERROR = 'FORGOT_ERROR';

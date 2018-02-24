@@ -15,6 +15,8 @@ class LogInForm extends React.Component {
     console.log(values);
   }
 
+
+
   render() {
 
     if (!this.props.user.authenticated_user && !this.props.user.authenticated_provider) {

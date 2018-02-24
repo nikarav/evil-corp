@@ -43,6 +43,13 @@ export default () => {
     logOut: () => client.request({
       method: 'DELETE',
       url: '/api/sessions'
+    }),
+    forgot: ({username} ) => client.request({
+      method: 'POST',
+      url: '/api/parent/forgot',   // the same as /api/parent/forgot
+      data: {
+        username
+      }
     })
   };
 };

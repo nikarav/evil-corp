@@ -14,6 +14,9 @@ const message = (
       return '';
     case types.GET_CREDITS_FAILURE:
     case types.ADD_CREDITS_FAILURE:
+    case types.FORGOT:
+    case types.FORGOT_SUCCESS:
+    case types.FORGOT_ERROR:
       return action.message;
     default:
       return state;

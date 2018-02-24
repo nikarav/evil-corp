@@ -3,12 +3,16 @@ import { Route, Link } from 'react-router-dom';
 import { Navbar, Nav, NavItem, Button, FormGroup, FormControl } from 'react-bootstrap';
 import {LinkContainer } from 'react-router-bootstrap';
 import { connect } from 'react-redux';
-import { manualLogin, logOut } from '../actions/users';
+import { manualLogin, logOut, forgot } from '../actions/users';
 import LogInForm from '../components/LogInForm';
 import ActivityNew from '../pages/ActivityNew';
 import '../Css/App.css';
 
 class Navigation extends React.Component {
+
+  handleForgot(){
+    this.props.forgot({username: this.props.logInForm.user.username});
+  }
 
   render() {
     let sign_up_button = null;
@@ -74,6 +78,7 @@ class Navigation extends React.Component {
                 logOut={this.props.logOut}
               />
               </FormGroup>
+              <Button onClick={() => this.handleForgot()}> Forgot Password  </Button>
             </Navbar.Form>
 
             {sign_in_info}
@@ -97,9 +102,10 @@ class Navigation extends React.Component {
 
 // Function passed in to `connect` to subscribe to Redux store updates.
 // Any time it updates, mapStateToProps is called.
-function mapStateToProps({user}) {
+function mapStateToProps(state) {
   return {
-    user
+    user: state.user,
+    logInForm: state.logInForm
   };
 }
 
@@ -107,4 +113,4 @@ function mapStateToProps({user}) {
 // It does not modify the component class passed to it
 // Instead, it returns a new, connected component class, for you to use.
 
-export default connect(mapStateToProps, {manualLogin, logOut})(Navigation);
+export default connect(mapStateToProps, {manualLogin, logOut, forgot})(Navigation);
