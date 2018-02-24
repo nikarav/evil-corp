@@ -1,0 +1,10 @@
+// Credits
+export const GET_CREDITS = 'GET_CREDITS';
+export const GET_CREDITS_SUCCESS = 'GET_CREDITS_SUCCESS';
+export const GET_CREDITS_FAILURE = 'GET_CREDITS_FAILURE';
+
+export const ADD_CREDITS = 'ADD_CREDITS';
+export const ADD_CREDITS_SUCCESS = 'ADD_CREDITS_SUCCESS';
+export const ADD_CREDITS_FAILURE = 'ADD_CREDITS_FAILURE';
+
+// change profile

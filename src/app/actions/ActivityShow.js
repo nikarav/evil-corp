@@ -20,7 +20,25 @@ function fetchActivitiesFailure(error) {
         payload: error
     };
 }
+function beginCreateActivity() {
+    return {
+        type: types.CREATE_ACTIVITY
+    };
+}
 
+function createActivitySuccess(activity) {
+    return {
+        type: types.CREATE_ACTIVITY_SUCCESS,
+        payload: activity
+    };
+}
+
+function createActivityFailure(error) {
+    return {
+        type: types.CREATE_ACTIVITY_FAILURE,
+        payload: error
+    };
+}
 
 function validatePostFieldsSuccess() {
     return {
@@ -58,6 +76,20 @@ export function getActivities() {
             })
             .catch((err) => {
                 dispatch(fetchActivitiesFailure(err));
+            });
+    };
+}
+
+export function createActivity(data) {
+    return (dispatch) => {
+        dispatch(beginCreateActivity());
+
+        return ActivityService().createPost(data)
+            .then((response) => {
+                dispatch(createActivitySuccess(response.data));
+            })
+            .catch((err) => {
+                dispatch(createActivityFailure(err));
             });
     };
 }

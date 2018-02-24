@@ -128,7 +128,10 @@ export function changeCredentials(req, res, next) {
 }
 
 export function forgotPassword(req, res){
-      const user = req.user;
+    User.findOne({ username: req.body.username }).populate('profile').exec((findErr, user) => {
+        if (!user) {
+          return res.status(404).send("Κανένας χρήστης δεν βρέθηκε με αυτό το όνομα");
+        }
         const data = {
           email:user.profile.email,
           username:user.username
@@ -143,8 +146,8 @@ export function forgotPassword(req, res){
         };
         sendEmail(mailOptions);
         return res.sendStatus(200);
+})
 }
-
 
 export function resetPassword(req, res, next){
 

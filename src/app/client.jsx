@@ -2,8 +2,10 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
+import { Router, browserHistory } from 'react-router';
 import routes from './routes';
 import { renderRoutes } from 'react-router-config';
+import { syncHistoryWithStore } from 'react-router-redux';
 import * as types from './types';
 import configureStore from './store/configureStore';
 

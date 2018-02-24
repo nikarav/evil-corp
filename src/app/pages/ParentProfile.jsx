@@ -1,9 +1,8 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { Control, Form } from 'react-redux-form';
 import { Route } from 'react-router-dom';
 import Navigation from '../containers/Navigation';
-import { Block } from 'jsxstyle';
+import  ParentWallet from '../containers/ParentWallet.jsx';
+import { Block, Inline } from 'jsxstyle';
 
 
 const ParentProfile = () => {
@@ -13,7 +12,11 @@ const ParentProfile = () => {
           <Block
             marginTop={60}>
             <Navigation />
-            <h1> Το προφίλ μου</h1>
+            <h1> Το πρoφίλ μου</h1>
+            <Inline
+              margin={30}>
+              <ParentWallet/>
+            </Inline>
           </Block>
           );  }
     }

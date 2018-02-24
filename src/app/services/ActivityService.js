@@ -8,5 +8,14 @@ export default () => {
             method: 'GET',
             url: '/api/activities',
         }),
+        createPost: formData => client.request({
+          method: 'POST',
+          url: '/api/activity',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'multipart/form-data'
+          },
+          data: formData
+        })
     };
 };

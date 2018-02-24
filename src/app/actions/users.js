@@ -79,6 +79,28 @@ function signUpProviderSuccess(message) {
   };
 }
 
+// FORGOT actions
+function beginForgot(message){
+  return {
+    type: types.FORGOT,
+    message
+  };
+}
+
+function forgotSuccess(message){
+  return {
+    type:types.FORGOT_SUCCESS,
+    message
+  };
+}
+
+function forgotError(message){
+  return {
+    type: types.FORGOT_ERROR,
+    message
+  }
+}
+
 // ---------------------------------- user triggered functions ---------------------------------------------------
 
 // user triggerd function -> SIGNUP user
@@ -144,7 +166,20 @@ export function logOut() {
           dispatch(logoutSuccess());
       })
       .catch((err) => {
-        dispatch(logoutError());
+          dispatch(logoutError());
       });
   };
+}
+
+export function forgot(data){
+  return (dispatch) => {
+    dispatch(beginForgot('Starting forgot process'));
+    return authService().forgot(data)
+      .then((response) => {
+        dispatch(forgotSuccess('You have success send an email to retrive your pass'));
+      })
+      .catch((err) => {
+        dispatch(forgotError('failed forgot process'));
+      })
+  }
 }

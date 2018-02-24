@@ -2,8 +2,8 @@ import { connect } from 'react-redux';
 import HomePage from './pages/HomePage';
 import ParentProfile from './pages/ParentProfile';
 import Users from './pages/Users';
-import MenuExample from './components/ActivitiesListView';
 import ActivitiesShow from './pages/ActivitiesShow';
+import ActivityNew from './pages/ActivityNew';
 import MapPage from './pages/MapPage';
 
 const routes = [
@@ -24,11 +24,11 @@ const routes = [
     },
     {
       path: '/Offers',
-      component: HomePage,
+      component: ActivitiesShow,
       exact: true
     },
     {
-      path: '/MyWallet',
+      path: '/MyProfile',
       component: ParentProfile,
       exact: true
     },
@@ -43,9 +43,14 @@ const routes = [
         exact: true
     },
     {
-        path: '/map',
-        component: MapPage,
+        path: '/provider/new',
+        component: ActivityNew,
         exact: true
+    },
+    {
+      path: '/map',
+      component: MapPage,
+      exact: true
     }
     ];
 export default routes;

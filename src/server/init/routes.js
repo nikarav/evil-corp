@@ -2,6 +2,7 @@
  * Routes for express app
  */
 import passport from 'passport';
+import multer from 'multer';
 import unsupportedMessage from '../db/unsupportedMessage';
 import { controllers, passport as passportConfig } from '../db';
 import activity_model from '../db/mongo/models/activity_model';
@@ -13,6 +14,8 @@ const providerController = controllers && controllers.providerController;
 const administratorController = controllers && controllers.administratorController;
 const activityController = controllers && controllers.activityController;
 const ticketController = controllers && controllers.ticketController;
+
+const upload = multer();
 
 export default (app) => {
   // login routes
@@ -27,13 +30,13 @@ export default (app) => {
   // parent routes
   if (parentController) {
     app.post('/api/parents', parentController.parentSignup);
-    app.get('/api/parent/forgot', parentController.authorizeParent, parentController.forgotPassword);
+    app.post('/api/parent/forgot', parentController.forgotPassword);
     app.get('/api/parent', parentController.authorizeParent, parentController.parentData);
     app.get('/api/parent/credits', parentController.authorizeParent, parentController.getCredits);
     app.post('/api/parent/credits', parentController.authorizeParent, parentController.addCredits);
     app.post('/api/parent/changeProfile', parentController.authorizeParent, parentController.changeProfile);
     app.post('/api/parent/changeCredentials', parentController.authorizeParent, parentController.changeCredentials);
-    app.post('/api/parent/reset/:token', parentController.authorizeParent, parentController.resetPassword);
+    app.post('/api/parent/reset/:token', parentController.resetPassword);
     app.post('/api/parent/sendMessage', parentController.authorizeParent, parentController.messageToPlatform);
 
   } else {
@@ -43,11 +46,11 @@ export default (app) => {
   // provider routes
   if (providerController) {
     app.post('/api/providers', providerController.providerSignup);
-    app.get('/api/provider/forgot', providerController.authorizeProvider, providerController.forgotPassword);
+    app.post('/api/provider/forgot', providerController.forgotPassword);
     app.get('/api/provider', providerController.authorizeProvider, providerController.providerData);
     app.post('/api/provider/changeProfile', providerController.authorizeProvider, providerController.changeProfile);
     app.post('/api/provider/changeCredentials', providerController.authorizeProvider, providerController.changeCredentials);
-    app.post('/api/provider/reset/:token', providerController.authorizeProvider, providerController.resetPassword);
+    app.post('/api/provider/reset/:token', providerController.resetPassword);
     app.get('/api/provider/activities', providerController.authorizeProvider, providerController.getActivities);
     app.post('/api/provider/sendMessage', providerController.authorizeProvider ,providerController.messageToPlatform);
   } else {
@@ -63,6 +66,8 @@ export default (app) => {
     app.post('/api/administrator/approveProvider', administratorController.approveProvider);
     app.post('/api/administrator/rejectProvider', administratorController.rejectProvider);
     app.post('/api/administrator/forgot', administratorController.forgotPassword);
+    app.post('/api/administrator/userData', administratorController.userData);
+    app.get('/api/administrator/providersForApproval', administratorController.providersForApproval);
   } else {
     console.warn(unsupportedMessage('administrator routes'));
   }
@@ -74,8 +79,10 @@ export default (app) => {
   }
 
   if (activityController) {
-    app.post('/api/activity', providerController.authorizeProvider, activityController.postActivity);
+    app.post('/api/activity', providerController.authorizeProvider, upload.single('newActivityForm.post.photo'), activityController.postActivity);
     app.get('/api/activities', activityController.getAllActivities);
+    app.get('/api/activity/:activityId', activityController.getActivity);
+    app.get('/api/activity/:activityId/photo', activityController.getActivityPhoto);
   } else {
     console.warn(unsupportedMessage('ticket routes'));
   }
