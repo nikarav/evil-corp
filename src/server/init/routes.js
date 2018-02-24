@@ -2,6 +2,7 @@
  * Routes for express app
  */
 import passport from 'passport';
+import multer from 'multer';
 import unsupportedMessage from '../db/unsupportedMessage';
 import { controllers, passport as passportConfig } from '../db';
 import activity_model from '../db/mongo/models/activity_model';
@@ -13,6 +14,8 @@ const providerController = controllers && controllers.providerController;
 const administratorController = controllers && controllers.administratorController;
 const activityController = controllers && controllers.activityController;
 const ticketController = controllers && controllers.ticketController;
+
+const upload = multer();
 
 export default (app) => {
   // login routes
@@ -76,7 +79,7 @@ export default (app) => {
   }
 
   if (activityController) {
-    app.post('/api/activity', providerController.authorizeProvider, activityController.postActivity);
+    app.post('/api/activity', providerController.authorizeProvider, upload.single('newActivityForm.post.photo'), activityController.postActivity);
     app.get('/api/activities', activityController.getAllActivities);
   } else {
     console.warn(unsupportedMessage('ticket routes'));
