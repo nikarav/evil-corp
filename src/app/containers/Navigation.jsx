@@ -15,12 +15,13 @@ class Navigation extends React.Component {
   }
 
   render() {
-    let sign_up_button = null;
+    let sign_up_button, forgot_button = null;
     if (!this.props.user.authenticated_user && !this.props.user.authenticated_provider) {
       sign_up_button = (<Nav pullRight>
         <LinkContainer to="/register">
           <NavItem eventKey={1}> Εγγραφή </NavItem>
         </LinkContainer></Nav>);
+       forgot_button = (<Button onClick={() => this.handleForgot()}> Forgot Password  </Button>);
     } else {
       sign_up_button = null;
     }
@@ -78,7 +79,7 @@ class Navigation extends React.Component {
                 logOut={this.props.logOut}
               />
               </FormGroup>
-              <Button onClick={() => this.handleForgot()}> Forgot Password  </Button>
+              {forgot_button}
             </Navbar.Form>
 
             {sign_in_info}
