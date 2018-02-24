@@ -21,7 +21,7 @@ class SignUpUserForm extends React.Component {
       <div>
         <h1> User (Parent) sign up! </h1>
         <Form
-          model="userForm.user"
+          model="Forms.userSignUp"
           onSubmit={(val) => this.handleSubmit(val)}
         >
           <div className="field">

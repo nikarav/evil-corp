@@ -21,7 +21,7 @@ class ActivityCreate extends React.Component {
               <div>
                 <h1> Nea Drastiriotita </h1>
                 <Form
-                        model="newActivityForm.post"
+                        model="Forms.newActivity"
                         encType="multipart/form-data"
                         onSubmit={(val, event) => this.handleSubmit(val, event)}
                     >

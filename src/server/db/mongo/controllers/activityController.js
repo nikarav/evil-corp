@@ -4,7 +4,7 @@ import ProviderProfile from '../models/provider_model';
 
 export function postActivity(req, res, next) {
   // TODO maybe perform some error checking
-  const formName = 'newActivityForm.post';
+  const formName = 'Forms.newActivity';
   const profileId = req.user.profile.id;
   const photoData = req.file.buffer;
   const photoType = req.file.mimetype;

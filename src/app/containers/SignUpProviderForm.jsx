@@ -23,7 +23,7 @@ class SignUpProviderForm extends React.Component {
         </h1>
 
       <Form
-        model="providerForm.user"
+        model="Forms.providerSignUp"
         onSubmit={(val) => this.handleSubmit(val)}
         >
         <div className="field">

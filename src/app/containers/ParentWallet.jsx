@@ -30,7 +30,7 @@ class ParentWallet extends React.Component {
             </Inline>
             <Inline>
               <Form
-                model="parentProfileForm.user"
+                model="Forms.parentProfile"
                 onSubmit={(val) => this.handleSubmit(val)}
               >
                     <Control

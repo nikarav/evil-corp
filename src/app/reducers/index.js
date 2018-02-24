@@ -73,26 +73,14 @@ const rootReducer = combineReducers({
   ActivityList,
   ActivityCreate,
   parent,
-  parentProfileForm: combineForms({
-    user: initialParentProfileForm,
-  }, 'parentProfileForm'
+  Forms: combineForms({
+    providerSignUp: initialProviderState,
+    userSignUp: initialUserSate,
+    logIn: {username: '', password: ''},
+    parentProfile: initialParentProfileForm,
+    newActivity: initialActivityState,
+  }, 'Forms'
   ),
-  userForm: combineForms({
-    user: initialUserSate,
-    }, 'userForm'
-  ),
-  providerForm: combineForms({
-    user: initialProviderState,
-    }, 'providerForm'
-  ),
-  logInForm: combineForms({
-    user: {username: '', password: ''},
-    }, 'logInForm'
-  ),
-   newActivityForm: combineForms({
-     post: initialActivityState,
-   }, 'newActivityForm'
-   ),
 });
 
 export default rootReducer;

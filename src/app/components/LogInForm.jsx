@@ -22,7 +22,7 @@ class LogInForm extends React.Component {
     if (!this.props.user.authenticated_user && !this.props.user.authenticated_provider) {
       return (
           <Form
-            model="logInForm.user"
+            model="Forms.logIn"
             onSubmit={(val) => this.handleSubmit(val)}
           >
                 <Control
