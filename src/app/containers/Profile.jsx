@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Button, FormControl } from 'react-bootstrap';
 import { Block, Inline } from 'jsxstyle';
 import ParentProfile from 'components/ParentProfile';
-import { addCredits, getCredits, changeCredentialsUser } from '../actions/parents'
+import { addCredits, getCredits, changeCredentialsUser,changeProfileUser } from '../actions/parents'
 
 
 
@@ -24,6 +24,7 @@ class Profile extends React.Component {
             getCredits={this.props.getCredits}
             credits={this.props.parent.credits}
             changeCredentials={this.props.changeCredentialsUser}
+            changeProfile={this.props.changeProfileUser}
           />
         );
         }
@@ -54,5 +55,5 @@ function mapStateToProps(state) {
 // It does not modify the component class passed to it
 // Instead, it returns a new, connected component class, for you to use.
 
-export default connect(mapStateToProps, {addCredits, getCredits, changeCredentialsUser})(Profile);
+export default connect(mapStateToProps, {addCredits, getCredits, changeCredentialsUser, changeProfileUser})(Profile);
 // export default ParentWallet;

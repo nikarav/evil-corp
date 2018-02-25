@@ -3,7 +3,6 @@ import { Form, Control, Errors, combineForms } from 'react-redux-form';
 import { connect } from 'react-redux';
 import { Button, FormControl } from 'react-bootstrap';
 import { Block, Inline } from 'jsxstyle';
-import { addCredits, getCredits } from '../actions/parents'
 
 
 
@@ -19,7 +18,7 @@ class ParentProfile extends React.Component {
 
   handleProfileSubmit(values) {
     //console.log(values);
-    this.props.addCredits(values);
+    this.props.changeProfile(values);
   }
 
   handleCredentialsSubmit(values) {
@@ -29,7 +28,7 @@ class ParentProfile extends React.Component {
 
   render() {
         return (
-          <div>
+          <Block>
           <Block>
             <h1> Το πορτοφόλι μου </h1>
             <Inline>
@@ -171,11 +170,10 @@ class ParentProfile extends React.Component {
           </div>
         </Form>
         </Block>
-        </div>
+      </Block>
         );
 
   }
 }
 
 export default ParentProfile;
-// export default ParentWallet;

@@ -47,9 +47,15 @@ const credits = (
 
   }
 }
+// name,
+// surname,
+// email,
+// telephone,
+// address,
+// birthday
 
-const profile = (
-  state = {username: '', password: ''},
+const username = (
+  state = '',
   action
 ) => {
   switch (action.type){
@@ -63,9 +69,25 @@ const profile = (
   }
 }
 
+const profile = (
+  state = {name: '', surname: '', email: '', address: '', telephone: '', birthday: ''},
+  action
+) => {
+  switch (action.type){
+    case types.PARENT_CHANGE_PROFILE_SUCCESS:
+      return action.message
+  case types.PARENT_CHANGE_PROFILE:
+  case types.PARENT_CHANGE_PROFILE_FAILURE:
+    return state;
+  default:
+    return state;
+}
+}
+
 
 const parentReducer = combineReducers({
   credits,
+  username,
   profile,
   message,
 });
