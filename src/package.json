@@ -78,7 +78,6 @@
     "jimp": "^0.2.28",
     "json-loader": "^0.5.4",
     "jsxstyle": "^2.0.10",
-    "jsxstyle-preact": "file:node_modules/jsxstyle-preact",
     "lodash": "^4.16.2",
     "method-override": "^2.3.8",
     "moment": "^2.20.1",
