@@ -354,6 +354,24 @@ export function providersForApproval(req, res, next){
   });
 }
 
+export function fetchProviderDocument(req, res, next) {
+  let username = null;
+  if (req.body.username) {
+    username = req.body.username;
+  }
+    if (!username) {
+    return res.status(400).send('Invalid provider id or username');
+  }
+
+  User.findOne({ username }).populate('profile').exec((err, user) => {
+    if (err) return next(err);
+    const document = user.profile.document.data;
+    const contentType = user.profile.document.contentType;
+    res.setHeader('Content-disposition', `attachment; filename="LegalDocument-${username}"`);
+    res.setHeader('Content-type', contentType);
+    return res.send(document);
+  });
+}
 
 export default {
   administratorSignup,
@@ -366,5 +384,7 @@ export default {
   rejectProvider,
   forgotPassword,
   userData,
-  providersForApproval
+  providersForApproval,
+  fetchProviderDocument
 };
+

@@ -45,7 +45,7 @@ export default (app) => {
 
   // provider routes
   if (providerController) {
-    app.post('/api/providers', providerController.providerSignup);
+    app.post('/api/providers', upload.single('Forms.providerSignUp.document'), providerController.providerSignup);
     app.post('/api/provider/forgot', providerController.forgotPassword);
     app.get('/api/provider', providerController.authorizeProvider, providerController.providerData);
     app.post('/api/provider/changeProfile', providerController.authorizeProvider, providerController.changeProfile);
@@ -68,6 +68,7 @@ export default (app) => {
     app.post('/api/administrator/forgot', administratorController.forgotPassword);
     app.post('/api/administrator/userData', administratorController.userData);
     app.get('/api/administrator/providersForApproval', administratorController.providersForApproval);
+    app.post('/api/administrator/providerDocument', administratorController.authorizeAdministrator, administratorController.fetchProviderDocument);
   } else {
     console.warn(unsupportedMessage('administrator routes'));
   }
