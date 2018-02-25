@@ -6,6 +6,7 @@ import Users from './pages/Users';
 import ActivitiesShow from './pages/ActivitiesShow';
 import ActivityNew from './pages/ActivityNew';
 import MapPage from './pages/MapPage';
+import AdminPage from './pages/AdminPage'
 
 const routes = [
     {
@@ -52,6 +53,11 @@ const routes = [
       path: '/map',
       component: MapPage,
       exact: true
-    }
+    },
+    {
+      path: '/admin',
+      component: AdminPage,
+      exact: true
+    },
     ];
 export default routes;

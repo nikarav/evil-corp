@@ -16,7 +16,7 @@ class Navigation extends React.Component {
 
   render() {
     let sign_up_button, forgot_button = null;
-    if (!this.props.user.authenticated_user && !this.props.user.authenticated_provider) {
+    if (!this.props.user.authenticated_user && !this.props.user.authenticated_provider && !this.props.user.authenticated_administrator) {
       sign_up_button = (<Nav pullRight>
         <LinkContainer to="/register">
           <NavItem eventKey={1}> Εγγραφή </NavItem>
@@ -101,6 +101,15 @@ class Navigation extends React.Component {
             </Nav>
 
         }
+
+        {this.props.user.authenticated_administrator &&
+        <Nav pullRight>
+          <LinkContainer to="/admin">
+            <NavItem eventKey={2}> Πάνελ ελέγχου </NavItem>
+          </LinkContainer>
+        </Nav>
+
+    }
           </Navbar.Collapse>
         </Navbar>
 
