@@ -12,7 +12,7 @@ const ParentProfileSchema = new mongoose.Schema({
   telephone: { type: String, required: true },
   address: { type: String, required: true },
   birthday: Date,
-  credits: { type: Number, default: 0, min: 0},
+  credits: { type: Number, default: 0, min: 0, pendingTransactions: []},
   locked: { type: Boolean, default: false },
   tickets: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Ticket', default: [] }],
   numberOfTickets: { type: Number, default: 0, min: 0},

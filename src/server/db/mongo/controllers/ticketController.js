@@ -6,6 +6,8 @@ import Ticket from '../models/ticket_model';
 import Activity from '../models/activity_model';
 import ParentProfile from '../models/parent_model';
 import { sendEmail } from '../controllers/emailController';
+import Transactions from '../models/transaction_model';
+import mongoose from 'mongoose';
 
 
 function generateTicketNumber(string) {
@@ -59,6 +61,98 @@ export function buyTicket(req, res, next) {
             });
           });
         });
+    });
+  });
+}
+
+export function buyTickettwophasecommit(req, res, next) {
+  const activityId = req.body.activityId;
+  const numberOfTickets = Number(req.body.numberOfTickets);
+  const profileId = req.user.profile.id;
+  const ticket = new Ticket({
+    activity: activityId,
+    parent: profileId,
+    numberOfTickets: numberOfTickets
+  });
+  // Generate ticket barcode number
+  ticket.ticketNumber = generateTicketNumber(ticket.id);
+
+
+  console.log("des");
+  if( numberOfTickets <=0 || numberOfTickets >10){
+    return res.status(400).send('Number of tickets should be between 1 and 10.');
+  }
+  Activity.findById(activityId, (err, data) => {
+    if (!data) return res.status(400).send('Unavailable activity');
+    if (err) return next(err);
+    if (data.available_tickets <= 0) return res.status(400).send('Sold out');
+    if (data.available_tickets < numberOfTickets) return res.status(400).send('Not enough tickets');
+    const price = data.price;
+    ParentProfile.findById(profileId, (err, profile) => {
+      if (err) return next(err);
+      const credits = profile.credits;
+      if( credits < (price * numberOfTickets)){
+        return res.status(400).send('Not enough credits');
+      }
+      const before_div = parseInt((profile.numberOfTickets)/10);
+      const after_div = parseInt((profile.numberOfTickets + numberOfTickets)/10);
+      var creditsUpdated = credits - price * numberOfTickets;
+      if( before_div != after_div) {
+        var creditsUpdated = creditsUpdated + 10;
+      }
+
+      console.log("edw");
+     const transactions=new Transactions({
+         _id: new mongoose.Types.ObjectId(),
+         source: profileId,
+         destination: activityId,
+         value: price* numberOfTickets,
+         state: "initial",
+         lastModified: new Date()
+       })
+      transactions.save();
+     console.log("edw2");
+      var t = Transactions.findOne( { state: "initial" } );
+      console.log(t);
+     console.log("edw3");
+       Transactions.update(
+     { _id: t._id, state: "initial" },
+     {
+       $set: { state: "pending" },
+       $currentDate: { lastModified: true }
+     }
+     )
+     console.log(price*numberOfTickets);
+     console.log("edw4");
+      ParentProfile.update(
+    { _id: t.source, pendingTransactions: { $ne: t._id } },
+    { $inc: { credits: -price*numberOfTickets }, $push: { pendingTransactions: t._id } }
+    )
+    console.log("edw5");
+      ParentProfile.update(
+    { _id: t.source, pendingTransactions: t._id },
+    { $pull: { pendingTransactions: t._id } }
+    )
+    console.log("edw6");
+      Transactions.update(
+   { _id: t._id, state: "applied" },
+   {
+     $set: { state: "done" },
+     $currentDate: { lastModified: true }
+   }
+    )
+    console.log("edw7");
+//      return data.update({ $inc: { available_tickets: -numberOfTickets } }, (err) => {
+//        if (err) return next(err);
+//        ticket.save((err) => {
+//          if (err) return next(err);
+//          return ParentProfile.findByIdAndUpdate(
+//            profileId, { $push: { tickets: ticket}, $inc: { numberOfTickets: +numberOfTickets}, $set: { credits: creditsUpdated } }, { new: true }, (err, profile) => {
+//              if (err) return next(err);
+              return res.send(profile);
+//            });
+//          });
+//        });
     });
   });
 }
@@ -133,5 +227,6 @@ export function generateAndEmailPdf(req, res, next) {
 
 export default {
   buyTicket,
-  generateAndEmailPdf
+  generateAndEmailPdf,
+  buyTickettwophasecommit
 };
