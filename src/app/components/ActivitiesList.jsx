@@ -6,14 +6,17 @@ import { getActivities } from '../actions/ActivityShow';
 class ActivitiesList extends React.Component {
   componentWillMount() {
       this.props.getActivities();
-      console.log(this.props);
+      //console.log(this.props);
   }
 
   renderPosts(posts) {
-    return !
-            posts?      // inline if so it doesn't crash if the posts array is empty
-            null:       // Modify (null) so it render a message example "no available activity"
+    console.log("renderPost");
+    console.log(posts);
+    return !posts?      // inline if so it doesn't crash if the posts array is empty
+            <h1> No available Activities</h1>
+            :       // Modify (null) so it render a message example "no available activity"
             posts.map((post) => {
+
               return (
                 <li className="list-group-item" key={post.name}>
                   <h3 className="list-group-item-heading">{post.name}</h3>
@@ -26,17 +29,18 @@ class ActivitiesList extends React.Component {
   render() {
     const { posts, loading, error } = this.props.postsList;
     console.log(this.props.postsList);
+    console.log(posts);
+
     if (loading) {
       return <div className="container"><h1>Posts</h1><h3>Loading...</h3></div>;
     } else if (error) {
       return <div className="alert alert-danger">Error: {error.message}</div>;
     }
-
     return (
       <div className="container">
         <h1>Activities</h1>
         <ul className="list-group">
-          {this.renderPosts(posts)}
+           {this.renderPosts(posts)}
         </ul>
       </div>
     );
@@ -45,7 +49,7 @@ class ActivitiesList extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        postsList: state.ActivityList
+        postsList: state.ActivityList.postsList
     };
 };
 

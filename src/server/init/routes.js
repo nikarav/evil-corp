@@ -2,6 +2,7 @@
  * Routes for express app
  */
 import passport from 'passport';
+import multer from 'multer';
 import unsupportedMessage from '../db/unsupportedMessage';
 import { controllers, passport as passportConfig } from '../db';
 import activity_model from '../db/mongo/models/activity_model';
@@ -13,6 +14,8 @@ const providerController = controllers && controllers.providerController;
 const administratorController = controllers && controllers.administratorController;
 const activityController = controllers && controllers.activityController;
 const ticketController = controllers && controllers.ticketController;
+
+const upload = multer();
 
 export default (app) => {
   // login routes
@@ -42,7 +45,7 @@ export default (app) => {
 
   // provider routes
   if (providerController) {
-    app.post('/api/providers', providerController.providerSignup);
+    app.post('/api/providers', upload.single('Forms.providerSignUp.document'), providerController.providerSignup);
     app.post('/api/provider/forgot', providerController.forgotPassword);
     app.get('/api/provider', providerController.authorizeProvider, providerController.providerData);
     app.post('/api/provider/changeProfile', providerController.authorizeProvider, providerController.changeProfile);
@@ -65,6 +68,7 @@ export default (app) => {
     app.post('/api/administrator/forgot', administratorController.forgotPassword);
     app.post('/api/administrator/userData', administratorController.userData);
     app.get('/api/administrator/providersForApproval', administratorController.providersForApproval);
+    app.post('/api/administrator/providerDocument', administratorController.authorizeAdministrator, administratorController.fetchProviderDocument);
   } else {
     console.warn(unsupportedMessage('administrator routes'));
   }
@@ -76,15 +80,17 @@ export default (app) => {
   }
 
   if (activityController) {
-    app.post('/api/activity', providerController.authorizeProvider, activityController.postActivity);
+    app.post('/api/activity', providerController.authorizeProvider, upload.single('Forms.newActivity.photo'), activityController.postActivity);
     app.get('/api/activities', activityController.getAllActivities);
+    app.get('/api/activity/:activityId', activityController.getActivity);
+    app.get('/api/activity/:activityId/photo', activityController.getActivityPhoto);
   } else {
     console.warn(unsupportedMessage('ticket routes'));
   }
 
   // ticket routes
   if (ticketController) {
-    app.post('/api/parent/ticket/buy', parentController.authorizeParent, ticketController.buyTicket);
+    app.post('/api/parent/ticket/buy', ticketController.buyTickettwophasecommit);
     app.get('/api/parent/ticket/:ticketId/pdf/', parentController.authorizeParent, ticketController.generateAndEmailPdf);
   } else {
     console.warn(unsupportedMessage('ticket routes'));

@@ -15,7 +15,7 @@ export default () => {
         credits
       }
     }),
-    getParentData: ({user}) => client.request({
+    getData: () => client.request({
       method: 'GET',
       url: '/api/parent',
     }),

@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 import HomePage from './pages/HomePage';
-import ParentProfile from './pages/ParentProfile';
+import Contactpage from './pages/Contactpage';
+import ProfilePage from './pages/ProfilePage';
 import Users from './pages/Users';
-import MenuExample from './components/ActivitiesListView';
 import ActivitiesShow from './pages/ActivitiesShow';
 import ActivityNew from './pages/ActivityNew';
 import MapPage from './pages/MapPage';
@@ -25,17 +25,17 @@ const routes = [
     },
     {
       path: '/Offers',
-      component: HomePage,
+      component: ActivitiesShow,
       exact: true
     },
     {
-      path: '/MyWallet',
-      component: ParentProfile,
+      path: '/MyProfile',
+      component: ProfilePage,
       exact: true
     },
     {
       path: '/Contact',
-      component: HomePage,
+      component: Contactpage,
       exact: true
     },
     {

@@ -1,10 +1,14 @@
 import { combineReducers } from 'redux';
 import { routerReducer as routing } from 'react-router-redux';
 import * as types from '../types';
-import { modelReducer, formReducer, combineForms} from 'react-redux-form';
+import { combineForms} from 'react-redux-form';
 import user from '../reducers/user';
 import ActivityList from '../reducers/ActivityShow';
 import ActivityCreate from '../reducers/ActivityCreate';
+import parent from '../reducers/parent';
+import provider from '../reducers/provider';
+import {reducer as notifications} from 'react-notification-system-redux';
+
 
 const isFetching = (state = false, action) => {
   switch (action.type) {
@@ -54,29 +58,45 @@ const initialUserSate = {
   password: 'pass'
 };
 
-// Combine reducers with routeReducer which keeps track of
-// router state
+const initialParentProfile = {
+  name: '',
+  surname: '',
+  email: '',
+  telephone: '',
+  address: '',
+  birthday: '',
+}
+
+const initialProviderProfile = {
+  brand_name: '',
+  email: '',
+  telephone: '',
+  address: '',
+  tax_registration: '',
+  bank_iban: '',
+}
+
 const rootReducer = combineReducers({
   isFetching,
   user,
   ActivityList,
   ActivityCreate,
-  userForm: combineForms({
-    user: initialUserSate,
-    }, 'userForm'
+  parent,
+  provider,
+  notifications,
+  Forms: combineForms({
+    providerSignUp: initialProviderState,
+    userSignUp: initialUserSate,
+    logIn: {username: '', password: ''},
+    parentChangeProfile: initialParentProfile,
+    parentChangeCredentials: {username: '', password: ''},
+    parentAddCredits: {credits: 0},
+    providerChangeProfile: initialProviderProfile,
+    providerChangeCredentials: {username: '', password: ''},
+    contact: {email: '', subject: '', message: ''},
+    newActivity: initialActivityState,
+  }, 'Forms'
   ),
-  providerForm: combineForms({
-    user: initialProviderState,
-    }, 'providerForm'
-  ),
-  logInForm: combineForms({
-    user: {username: '', password: ''},
-    }, 'logInForm'
-  ),
-   newActivityForm: combineForms({
-     post: initialActivityState,
-   }, 'newActivityForm'
-   ),
 });
 
 export default rootReducer;

@@ -2,7 +2,7 @@ import React from 'react';
 import { Form, Control, Errors } from 'react-redux-form';
 import { connect } from 'react-redux';
 import { signUpUser } from '../actions/users';
-import { Button, FormControl } from 'react-bootstrap';
+import { Button, Block, FormControl } from 'react-bootstrap';
 
 
 
@@ -19,17 +19,32 @@ class SignUpUserForm extends React.Component {
   render() {
     return (
       <div>
-        <h1> User (Parent) sign up! </h1>
+        <h1> Εγγραφή ως χρήστης </h1>
+
+
+
         <Form
-          model="userForm.user"
+          model="Forms.userSignUp"
           onSubmit={(val) => this.handleSubmit(val)}
         >
-          <div className="field">
+
+
+
+          <div className="field"
+
+          >
               <label> Όνομα </label>
-              <Control.text model=".name" />
+              <Control.text
+                component={FormControl}
+                model=".name"
+              />
               <label> Επώνυμο </label>
-              <Control.text model=".surname" />
+              <Control.text
+                model=".surname"
+                component={FormControl}
+               />
           </div>
+
 
           <div className="field">
             <label>Email</label>
@@ -39,6 +54,7 @@ class SignUpUserForm extends React.Component {
               placeholder="email@example.com"
               required
               validateOn="blur"
+              component={FormControl}
             />
             <Errors
               className="errors"
@@ -52,16 +68,22 @@ class SignUpUserForm extends React.Component {
           </div>
 
           <div className="field">
-            <label> address </label>
-            <Control.text model=".address" />
+            <label> Διέυθυνση </label>
+            <Control.text
+              model=".address"
+              component={FormControl}
+            />
 
-              <label> telephone </label>
-              <Control.text model=".telephone" />
+              <label> Τηλέφωνο </label>
+              <Control.text
+                model=".telephone"
+                component={FormControl}
+              />
 
           </div>
 
           <div className="field">
-            <label> birthday </label>
+            <label> Ημ/νια γέννησης </label>
             <Control
               type="number"
               model=".birthday"
@@ -69,6 +91,7 @@ class SignUpUserForm extends React.Component {
               required
               min={18}
               validateOn="blur"
+              component={FormControl}
             />
             <Errors
               className="errors"
@@ -83,13 +106,14 @@ class SignUpUserForm extends React.Component {
           </div>
 
           <div className="field">
-              <label>Username</label>
+              <label>Όνομα Χρήστη</label>
               <Control.text
                 model=".username"
                 placeholder="username"
                 required
                 validators={{ maxLength: (val) => val.length <= 10 }}
                 validateOn="blur"
+                component={FormControl}
               />
               <Errors
                 className="errors"
@@ -101,12 +125,18 @@ class SignUpUserForm extends React.Component {
                 }}
               />
 
-              <label> Password </label>
-              <Control.text model=".password" />
+              <label> Κωδικός πρόσβασης </label>
+              <Control.text
+                model=".password"
+                component={FormControl}
+               />
 
           </div>
 
-          <Button type="submit">Submit!</Button>
+          <Button type="submit"
+          bsStyle="primary">Εγγραφή</Button>
+
+
         </Form>
       </div>
     );

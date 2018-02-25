@@ -1,6 +1,26 @@
 import authService from '../services/authService';
-import * as types from '../types';
+import * as types from '../types/userTypes';
 import { browserHistory } from 'react-router';
+
+// LOGIN-LOGOUT set-unset USERNAME actions
+function logInUserSetUsername(message){
+  return {
+    type: types.LOGIN_SUCCES_USER_USERNAME,
+    message
+  }
+}
+function logInProviderSetUsername(message){
+  return {
+    type: types.LOGIN_SUCCES_PROVIDER_USERNAME,
+    message
+  }
+}
+function logoutUnSetUsername(){
+  return {
+    type: types.LOGOUT_SUCCESS_UNSET_USERNAME,
+  }
+}
+
 
 // LOGIN actions
 function beginLogin() {
@@ -79,6 +99,28 @@ function signUpProviderSuccess(message) {
   };
 }
 
+// FORGOT actions
+function beginForgot(message){
+  return {
+    type: types.FORGOT,
+    message
+  };
+}
+
+function forgotSuccess(message){
+  return {
+    type:types.FORGOT_SUCCESS,
+    message
+  };
+}
+
+function forgotError(message){
+  return {
+    type: types.FORGOT_ERROR,
+    message
+  }
+}
+
 // ---------------------------------- user triggered functions ---------------------------------------------------
 
 // user triggerd function -> SIGNUP user
@@ -120,10 +162,14 @@ export function manualLogin(data) {
 
     return authService().logIn(data)
         .then((response) => {
-            if (response.data.user_role == 'Parent')
+            if (response.data.user_role == 'Parent'){
               dispatch(loginSuccessUser('You have been successfully logged in as a parent!'));
-            else if (response.data.user_role == 'Provider')
+              dispatch(logInUserSetUsername(response.data.username));
+            }
+            else if (response.data.user_role == 'Provider') {
               dispatch(loginSuccessProvider('You have been successfully logged in as a parent'));
+              dispatch(logInProviderSetUsername(response.data.username));
+            }
             else
               console.log("Not supported type of login");
             //browserHistory.push('/');
@@ -142,9 +188,25 @@ export function logOut() {
     return authService().logOut()
       .then((response) => {
           dispatch(logoutSuccess());
+          dispatch(logoutUnSetUsername());
       })
       .catch((err) => {
-        dispatch(logoutError());
+          dispatch(logoutError());
       });
   };
+}
+
+
+// user triggered function -> forgot
+export function forgot(data){
+  return (dispatch) => {
+    dispatch(beginForgot('Starting forgot process'));
+    return authService().forgot(data)
+      .then((response) => {
+        dispatch(forgotSuccess('You have success send an email to retrive your pass'));
+      })
+      .catch((err) => {
+        dispatch(forgotError('failed forgot process'));
+      })
+  }
 }

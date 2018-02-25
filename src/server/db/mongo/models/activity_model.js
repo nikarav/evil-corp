@@ -8,7 +8,7 @@ const ActivitySchema = new mongoose.Schema({
   date: { type: Date, required: true },
   photo: { data: Buffer, contentType: String },
   total_tickets: { type: Number, min: 0, required: true },
-  available_tickets: { type: Number, min: 0 },
+  available_tickets: { type: Number, min: 0, pendingTransactions: []},
   min_age: { type: Number, min: 3, default: 3 },
   max_age: { type: Number, min: 3, max: 16, default: 16 },
   tags: [String],

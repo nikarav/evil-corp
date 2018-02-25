@@ -11,7 +11,7 @@ const ProviderProfileSchema = new mongoose.Schema({
   telephone: { type: String, required: true },
   address: { type: String, required: true },
   tax_registration: { type: String, required: true },
-  legal_document: {data: Buffer, contentType: String},
+  document: {data: Buffer, contentType: String},
   bank_iban: { type: String, required: true },
   locked: { type: Boolean, default: true },
   activated: { type: Boolean, default: false },

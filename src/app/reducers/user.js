@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import * as types from '../types/index';
+import * as types from '../types/userTypes';
 
 const message = (
   state = '',
@@ -16,6 +16,9 @@ const message = (
       return '';
     case types.LOGIN_ERROR:
     case types.SIGNUP_ERROR_USER:
+    case types.FORGOT:
+    case types.FORGOT_SUCCESS:
+    case types.FORGOT_ERROR:
       return action.message;
     default:
       return state;

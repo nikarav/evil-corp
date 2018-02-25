@@ -18,19 +18,14 @@ export default () => {
         password
       }
     }),
-    signUpProvider: ({brand_name, email, telephone, address, tax_registration, bank_iban, username, password}) => client.request({
+    signUpProvider: formData => client.request({
       method: 'POST',
       url: 'api/providers',
-      data: {
-        brand_name,
-        email,
-        telephone,
-        address,
-        tax_registration,
-        bank_iban,
-        username,
-        password,
-      }
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'multipart/form-data'
+      },
+      data: formData
     }),
     logIn: ({ username, password }) => client.request({
       method: 'POST',
@@ -43,6 +38,13 @@ export default () => {
     logOut: () => client.request({
       method: 'DELETE',
       url: '/api/sessions'
+    }),
+    forgot: ({username} ) => client.request({
+      method: 'POST',
+      url: '/api/parent/forgot',   // the same as /api/parent/forgot
+      data: {
+        username
+      }
     })
   };
 };

@@ -14,9 +14,15 @@ export function login(req, res, next) {
     // Passport exposes a login() function on req (also aliased as
     // logIn()) that can be used to establish a login session
     const user_role = user.user_role;
+    const username = user.username;
     return req.logIn(user, (loginErr) => {
       if (loginErr) return res.sendStatus(401);
-      return res.status(200).send({ user_role });
+      return res.status(200).send(
+        {
+          username,
+          user_role
+        }
+      );
     });
   })(req, res, next);
 }

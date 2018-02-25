@@ -5,4 +5,5 @@ export default function loadModels() {
   require('./parent_model');
   require('./provider_model');
   require('./ticket_model');
+  require('./transaction_model');
 }

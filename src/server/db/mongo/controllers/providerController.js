@@ -11,24 +11,47 @@ import bcrypt from 'bcrypt-nodejs';
  * Create a new local account
  */
  export function providerSignup(req, res, next) {
+  const formName = 'Forms.providerSignUp';
+  let documentData = null;
+  let mimetype = null;
+  if (req.file) {
+    documentData = req.file.buffer;
+    mimetype = req.file.mimetype;
+  } else {
+    return res.status(400).send('Please provide a legal document');
+  }
+
+  const brand_name = req.body[formName + '.brand_name'];
+  const email = req.body[formName + '.email'];
+  const telephone = req.body[formName + '.telephone'];
+  const address = req.body[formName + '.address'];
+  const tax_registration = req.body[formName + '.tax_registration'];
+  const bank_iban = req.body[formName + '.bank_iban'];
+  const username = req.body[formName + '.username'];
+  const password = req.body[formName + '.password'];
+
   const profile = new ProviderProfile({
     _id: new mongoose.Types.ObjectId(),
-    brand_name: req.body.brand_name,
-    email: req.body.email,
-    telephone: req.body.telephone,
-    address: req.body.address,
-    tax_registration: req.body.tax_registration,
-    bank_iban: req.body.bank_iban
+    brand_name,
+    email,
+    telephone,
+    address,
+    tax_registration,
+    bank_iban,
+    document: {
+      data: documentData,
+      contentType: mimetype
+    }
   });
 
-  User.findOne({ username: req.body.username }, (findErr, existingUser) => {
+  User.findOne({ username }, (findErr, existingUser) => {
     if (existingUser) {
       return res.sendStatus(409);
     }
 
     const user = new User({
-      username: req.body.username,
-      password: req.body.password,
+      username,
+      password,
       user_role: USER_TYPES.Provider,
       profile: profile._id
     });
@@ -37,7 +60,7 @@ import bcrypt from 'bcrypt-nodejs';
       if (saveErr) return next(saveErr);
       return user.save((_saveErr) => {
         if (_saveErr) return next(_saveErr);
-        const emailBody = 'Καλησπέρα σας, ο λογαριασμός με όνομα χρήστη ' + req.body.username + ' στην πλατφόρμα PLAYGROUND χρειάζεται έγκριση.';
+        const emailBody = 'Καλησπέρα σας, ο λογαριασμός με όνομα χρήστη ' + username + ' στην πλατφόρμα PLAYGROUND χρειάζεται έγκριση.';
         const subject = 'Έγκριση Διοργανωτή Δραστηριοτήτων';
         const mailOptions = {
           from: 'system@playground.com',

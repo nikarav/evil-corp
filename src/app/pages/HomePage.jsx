@@ -9,7 +9,12 @@ const HomePage = () => {
         render={() => {
       return (
         <Block
-          marginTop={60}>
+          marginTop={60}
+
+
+
+
+                          >
           <Navigation />
           <h1>Starter Page</h1>
         </Block>
