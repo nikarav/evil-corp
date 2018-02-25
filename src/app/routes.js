@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import HomePage from './pages/HomePage';
+import Contactpage from './pages/Contactpage';
 import ParentProfile from './pages/ParentProfile';
 import Users from './pages/Users';
 import ActivitiesShow from './pages/ActivitiesShow';
@@ -34,7 +35,7 @@ const routes = [
     },
     {
       path: '/Contact',
-      component: HomePage,
+      component: Contactpage,
       exact: true
     },
     {
