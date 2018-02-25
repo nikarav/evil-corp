@@ -7,6 +7,8 @@ import ActivityList from '../reducers/ActivityShow';
 import ActivityCreate from '../reducers/ActivityCreate';
 import parent from '../reducers/parent';
 import provider from '../reducers/provider';
+import {reducer as notifications} from 'react-notification-system-redux';
+
 
 const isFetching = (state = false, action) => {
   switch (action.type) {
@@ -81,6 +83,7 @@ const rootReducer = combineReducers({
   ActivityCreate,
   parent,
   provider,
+  notifications,
   Forms: combineForms({
     providerSignUp: initialProviderState,
     userSignUp: initialUserSate,
@@ -90,6 +93,7 @@ const rootReducer = combineReducers({
     parentAddCredits: {credits: 0},
     providerChangeProfile: initialProviderProfile,
     providerChangeCredentials: {username: '', password: ''},
+    contact: {email: '', subject: '', message: ''},
     newActivity: initialActivityState,
   }, 'Forms'
   ),

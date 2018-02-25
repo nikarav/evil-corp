@@ -7,7 +7,8 @@ import  {Grid, Row, Col, Image, Media, PageHeader, Panel} from 'react-bootstrap'
 import telephone from '../images/telephone.png';
 import email from '../images/email.png';
 import msg from '../images/msg.png';
-
+import NotificationComponent from '../components/NotificationComponent';
+import ContactForm from '../containers/ContactForm';
 
 
 const Contactpage = () => {
@@ -84,6 +85,8 @@ marginTop={60}
     <Panel.Body>Επικοινωνήστε μαζί μας μέσω της παρακάτω φόρμας.</Panel.Body>
   </Panel>
 
+<ContactForm />
+<NotificationComponent />
 
 
 
