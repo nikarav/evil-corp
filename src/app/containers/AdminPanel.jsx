@@ -3,48 +3,88 @@ import { Form, Control, Errors, combineForms } from 'react-redux-form';
 import { connect } from 'react-redux';
 import { Button, FormControl } from 'react-bootstrap';
 import { Block, Inline } from 'jsxstyle';
-import { parentSendMessage, providerSendMessage, userSendMessage } from '../actions/contact'
+import { isLocked, toogleLock, approveProvider, rejectProvider, forgot, changeEmail, getData} from '../actions/administrator'
 
 
 
 
 class AdminPanel extends React.Component {
-  handleOnSubmit(val){
-    if(this.props.user.authenticated_user) {
-      return this.props.parentSendMessage(val);
-    } else if (this.props.user.authenticated_provider){
-      return this.props.providerSendMessage(val);
-    }else{
-      return this.props.userSendMessage(val);
-    }
+
+  componentWillMount(){
+    this.props.getData();
+  }
+
+
+  handleButton1(){
+    this.props.isLocked({username: this.props.Forms.adminPanel.username});
+  }
+  handleButton2() {
+    this.props.toogleLock({username: this.props.Forms.adminPanel.username});
+  }
+
+  handleButton3() {
+    this.props.approveProvider({username: this.props.Forms.adminPanel.username});
+  }
+
+  handleButton4() {
+    this.props.rejectProvider({username: this.props.Forms.adminPanel.username});
+  }
+
+  handleButton5() {
+    this.props.forgot({username: this.props.Forms.adminPanel.username});
+  }
+  changeEmail(val){
+    this.props.changeEmail({email: this.props.Forms.adminPanel.email});
   }
 
   render() {
           return(
+            <div>
+              <div>
+                Username: {this.props.admin.profile.username}
+                email:    {this.props.admin.profile.email}
+              </div>
+
             <Form
-              model="Forms.contact"
-              onSubmit={(val) => this.handleOnSubmit(val)}
+              model="Forms.adminPanel"
             >
             <div className="field">
-                <label> subject </label>
+                <label> Username </label>
                 <Control.text
-                  model=".subject"
+                  model=".username"
                   placeholder="username"
                   required
                   validateOn="blur"
                   component={FormControl}
                 />
-
-                <label> Message </label>
-                <Control.text
-                  model=".message"
-                  component={FormControl}
-                 />
-
-                 <Button type="submit">Υποβολή φόρμας!</Button>
-
             </div>
           </Form>
+
+          <Button bsStyle="danger" onClick={() => this.handleButton1()}> isLocked  </Button>
+          <Button bsStyle="danger" onClick={() => this.handleButton2()}> toggleLock  </Button>
+          <Button bsStyle="danger" onClick={() => this.handleButton3()}> approveProvider </Button>
+          <Button bsStyle="danger" onClick={() => this.handleButton4()}> rejectProvider </Button>
+          <Button bsStyle="danger" onClick={() => this.handleButton5()}> forgot </Button>
+
+          <Form
+            model="Forms.adminPanel"
+            onSubmit={(val) => this.changeEmail(val)}
+          >
+          <div className="field">
+              <label> Email </label>
+              <Control.text
+                model=".email"
+                placeholder="email"
+                required
+                validateOn="blur"
+                component={FormControl}
+              />
+          </div>
+          <Button bsStyle="danger" onClick={() => this.changeEmail()}> Αλλαγή email admin </Button>
+        </Form>
+
+        </div>
+
           );
       }
 
@@ -54,7 +94,8 @@ class AdminPanel extends React.Component {
 // Any time it updates, mapStateToProps is called.
 function mapStateToProps(state) {
   return {
-    user: state.user
+    admin: state.administrator,
+    Forms: state.Forms,
   };
 }
 
@@ -63,8 +104,13 @@ function mapStateToProps(state) {
 // Instead, it returns a new, connected component class, for you to use.
 
 export default connect(mapStateToProps,
-  {parentSendMessage,
-    providerSendMessage,
-    userSendMessage
+  {
+    isLocked,
+    toogleLock,
+    approveProvider,
+    rejectProvider,
+    forgot,
+    changeEmail,
+    getData,
   })
     (AdminPanel);

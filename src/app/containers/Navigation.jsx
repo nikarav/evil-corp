@@ -44,7 +44,13 @@ class Navigation extends React.Component {
           sign_in_info = (<Navbar.Text pullRight>
                           Συνδεδεμένος ως: <Navbar.Link href="#">{this.props.provider.username}</Navbar.Link>
           </Navbar.Text>);
-    } else {
+
+    } else if (this.props.user.authenticated_administrator) {
+          sign_in_info = (<Navbar.Text pullRight>
+                          Συνδεδεμένος ως: <Navbar.Link href="#">{this.props.admin.profile.username}</Navbar.Link>
+          </Navbar.Text>);
+        }
+    else {
         sign_in_info = null;
     }
 
@@ -127,6 +133,7 @@ function mapStateToProps(state) {
     Forms: state.Forms,
     provider: state.provider,
     parent: state.parent,
+    admin: state.administrator,
   };
 }
 

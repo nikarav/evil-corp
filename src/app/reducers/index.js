@@ -96,6 +96,7 @@ const rootReducer = combineReducers({
     providerChangeProfile: initialProviderProfile,
     providerChangeCredentials: {username: '', password: ''},
     contact: {email: '', subject: '', message: ''},
+    adminPanel: {username: '', email: ''},
     newActivity: initialActivityState,
   }, 'Forms'
   ),

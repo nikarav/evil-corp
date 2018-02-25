@@ -3,6 +3,7 @@ import { Route, Redirect } from 'react-router-dom';
 import Navigation from '../containers/Navigation';
 import { Block } from 'jsxstyle';
 import AdminPanel from '../containers/AdminPanel';
+import NotificationComponent from '../components/NotificationComponent';
 
 const AdminPage = () => {
     return (
@@ -12,6 +13,7 @@ const AdminPage = () => {
                   <Block
                         marginTop={60}>
                     <Navigation />
+                    <NotificationComponent />
                     <AdminPanel />
                   </Block>
                 );

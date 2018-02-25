@@ -1,0 +1,4 @@
+// change email
+export const ADMIN_GET_DATA = 'ADMIN_GET_DATA';
+export const ADMIN_GET_DATA_SUCCESS = 'ADMIN_GET_DATA_SUCCESS';
+export const ADMIN_GET_DATA_FAILURE = 'ADMIN_GET_DATA_FAILURE';
