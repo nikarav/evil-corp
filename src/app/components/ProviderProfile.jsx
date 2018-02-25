@@ -24,7 +24,7 @@ class ProviderProfile extends React.Component {
           <Block>
 
            <Block>
-              <h1> Αλλαγή στοιχείων προφιλ Parent </h1>
+              <h1> Αλλαγή στοιχείων προφιλ Provider</h1>
               <Form
                 model="Forms.providerChangeProfile"
                 onSubmit={(val) => this.handleProfileSubmit(val)}
@@ -103,7 +103,7 @@ class ProviderProfile extends React.Component {
 
 
 <Block>
-          <h1> Αλλαγή στοιχείων Credential Parent </h1>
+          <h1> Αλλαγή στοιχείων Credential Provider </h1>
           <Form
             model="Forms.providerChangeCredentials"
             onSubmit={(val) => this.handleCredentialsSubmit(val)}
