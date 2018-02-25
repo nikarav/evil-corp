@@ -3,6 +3,7 @@ import { Form, Control, Errors, combineForms } from 'react-redux-form';
 import { connect } from 'react-redux';
 import { Button, FormControl } from 'react-bootstrap';
 import { Block, Inline } from 'jsxstyle';
+import wallet from '../images/wallet.png';
 
 
 
@@ -28,9 +29,30 @@ class ParentProfile extends React.Component {
 
   render() {
         return (
-          <Block>
-          <Block>
-            <h1> Το πορτοφόλι μου </h1>
+          <div>
+
+
+
+
+          <Block
+          marginRight={600}
+          marginLeft={5}
+          marginTop={60}
+          textDecoration= "underline  "
+          >
+
+        <h1> Το πορτοφόλι μου </h1>
+          </Block>
+
+
+          <Block
+
+
+          marginRight={1000}
+          marginLeft={5}
+          >
+
+
             <Inline>
               Πόντοι: {this.props.credits}
             </Inline>
@@ -39,6 +61,8 @@ class ParentProfile extends React.Component {
                 model="Forms.parentAddCredits"
                 onSubmit={(val) => this.handleCreditsSubmit(val)}
               >
+
+
                     <Control
                       model=".credits"
                       placeholder="credits e.g. 10"
@@ -51,8 +75,24 @@ class ParentProfile extends React.Component {
               </Form>
             </Inline>
           </Block>
-          <Block>
-              <h1> Αλλαγή στοιχείων προφιλ Parent </h1>
+
+
+
+          <Block
+          marginRight={600}
+          marginLeft={5}
+          marginTop={60}
+          textDecoration= "underline  "
+          >
+          <h1> Αλλαγή στοιχείων προφιλ Parent </h1>
+          </Block>
+
+          <Block
+          marginRight={1000}
+          marginLeft={5}
+
+          >
+
               <Form
                 model="Forms.parentChangeProfile"
                 onSubmit={(val) => this.handleProfileSubmit(val)}
@@ -133,8 +173,23 @@ class ParentProfile extends React.Component {
 
               </Form>
           </Block>
-<Block>
+
+          <Block
+          marginRight={600}
+          marginLeft={5}
+          marginTop={60}
+          textDecoration= "underline  "
+          >
           <h1> Αλλαγή στοιχείων Credential Parent </h1>
+          </Block>
+
+
+        <Block
+        marginRight={1000}
+        marginLeft={5}
+
+        >
+
           <Form
             model="Forms.parentChangeCredentials"
             onSubmit={(val) => this.handleCredentialsSubmit(val)}
@@ -170,7 +225,7 @@ class ParentProfile extends React.Component {
           </div>
         </Form>
         </Block>
-      </Block>
+      </div>
         );
 
   }

@@ -37,28 +37,16 @@ marginTop={60}
         color="#4B0082"
         fontWeight={900}
         fontStyle="oblique"
-        borderRadius={577}
-        backgroundColor="#FFEFD5"
-        marginRight={30}
-        marginLeft={30}
+        textDecoration= "underline  "
+        backgroundColor = "#8FBC8F"
+        textAlign= "center"
+        borderRadius={50}
+        marginRight={100}
+        marginLeft={100}
+>
 
+              <h1>Επικοινωνία  </h1>
 
-
-  >
-
-
-
-          <Grid>
-
-              <Col xs={20} md={4}>
-
-                <h1>Επικοινωνία  </h1>
-
-
-              </Col>
-
-
-          </Grid>
 
 </Block>
 

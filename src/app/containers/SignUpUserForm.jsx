@@ -2,7 +2,7 @@ import React from 'react';
 import { Form, Control, Errors } from 'react-redux-form';
 import { connect } from 'react-redux';
 import { signUpUser } from '../actions/users';
-import { Button, FormControl } from 'react-bootstrap';
+import { Button, Block, FormControl } from 'react-bootstrap';
 
 
 
@@ -19,12 +19,20 @@ class SignUpUserForm extends React.Component {
   render() {
     return (
       <div>
-        <h1> User (Parent) sign up! </h1>
+        <h1> Εγγραφή ως χρήστης </h1>
+
+
+
         <Form
           model="Forms.userSignUp"
           onSubmit={(val) => this.handleSubmit(val)}
         >
-          <div className="field">
+
+
+
+          <div className="field"
+
+          >
               <label> Όνομα </label>
               <Control.text
                 component={FormControl}
@@ -36,6 +44,7 @@ class SignUpUserForm extends React.Component {
                 component={FormControl}
                />
           </div>
+
 
           <div className="field">
             <label>Email</label>
@@ -59,13 +68,13 @@ class SignUpUserForm extends React.Component {
           </div>
 
           <div className="field">
-            <label> address </label>
+            <label> Διέυθυνση </label>
             <Control.text
               model=".address"
               component={FormControl}
             />
 
-              <label> telephone </label>
+              <label> Τηλέφωνο </label>
               <Control.text
                 model=".telephone"
                 component={FormControl}
@@ -74,7 +83,7 @@ class SignUpUserForm extends React.Component {
           </div>
 
           <div className="field">
-            <label> birthday </label>
+            <label> Ημ/νια γέννησης </label>
             <Control
               type="number"
               model=".birthday"
@@ -97,7 +106,7 @@ class SignUpUserForm extends React.Component {
           </div>
 
           <div className="field">
-              <label>Username</label>
+              <label>Όνομα Χρήστη</label>
               <Control.text
                 model=".username"
                 placeholder="username"
@@ -116,7 +125,7 @@ class SignUpUserForm extends React.Component {
                 }}
               />
 
-              <label> Password </label>
+              <label> Κωδικός πρόσβασης </label>
               <Control.text
                 model=".password"
                 component={FormControl}
@@ -124,7 +133,10 @@ class SignUpUserForm extends React.Component {
 
           </div>
 
-          <Button type="submit">Submit!</Button>
+          <Button type="submit"
+          bsStyle="primary">Εγγραφή</Button>
+
+
         </Form>
       </div>
     );
