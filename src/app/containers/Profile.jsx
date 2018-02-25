@@ -4,17 +4,14 @@ import { connect } from 'react-redux';
 import { Button, FormControl } from 'react-bootstrap';
 import { Block, Inline } from 'jsxstyle';
 import ParentProfile from 'components/ParentProfile';
+import ProviderProfile from 'components/ProviderProfile';
 import { addCredits, getCredits, changeCredentialsUser,changeProfileUser } from '../actions/parents'
+import { changeCredentialsProvider, changeProfileProvider } from '../actions/providers'
 
 
 
 
 class Profile extends React.Component {
-  // componentWillMount() {
-  //   if (this.props.user.authenticated_user){
-  //     this.props.getCredits();
-  //   }
-  // }
 
   render() {
       if(this.props.user.authenticated_user) {
@@ -25,12 +22,22 @@ class Profile extends React.Component {
             credits={this.props.parent.credits}
             changeCredentials={this.props.changeCredentialsUser}
             changeProfile={this.props.changeProfileUser}
+            profile={this.props.parent.profile}
           />
         );
         }
         else if (this.props.user.authenticated_provider){
-          // return <Provider
-          return ;
+
+          return (
+            <div>
+              <h1> ProviderProfile </h1>
+              <ProviderProfile
+                changeCredentials={this.props.changeCredentialsProvider}
+                changeProfile={this.props.changeProfileProvider}
+                profile={this.props.provider.profile}
+              />
+            </div>
+          );
         }
         else {
           return(
@@ -47,6 +54,7 @@ class Profile extends React.Component {
 function mapStateToProps(state) {
   return {
     parent: state.parent,
+    provider: state.provider,
     user: state.user
   };
 }
@@ -55,5 +63,5 @@ function mapStateToProps(state) {
 // It does not modify the component class passed to it
 // Instead, it returns a new, connected component class, for you to use.
 
-export default connect(mapStateToProps, {addCredits, getCredits, changeCredentialsUser, changeProfileUser})(Profile);
+export default connect(mapStateToProps, {addCredits, getCredits, changeCredentialsUser, changeProfileUser, changeCredentialsProvider, changeProfileProvider})(Profile);
 // export default ParentWallet;

@@ -1,6 +1,5 @@
 import { combineReducers } from 'redux';
 import * as types from '../types/parentTypes';
-import { combineForms} from 'react-redux-form';
 
 const message = (
   state = '',
@@ -16,9 +15,6 @@ const message = (
       return '';
     case types.GET_CREDITS_FAILURE:
     case types.ADD_CREDITS_FAILURE:
-    case types.FORGOT:
-    case types.FORGOT_SUCCESS:
-    case types.FORGOT_ERROR:
     case types.PARENT_CHANGE_CREDENTIALS_FAILURE:
       return action.message;
     default:
@@ -47,12 +43,6 @@ const credits = (
 
   }
 }
-// name,
-// surname,
-// email,
-// telephone,
-// address,
-// birthday
 
 const username = (
   state = '',
@@ -70,7 +60,14 @@ const username = (
 }
 
 const profile = (
-  state = {name: '', surname: '', email: '', address: '', telephone: '', birthday: ''},
+  state = {
+    name: '',
+    surname: '',
+    email: '',
+    telephone: '',
+    address: '',
+    birthday: '',
+  },
   action
 ) => {
   switch (action.type){
