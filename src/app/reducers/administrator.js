@@ -10,6 +10,8 @@ const profile = (
   action
 ) => {
   switch (action.type){
+    case types.ADMIN_PROVIDERS_FOR_APPROVAL_SUCCESS:
+      return {...state, providers: action.message}
     case types.ADMIN_CHANGE_EMAIL_SUCCESS:
       return {...state, email: action.message.email};
     case types.LOGIN_SUCCESS_ADMINISTRATOR_USERNAME:
@@ -22,6 +24,8 @@ const profile = (
     case types.ADMIN_GET_DATA:
     case types.ADMIN_CHANGE_EMAIL_FAILURE:
     case types.ADMIN_CHANGE_EMAIL:
+    case types.ADMIN_PROVIDERS_FOR_APPROVAL:
+    case types.ADMIN_PROVIDERS_FOR_APPROVAL_FAILURE:
     return state;
   default:
     return state;

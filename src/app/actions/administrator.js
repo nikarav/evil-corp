@@ -3,7 +3,28 @@ import administratorService from '../services/administratorService';
 import Notifications, { success, error } from 'react-notification-system-redux';
 
 // change Email
-function beginChangeEmailAdmint() {
+function beginApproveRejectAdmin() {
+    return {
+        type: types.APROVE_REJECT_PROVIDER
+    };
+}
+function approveRejectAdminSuccess(message) {
+    return {
+        type: types.APROVE_REJECT_PROVIDER_SUCCESS,
+        message
+    };
+}
+function approveRejectAdminFailure(error) {
+    return {
+        type: types.APROVE_REJECT_PROVIDER_FAILURE,
+        message: error
+    };
+}
+
+
+
+// change Email
+function beginChangeEmailAdmin() {
     return {
         type: types.ADMIN_CHANGE_EMAIL
     };
@@ -46,8 +67,6 @@ export function getData() {
 
     return administratorService().getData()
       .then((response) => {
-          console.log(response.data.username);
-          console.log(response.data.profile.email);
           dispatch(getAdminDataSuccess(response.data));
           //browserHistory.push('/');
       })
@@ -81,8 +100,7 @@ export function providersForApproval() {
 
     return administratorService().providersForApproval()
       .then((response) => {
-          console.log(response.data.username);
-          console.log(response.data.profile.email);
+          console.log(response.data);
           dispatch(providersForApprovalSuccess(response.data));
           //browserHistory.push('/');
       })
@@ -283,9 +301,8 @@ export function changeEmail(data){
   position: 'tr',
   autoDismiss: 0,
 };
-  console.log(data);
   return (dispatch) => {
-    dispatch(beginChangeEmailAdmint());
+    dispatch(beginChangeEmailAdmin());
 
     return administratorService().changeEmail(data)
       .then((response) => {

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Form, Control, Errors, combineForms } from 'react-redux-form';
 import { connect } from 'react-redux';
 import { Button, FormControl } from 'react-bootstrap';
@@ -38,7 +39,31 @@ class AdminPanel extends React.Component {
     this.props.changeEmail({email: this.props.Forms.adminPanel.email});
   }
 
+  onProviderClick(provider){
+    console.log("provider selected");
+    console.log(provider.username);
+  }
+
+  renderProviders(providers) {
+    return !providers?
+    <div><h3> Δεν υπάρχουν πάροχοι για έγκριση </h3></div>
+    :
+    providers.map((provider, index) => {
+      return (
+          <li key={index}>
+
+            {/* <Link  onClick={(e) => this.onProviderClick(provider)}> */}
+              <h2>  {provider.username} </h2>
+              {/* <h2> item </h2> */}
+          </li>
+          );
+          }
+        )
+      }
   render() {
+
+
+
           return(
             <div>
               <div>
@@ -84,6 +109,9 @@ class AdminPanel extends React.Component {
           <Button bsStyle="danger" onClick={() => this.changeEmail()}> Αλλαγή email admin </Button>
         </Form>
 
+        <ul>
+          {this.renderProviders(this.props.administrator.profile.providers)}
+        </ul>
         </div>
 
           );
