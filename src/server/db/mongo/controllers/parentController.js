@@ -38,7 +38,12 @@ export function parentSignup(req, res, next) {
         if (_saveErr) return next(_saveErr);
         return req.logIn(user, (loginErr) => {
           if (loginErr) return res.sendStatus(401);
-          return res.status(200).send({ user_role: USER_TYPES.Parent });
+          return res.status(200).send(
+            {
+              username: req.body.username,
+              user_role: USER_TYPES.Parent
+            }
+          );
         });
       });
     });
@@ -141,7 +146,7 @@ export function changeCredentials(req, res, next) {
 	 const usernameUpdated = profile.username;
 	 const passwordUpdated= profile.password;
 
-	 return res.send({username: usernameUpdated, password: passwordUpdated});
+	 return res.send({username: usernameUpdated});
 	 }
 	);
 }  else {
