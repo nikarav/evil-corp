@@ -4,17 +4,13 @@ import { connect } from 'react-redux';
 import { Button, FormControl } from 'react-bootstrap';
 import { Block, Inline } from 'jsxstyle';
 import ParentProfile from 'components/ParentProfile';
+import ProviderProfile from 'components/ProviderProfile';
 import { addCredits, getCredits, changeCredentialsUser,changeProfileUser } from '../actions/parents'
 
 
 
 
 class Profile extends React.Component {
-  // componentWillMount() {
-  //   if (this.props.user.authenticated_user){
-  //     this.props.getCredits();
-  //   }
-  // }
 
   render() {
       if(this.props.user.authenticated_user) {
@@ -29,8 +25,16 @@ class Profile extends React.Component {
         );
         }
         else if (this.props.user.authenticated_provider){
-          // return <Provider
-          return ;
+
+          return (
+            <div>
+              <h1> ProviderProfile </h1>
+              <ProviderProfile
+                // changeCredentials={}
+                // changeProfile={}
+              />
+            </div>
+          );
         }
         else {
           return(

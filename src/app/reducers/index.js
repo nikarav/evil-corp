@@ -64,6 +64,15 @@ const initialParentProfile = {
   birthday: '',
 }
 
+const initialProviderProfile = {
+  brand_name: '',
+  email: '',
+  telephone: '',
+  address: '',
+  tax_registration: '',
+  bank_iban: '',
+}
+
 const rootReducer = combineReducers({
   isFetching,
   user,
@@ -77,6 +86,8 @@ const rootReducer = combineReducers({
     parentChangeProfile: initialParentProfile,
     parentChangeCredentials: {username: '', password: ''},
     parentAddCredits: {credits: 0},
+    parentChangeProfile: initialProviderProfile,
+    parentChangeCredentials: {username: '', password: ''},
     newActivity: initialActivityState,
   }, 'Forms'
   ),

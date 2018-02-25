@@ -7,51 +7,23 @@ import { Block, Inline } from 'jsxstyle';
 
 
 
-class ParentProfile extends React.Component {
-  // componentWillMount() {
-  //     this.props.getCredits();
-  // }
-
-  handleCreditsSubmit(values) {
-    this.props.addCredits(values);
-  }
+class ProviderProfile extends React.Component {
 
   handleProfileSubmit(values) {
     //console.log(values);
-    this.props.changeProfile(values);
+    // this.props.changeProfile(values);
   }
 
   handleCredentialsSubmit(values) {
     console.log(values);
-    this.props.changeCredentials(values);
+    // this.props.changeCredentials(values);
   }
 
   render() {
         return (
           <Block>
-          <Block>
-            <h1> Το πορτοφόλι μου </h1>
-            <Inline>
-              Πόντοι: {this.props.credits}
-            </Inline>
-            <Inline>
-              <Form
-                model="Forms.parentAddCredits"
-                onSubmit={(val) => this.handleCreditsSubmit(val)}
-              >
-                    <Control
-                      model=".credits"
-                      placeholder="credits e.g. 10"
-                      required
-                      validateOn="blur"
-                      component={FormControl}
-                    />
 
-                <Button type="submit">Add credits!</Button>
-              </Form>
-            </Inline>
-          </Block>
-          <Block>
+          {/* <Block>
               <h1> Αλλαγή στοιχείων προφιλ Parent </h1>
               <Form
                 model="Forms.parentChangeProfile"
@@ -132,7 +104,7 @@ class ParentProfile extends React.Component {
 
 
               </Form>
-          </Block>
+          </Block> */}
 <Block>
           <h1> Αλλαγή στοιχείων Credential Parent </h1>
           <Form
@@ -176,4 +148,4 @@ class ParentProfile extends React.Component {
   }
 }
 
-export default ParentProfile;
+export default ProviderProfile;
