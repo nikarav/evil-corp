@@ -16,7 +16,7 @@ class ProviderProfile extends React.Component {
 
   handleCredentialsSubmit(values) {
     console.log(values);
-    // this.props.changeCredentials(values);
+    this.props.changeCredentials(values);
   }
 
   render() {
@@ -26,7 +26,7 @@ class ProviderProfile extends React.Component {
           {/* <Block>
               <h1> Αλλαγή στοιχείων προφιλ Parent </h1>
               <Form
-                model="Forms.parentChangeProfile"
+                model="Forms.providerChangeProfile"
                 onSubmit={(val) => this.handleProfileSubmit(val)}
               >
                 <div className="field">
@@ -108,7 +108,7 @@ class ProviderProfile extends React.Component {
 <Block>
           <h1> Αλλαγή στοιχείων Credential Parent </h1>
           <Form
-            model="Forms.parentChangeCredentials"
+            model="Forms.providerChangeCredentials"
             onSubmit={(val) => this.handleCredentialsSubmit(val)}
           >
           <div className="field">

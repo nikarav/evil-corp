@@ -8,21 +8,21 @@ export default () => {
       method: 'GET',
       url: '/api/provider',
     }),
-    changeProfile: ({ name, surname, email, telephone, address, birthday }) => client.request({
+    changeProfile: ({ brand_name, email, telephone, address, tax_registration, bank_iban}) => client.request({
       method: 'POST',
-      url: '/api/parent/changeProfile',
+      url: '/api/provider/changeProfile',
       data: {
-        name,
-        surname,
+        brand_name,
         email,
         telephone,
         address,
-        birthday
+        tax_registration,
+        bank_iban,
       }
     }),
     changeCredentials: ({ username, password }) => client.request({
       method: 'POST',
-      url: '/api/parent/changeCredentials',
+      url: '/api/provider/changeCredentials',
       data: {
         username,
         password

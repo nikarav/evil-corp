@@ -86,8 +86,8 @@ const rootReducer = combineReducers({
     parentChangeProfile: initialParentProfile,
     parentChangeCredentials: {username: '', password: ''},
     parentAddCredits: {credits: 0},
-    parentChangeProfile: initialProviderProfile,
-    parentChangeCredentials: {username: '', password: ''},
+    providerChangeProfile: initialProviderProfile,
+    providerChangeCredentials: {username: '', password: ''},
     newActivity: initialActivityState,
   }, 'Forms'
   ),
