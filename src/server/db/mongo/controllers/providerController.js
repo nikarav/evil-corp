@@ -17,9 +17,8 @@ import bcrypt from 'bcrypt-nodejs';
   if (req.file) {
     documentData = req.file.buffer;
     mimetype = req.file.mimetype;
-  }
-  else {
-    res.status(400).send('Please provide a legal document');
+  } else {
+    return res.status(400).send('Please provide a legal document');
   }
 
   const brand_name = req.body[formName + '.brand_name'];
@@ -30,8 +29,6 @@ import bcrypt from 'bcrypt-nodejs';
   const bank_iban = req.body[formName + '.bank_iban'];
   const username = req.body[formName + '.username'];
   const password = req.body[formName + '.password'];
-
-  console.log({ username });
 
   const profile = new ProviderProfile({
     _id: new mongoose.Types.ObjectId(),
