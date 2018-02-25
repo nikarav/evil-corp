@@ -22,6 +22,7 @@ class Profile extends React.Component {
             credits={this.props.parent.credits}
             changeCredentials={this.props.changeCredentialsUser}
             changeProfile={this.props.changeProfileUser}
+            profile={this.props.parent.profile}
           />
         );
         }
