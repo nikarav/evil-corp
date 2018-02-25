@@ -21,14 +21,20 @@ class SignUpUserForm extends React.Component {
       <div>
         <h1> User (Parent) sign up! </h1>
         <Form
-          model="userForm.user"
+          model="Forms.userSignUp"
           onSubmit={(val) => this.handleSubmit(val)}
         >
           <div className="field">
               <label> Όνομα </label>
-              <Control.text model=".name" />
+              <Control.text
+                component={FormControl}
+                model=".name"
+              />
               <label> Επώνυμο </label>
-              <Control.text model=".surname" />
+              <Control.text
+                model=".surname"
+                component={FormControl}
+               />
           </div>
 
           <div className="field">
@@ -39,6 +45,7 @@ class SignUpUserForm extends React.Component {
               placeholder="email@example.com"
               required
               validateOn="blur"
+              component={FormControl}
             />
             <Errors
               className="errors"
@@ -53,10 +60,16 @@ class SignUpUserForm extends React.Component {
 
           <div className="field">
             <label> address </label>
-            <Control.text model=".address" />
+            <Control.text
+              model=".address"
+              component={FormControl}
+            />
 
               <label> telephone </label>
-              <Control.text model=".telephone" />
+              <Control.text
+                model=".telephone"
+                component={FormControl}
+              />
 
           </div>
 
@@ -69,6 +82,7 @@ class SignUpUserForm extends React.Component {
               required
               min={18}
               validateOn="blur"
+              component={FormControl}
             />
             <Errors
               className="errors"
@@ -90,6 +104,7 @@ class SignUpUserForm extends React.Component {
                 required
                 validators={{ maxLength: (val) => val.length <= 10 }}
                 validateOn="blur"
+                component={FormControl}
               />
               <Errors
                 className="errors"
@@ -102,7 +117,10 @@ class SignUpUserForm extends React.Component {
               />
 
               <label> Password </label>
-              <Control.text model=".password" />
+              <Control.text
+                model=".password"
+                component={FormControl}
+               />
 
           </div>
 

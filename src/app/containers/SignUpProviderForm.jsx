@@ -23,27 +23,31 @@ class SignUpProviderForm extends React.Component {
         </h1>
 
       <Form
-        model="providerForm.user"
+        model="Forms.providerSignUp"
         onSubmit={(val) => this.handleSubmit(val)}
         >
         <div className="field">
           <label>Brand name</label>
           <Control.text
+            component={FormControl}
             model=".brand_name"
           />
           <label>email</label>
           <Control.text
             model=".email"
+            component={FormControl}
           />
         </div>
 
         <div className="field">
           <label>telephone</label>
           <Control.text
+            component={FormControl}
             model=".telephone"
           />
           <label>address</label>
           <Control.text
+            component={FormControl}
             model=".address"
           />
         </div>
@@ -51,10 +55,12 @@ class SignUpProviderForm extends React.Component {
         <div className="field">
           <label>Tax registration</label>
           <Control.text
+            component={FormControl}
             model=".tax_registration"
           />
           <label>Bank iban</label>
           <Control.text
+            component={FormControl}
             model=".bank_iban"
           />
         </div>
@@ -62,10 +68,12 @@ class SignUpProviderForm extends React.Component {
         <div className="field">
           <label>Username</label>
           <Control.text
+            component={FormControl}
             model=".username"
           />
           <label>Passwrod</label>
           <Control.text
+            component={FormControl}
             model=".password"
           />
         </div>

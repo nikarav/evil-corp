@@ -171,6 +171,8 @@ export function logOut() {
   };
 }
 
+
+// user triggered function -> forgot
 export function forgot(data){
   return (dispatch) => {
     dispatch(beginForgot('Starting forgot process'));

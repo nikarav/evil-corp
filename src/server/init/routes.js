@@ -79,7 +79,7 @@ export default (app) => {
   }
 
   if (activityController) {
-    app.post('/api/activity', providerController.authorizeProvider, upload.single('newActivityForm.post.photo'), activityController.postActivity);
+    app.post('/api/activity', providerController.authorizeProvider, upload.single('Forms.newActivity.photo'), activityController.postActivity);
     app.get('/api/activities', activityController.getAllActivities);
     app.get('/api/activity/:activityId', activityController.getActivity);
     app.get('/api/activity/:activityId/photo', activityController.getActivityPhoto);
