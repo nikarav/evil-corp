@@ -8,6 +8,9 @@ import { Block, Inline } from 'jsxstyle';
 
 
 class ProviderProfile extends React.Component {
+  componentWillMount() {
+    console.log(this.props.profile);
+  }
 
   handleProfileSubmit(values) {
     console.log(values);
@@ -22,7 +25,16 @@ class ProviderProfile extends React.Component {
   render() {
         return (
           <Block>
+            <Block>
+              <h3> Στοιχεία Provider </h3>
+              address: {this.props.profile.address}
+              bank_iban: {this.props.profile.bank_iban}
+              brand_name: {this.props.profile.brand_name}
+              email       {this.props.profile.email}
+              tax_registration:           {this.props.profile.tax_registration}
+              telephone:          {this.props.profile.telephone}
 
+            </Block>
            <Block>
               <h1> Αλλαγή στοιχείων προφιλ Provider</h1>
               <Form

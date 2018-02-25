@@ -33,6 +33,7 @@ class Profile extends React.Component {
               <ProviderProfile
                 changeCredentials={this.props.changeCredentialsProvider}
                 changeProfile={this.props.changeProfileProvider}
+                profile={this.props.provider.profile}
               />
             </div>
           );
@@ -52,6 +53,7 @@ class Profile extends React.Component {
 function mapStateToProps(state) {
   return {
     parent: state.parent,
+    provider: state.provider,
     user: state.user
   };
 }
