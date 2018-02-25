@@ -10,6 +10,7 @@ import { Block, Inline } from 'jsxstyle';
 class ProviderProfile extends React.Component {
   componentWillMount() {
     console.log(this.props.profile);
+    this.props.getData();
   }
 
   handleProfileSubmit(values) {

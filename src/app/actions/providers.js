@@ -1,6 +1,26 @@
 import * as types from '../types/providerTypes';
 import providerService from '../services/providerService';
 
+//getProviderData
+function beginGetProviderData() {
+    return {
+        type: types.PROVIDER_GET_DATA
+    };
+}
+function getProviderDataSuccess(credits) {
+    return {
+        type: types.PROVIDER_GET_DATA_SUCCESS,
+        message: credits
+    };
+}
+function getProviderDataFailure(error) {
+    return {
+        type: types.PROVIDER_GET_DATA_FAILURE,
+        message: error
+    };
+}
+
+
 // Change Credentials
 // CHANGE_CREDENTIALS actions  --> **Provider**
 function beginChangeCredentialsProvider() {
@@ -68,6 +88,24 @@ export function changeProfileProvider(data) {
       })
       .catch((err) => {
         dispatch(changeProfileProviderError('Oops! Something went wrong when changing your profile attributes.'));
+      });
+  };
+}
+
+// user triggered function GET POVIDER PROFILE data
+// user triggered function -> getData
+export function getProviderData() {
+  return (dispatch) => {
+    dispatch(beginGetProviderData());
+
+    return providerService().getData()
+      .then((response) => {
+          console.log(response.data);
+          dispatch(getProviderDataSuccess(response.data));
+          //browserHistory.push('/');
+      })
+      .catch((err) => {
+        dispatch(getProviderDataFailure('Oops! Something went wrong when trying to get profile data of logged in provider.'));
       });
   };
 }

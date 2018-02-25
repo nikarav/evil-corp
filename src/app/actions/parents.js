@@ -160,7 +160,9 @@ export function changeProfileUser(data) {
   };
 }
 
-export function getParentData(data) {
+// user triggered function GET PARENT PROFILE data
+// user triggered function -> getData
+export function getParentData() {
   return (dispatch) => {
     dispatch(beginGetParentData());
 
