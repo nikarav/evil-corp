@@ -10,8 +10,8 @@ import { Block, Inline } from 'jsxstyle';
 class ProviderProfile extends React.Component {
 
   handleProfileSubmit(values) {
-    //console.log(values);
-    // this.props.changeProfile(values);
+    console.log(values);
+    this.props.changeProfile(values);
   }
 
   handleCredentialsSubmit(values) {
@@ -23,23 +23,18 @@ class ProviderProfile extends React.Component {
         return (
           <Block>
 
-          {/* <Block>
+           <Block>
               <h1> Αλλαγή στοιχείων προφιλ Parent </h1>
               <Form
                 model="Forms.providerChangeProfile"
                 onSubmit={(val) => this.handleProfileSubmit(val)}
               >
                 <div className="field">
-                    <label> Όνομα </label>
+                    <label> Επωνυμία επιχείρησης </label>
                     <Control.text
                       component={FormControl}
-                      model=".name"
+                      model=".brand_name"
                     />
-                    <label> Επώνυμο </label>
-                    <Control.text
-                      model=".surname"
-                      component={FormControl}
-                     />
                 </div>
 
                 <div className="field">
@@ -79,32 +74,34 @@ class ProviderProfile extends React.Component {
                 </div>
 
                 <div className="field">
-                  <label> birthday </label>
+                  <label> tax registration </label>
                   <Control
                     type="number"
-                    model=".birthday"
+                    model=".tax_registration"
                     placeholder="99"
                     required
                     min={18}
                     validateOn="blur"
                     component={FormControl}
                   />
-                  <Errors
-                    className="errors"
-                    model=".age"
-                    show="touched"
-                    messages={{
-                      valueMissing: 'Age is required',
-                      typeMismatch: 'Must be a number',
-                      rangeUnderflow: 'Sorry, you must be at least 18 years old',
-                    }}
+                  <label> IBAN bank </label>
+                  <Control
+                    type="number"
+                    model=".bank_iban"
+                    placeholder="99"
+                    required
+                    min={18}
+                    validateOn="blur"
+                    component={FormControl}
                   />
                 </div>
                 <Button type="submit">Αλλαγή στοιχείων προφιλ!</Button>
 
 
               </Form>
-          </Block> */}
+          </Block>
+
+
 <Block>
           <h1> Αλλαγή στοιχείων Credential Parent </h1>
           <Form

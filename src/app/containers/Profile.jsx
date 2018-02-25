@@ -6,7 +6,7 @@ import { Block, Inline } from 'jsxstyle';
 import ParentProfile from 'components/ParentProfile';
 import ProviderProfile from 'components/ProviderProfile';
 import { addCredits, getCredits, changeCredentialsUser,changeProfileUser } from '../actions/parents'
-import { changeCredentialsProvider } from '../actions/providers'
+import { changeCredentialsProvider, changeProfileProvider } from '../actions/providers'
 
 
 
@@ -32,7 +32,7 @@ class Profile extends React.Component {
               <h1> ProviderProfile </h1>
               <ProviderProfile
                 changeCredentials={this.props.changeCredentialsProvider}
-                // changeProfile={}
+                changeProfile={this.props.changeProfileProvider}
               />
             </div>
           );
@@ -60,5 +60,5 @@ function mapStateToProps(state) {
 // It does not modify the component class passed to it
 // Instead, it returns a new, connected component class, for you to use.
 
-export default connect(mapStateToProps, {addCredits, getCredits, changeCredentialsUser, changeProfileUser, changeCredentialsProvider})(Profile);
+export default connect(mapStateToProps, {addCredits, getCredits, changeCredentialsUser, changeProfileUser, changeCredentialsProvider, changeProfileProvider})(Profile);
 // export default ParentWallet;
