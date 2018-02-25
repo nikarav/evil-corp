@@ -10,6 +10,7 @@ import { Block, Inline } from 'jsxstyle';
 class ParentProfile extends React.Component {
   componentWillMount() {
       this.props.getCredits();
+      this.props.getData();
       console.log(this.props.profile);
   }
 

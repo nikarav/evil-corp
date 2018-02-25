@@ -5,7 +5,7 @@ import { Button, FormControl } from 'react-bootstrap';
 import { Block, Inline } from 'jsxstyle';
 import ParentProfile from 'components/ParentProfile';
 import ProviderProfile from 'components/ProviderProfile';
-import { addCredits, getCredits, changeCredentialsUser,changeProfileUser } from '../actions/parents'
+import { addCredits, getCredits, changeCredentialsUser,changeProfileUser, getParentData } from '../actions/parents'
 import { changeCredentialsProvider, changeProfileProvider } from '../actions/providers'
 
 
@@ -22,6 +22,7 @@ class Profile extends React.Component {
             credits={this.props.parent.credits}
             changeCredentials={this.props.changeCredentialsUser}
             changeProfile={this.props.changeProfileUser}
+            getData={this.props.getParentData}
             profile={this.props.parent.profile}
           />
         );
@@ -63,5 +64,5 @@ function mapStateToProps(state) {
 // It does not modify the component class passed to it
 // Instead, it returns a new, connected component class, for you to use.
 
-export default connect(mapStateToProps, {addCredits, getCredits, changeCredentialsUser, changeProfileUser, changeCredentialsProvider, changeProfileProvider})(Profile);
+export default connect(mapStateToProps, {addCredits, getCredits, changeCredentialsUser, changeProfileUser, changeCredentialsProvider, changeProfileProvider, getParentData})(Profile);
 // export default ParentWallet;

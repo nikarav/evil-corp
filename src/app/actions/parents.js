@@ -1,6 +1,26 @@
 import * as types from '../types/parentTypes';
 import parentService from '../services/parentService';
 
+//getParentData
+function beginGetParentData() {
+    return {
+        type: types.PARENT_GET_DATA
+    };
+}
+function getParentDataSuccess(credits) {
+    return {
+        type: types.PARENT_GET_DATA_SUCCESS,
+        message: credits
+    };
+}
+function getParentDataFailure(error) {
+    return {
+        type: types.PARENT_GET_DATA_FAILURE,
+        message: error
+    };
+}
+
+
 // get credits
 function beginGetCredits() {
     return {
@@ -136,6 +156,22 @@ export function changeProfileUser(data) {
       })
       .catch((err) => {
         dispatch(changeProfileUserError('Oops! Something went wrong when changing your profile attributes.'));
+      });
+  };
+}
+
+export function getParentData(data) {
+  return (dispatch) => {
+    dispatch(beginGetParentData());
+
+    return parentService().getData()
+      .then((response) => {
+          console.log(response.data);
+          dispatch(getParentDataSuccess(response.data));
+          //browserHistory.push('/');
+      })
+      .catch((err) => {
+        dispatch(getParentDataFailure('Oops! Something went wrong when trying to get profile data of logged in parent.'));
       });
   };
 }
