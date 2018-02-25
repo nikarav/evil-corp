@@ -1,11 +1,11 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import Navigation from '../containers/Navigation';
-import  ParentWallet from '../containers/ParentWallet.jsx';
+import  Profile from '../containers/Profile.jsx';
 import { Block, Inline } from 'jsxstyle';
 
 
-const ParentProfile = () => {
+const ProfilePage = () => {
     return (
       <Route render={() => {
         return (
@@ -15,7 +15,7 @@ const ParentProfile = () => {
             <h1> Το πρoφίλ μου</h1>
             <Inline
               margin={30}>
-              <ParentWallet/>
+              <Profile/>
             </Inline>
           </Block>
           );  }
@@ -24,4 +24,4 @@ const ParentProfile = () => {
     );
 }
 
-export default ParentProfile;
+export default ProfilePage;

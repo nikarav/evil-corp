@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import HomePage from './pages/HomePage';
-import ParentProfile from './pages/ParentProfile';
+import ProfilePage from './pages/ProfilePage';
 import Users from './pages/Users';
 import ActivitiesShow from './pages/ActivitiesShow';
 import ActivityNew from './pages/ActivityNew';
@@ -29,7 +29,7 @@ const routes = [
     },
     {
       path: '/MyProfile',
-      component: ParentProfile,
+      component: ProfilePage,
       exact: true
     },
     {

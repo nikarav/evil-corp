@@ -55,16 +55,13 @@ const initialUserSate = {
   password: 'pass'
 };
 
-const initialParentProfileForm = {
-  credits: 0,
+const initialParentProfile = {
   name: '',
   surname: '',
   email: '',
   telephone: '',
   address: '',
   birthday: '',
-  username: '',
-  password: ''
 }
 
 const rootReducer = combineReducers({
@@ -77,7 +74,9 @@ const rootReducer = combineReducers({
     providerSignUp: initialProviderState,
     userSignUp: initialUserSate,
     logIn: {username: '', password: ''},
-    parentProfile: initialParentProfileForm,
+    parentChangeProfile: initialParentProfile,
+    parentChangeCredentials: {username: '', password: ''},
+    parentAddCredits: {credits: 0},
     newActivity: initialActivityState,
   }, 'Forms'
   ),

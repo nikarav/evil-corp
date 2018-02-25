@@ -7,14 +7,12 @@ function beginGetCredits() {
         type: types.GET_CREDITS
     };
 }
-
 function getCreditsSuccess(credits) {
     return {
         type: types.GET_CREDITS_SUCCESS,
         message: credits
     };
 }
-
 function getCreditsFailure(error) {
     return {
         type: types.GET_CREDITS_FAILURE,
@@ -28,14 +26,12 @@ function beginAddCredits() {
         type: types.ADD_CREDITS
     };
 }
-
 function addCreditsSuccess(credits) {
     return {
         type: types.ADD_CREDITS_SUCCESS,
         message: credits
     };
 }
-
 function addCreditsFailure(error) {
     return {
         type: types.ADD_CREDITS_FAILURE,
@@ -43,8 +39,44 @@ function addCreditsFailure(error) {
     };
 }
 
+// Change Credentials
+// CHANGE_CREDENTIALS actions  --> **User** (Parents)
+function beginChangeCredentialsUser() {
+  return { type: types.PARENT_CHANGE_CREDENTIALS };
+}
+function changeCredentialsUserSuccess(message) {
+  return {
+    type: types.PARENT_CHANGE_CREDENTIALS_SUCCESS,
+    message: message
+  };
+}
+function changeCredentialsUserError(message) {
+  return {
+    type: types.PARENT_CHANGE_CREDENTIALS_FAILURE,
+    message: message
+  };
+}
 
-// user triggered functions
+// Change profile
+// CHANGE_PROFILE actions  --> **User** (Parents)
+function beginChangeProfileUser() {
+  return { type: types.PARENT_CHANGE_PROFILE };
+}
+function changeProfileUserSuccess(message) {
+  return {
+    type: types.PARENT_CHANGE_PROFILE_SUCCESS,
+    message: message
+  };
+}
+function changeProfileUserError(message) {
+  return {
+    type: types.PARENT_CHANGE_PROFILE_FAILURE,
+    message: message
+  };
+}
+
+
+// user triggered functions CREDITS
 export function getCredits() {
     return (dispatch) => {
         dispatch(beginGetCredits());
@@ -72,4 +104,38 @@ export function addCredits(credits) {
                 dispatch(addCreditsFailure(err));
             });
     };
+}
+
+// user triggered function CHANGE PROFILE - CREDENTIALS
+// user triggered function -> changeCredentials
+export function changeCredentialsUser(data) {
+  return (dispatch) => {
+    dispatch(beginChangeCredentialsUser());
+
+    return parentService().changeCredentials(data)
+      .then((response) => {
+          dispatch(changeCredentialsUserSuccess(response.data.username));
+          //browserHistory.push('/');
+      })
+      .catch((err) => {
+        dispatch(changeCredentialsUserError('Oops! Something went wrong when changing your credentials attributes.'));
+      });
+  };
+}
+
+// user triggered function CHANGE PROFILE - CREDENTIALS
+// user triggered function -> changeCredentials
+export function changeProfileUser(data) {
+  return (dispatch) => {
+    dispatch(beginChangeProfileUser());
+
+    return parentService().changeProfile(data)
+      .then((response) => {
+          dispatch(changeProfileUserSuccess(response.data));
+          //browserHistory.push('/');
+      })
+      .catch((err) => {
+        dispatch(changeProfileUserError('Oops! Something went wrong when changing your profile attributes.'));
+      });
+  };
 }
