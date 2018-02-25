@@ -9,9 +9,11 @@ import { Button, FormControl } from 'react-bootstrap';
 // Add error checking in forms and control restrictions
 
 class SignUpProviderForm extends React.Component {
-  handleSubmit(values) {
+  handleSubmit(values, event) {
     // Do anything you want with the form value
-    this.props.signUpProvider(values);
+    const formData = new FormData(event.target);
+    this.props.signUpProvider(formData);
+    event.preventDefault();
     console.log(values);
   }
 
@@ -23,7 +25,8 @@ class SignUpProviderForm extends React.Component {
 
       <Form
         model="Forms.providerSignUp"
-        onSubmit={(val) => this.handleSubmit(val)}
+        encType="multipart/form-data"
+        onSubmit={(val, event) => this.handleSubmit(val, event)}
         >
         <div className="field">
           <label>Όνομα Εταιρείας</label>
@@ -62,6 +65,11 @@ class SignUpProviderForm extends React.Component {
             component={FormControl}
             model=".bank_iban"
           />
+        </div>
+
+        <div className="field">
+          <label>Νομικό Έγγραφο Επιχείρισης</label>
+          <Control.file model=".document" />
         </div>
 
         <div className="field">
