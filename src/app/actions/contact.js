@@ -78,6 +78,7 @@ export function parentSendMessage(data) {
 
 export function providerSendMessage(data) {
   console.log("providerSendMessage");
+  console.log(data);
   const notificationSuccess = {
   // uid: 'once-please', // you can specify your own uid if required
   title: 'Thanks for sending us a message!',

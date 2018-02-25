@@ -5,7 +5,7 @@ export default () => {
     const client = createRestApiClient().withConfig({ baseURL: apiEndpoint });
     return {
         userSendMessage: ({email, subject, message}) => client.request({
-            method: 'GET',
+            method: 'POST',
             url: '/api/user/sendMessage',
             data:{
               email,
@@ -14,7 +14,7 @@ export default () => {
             }
         }),
         parentSendMessage: ({ subject, message}) => client.request({
-            method: 'GET',
+            method: 'POST',
             url: '/api/parent/sendMessage',
             data:{
               subject,
@@ -22,7 +22,7 @@ export default () => {
             }
         }),
         providerSendMessage: ({ subject, message}) => client.request({
-            method: 'GET',
+            method: 'POST',
             url: '/api/provider/sendMessage',
             data:{
               subject,
