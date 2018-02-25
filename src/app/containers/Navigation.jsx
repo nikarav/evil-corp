@@ -11,7 +11,7 @@ import '../Css/App.css';
 class Navigation extends React.Component {
 
   handleForgot(){
-    this.props.forgot({username: this.props.logInForm.user.username});
+    this.props.forgot({username: this.props.Forms.logIn.username});
   }
 
   render() {
@@ -106,7 +106,7 @@ class Navigation extends React.Component {
 function mapStateToProps(state) {
   return {
     user: state.user,
-    logInForm: state.logInForm
+    Forms: state.Forms
   };
 }
 
