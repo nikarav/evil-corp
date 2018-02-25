@@ -19,20 +19,19 @@ class SignUpProviderForm extends React.Component {
     return (
       <div>
         <h1>
-          Provider sign up!
-        </h1>
+Εγγραφή ως πάροχος        </h1>
 
       <Form
         model="Forms.providerSignUp"
         onSubmit={(val) => this.handleSubmit(val)}
         >
         <div className="field">
-          <label>Brand name</label>
+          <label>Όνομα Εταιρείας</label>
           <Control.text
             component={FormControl}
             model=".brand_name"
           />
-          <label>email</label>
+          <label>Email</label>
           <Control.text
             model=".email"
             component={FormControl}
@@ -40,12 +39,12 @@ class SignUpProviderForm extends React.Component {
         </div>
 
         <div className="field">
-          <label>telephone</label>
+          <label>Τηλέφωνο</label>
           <Control.text
             component={FormControl}
             model=".telephone"
           />
-          <label>address</label>
+          <label>Διέυθυνση</label>
           <Control.text
             component={FormControl}
             model=".address"
@@ -58,7 +57,7 @@ class SignUpProviderForm extends React.Component {
             component={FormControl}
             model=".tax_registration"
           />
-          <label>Bank iban</label>
+          <label>Τραπεζικό iban</label>
           <Control.text
             component={FormControl}
             model=".bank_iban"
@@ -66,20 +65,22 @@ class SignUpProviderForm extends React.Component {
         </div>
 
         <div className="field">
-          <label>Username</label>
+          <label>Όνομα Χρήστη</label>
           <Control.text
             component={FormControl}
             model=".username"
           />
-          <label>Passwrod</label>
+          <label>Κωδικός Πρόσβασης</label>
           <Control.text
             component={FormControl}
             model=".password"
           />
         </div>
 
-        <Button type="submit">
-          Submit
+        <Button type="submit"
+
+        bsStyle="primary">
+          Εγγραφή
         </Button>
       </Form>
         </div>

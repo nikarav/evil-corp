@@ -21,8 +21,15 @@ class Navigation extends React.Component {
         <LinkContainer to="/register">
           <NavItem eventKey={1}> Εγγραφή </NavItem>
         </LinkContainer></Nav>);
-       forgot_button = (<Button onClick={() => this.handleForgot()}> Forgot Password  </Button>);
+       forgot_button = (<Button bsStyle="danger"
+
+
+         onClick={() => this.handleForgot()}> Forgot Password  </Button>);
     } else {
+
+
+
+
       sign_up_button = null;
     }
 

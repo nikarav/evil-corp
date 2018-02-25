@@ -10,6 +10,8 @@ const ProfilePage = () => {
       <Route render={() => {
         return (
           <Block
+          backgroundColor = "#E0FFFF"
+          
             marginTop={60}>
             <Navigation />
             <h1> Το πρoφίλ μου</h1>
