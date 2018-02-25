@@ -6,6 +6,7 @@ import user from '../reducers/user';
 import ActivityList from '../reducers/ActivityShow';
 import ActivityCreate from '../reducers/ActivityCreate';
 import parent from '../reducers/parent';
+import provider from '../reducers/provider';
 
 const isFetching = (state = false, action) => {
   switch (action.type) {
@@ -79,6 +80,7 @@ const rootReducer = combineReducers({
   ActivityList,
   ActivityCreate,
   parent,
+  provider,
   Forms: combineForms({
     providerSignUp: initialProviderState,
     userSignUp: initialUserSate,

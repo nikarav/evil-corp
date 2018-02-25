@@ -1,6 +1,5 @@
 import { combineReducers } from 'redux';
 import * as types from '../types/parentTypes';
-import { combineForms} from 'react-redux-form';
 
 const message = (
   state = '',
@@ -44,12 +43,6 @@ const credits = (
 
   }
 }
-// name,
-// surname,
-// email,
-// telephone,
-// address,
-// birthday
 
 const username = (
   state = '',
@@ -67,7 +60,14 @@ const username = (
 }
 
 const profile = (
-  state = {name: '', surname: '', email: '', address: '', telephone: '', birthday: ''},
+  state = {
+    name: '',
+    surname: '',
+    email: '',
+    telephone: '',
+    address: '',
+    birthday: '',
+  },
   action
 ) => {
   switch (action.type){
