@@ -6,7 +6,6 @@ import { Router, browserHistory } from 'react-router';
 import routes from './routes';
 import { renderRoutes } from 'react-router-config';
 import { syncHistoryWithStore } from 'react-router-redux';
-import * as types from './types';
 import configureStore from './store/configureStore';
 
 // Grab the state from a global injected into

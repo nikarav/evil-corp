@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import * as types from '../types/providerTypes';
+import {LOGIN_SUCCES_PROVIDER_USERNAME, LOGOUT_SUCCESS_UNSET_USERNAME} from '../types/userTypes';
 
 const message = (
   state = '',
@@ -21,6 +22,8 @@ const username = (
   action
 ) => {
   switch (action.type){
+    case LOGIN_SUCCES_PROVIDER_USERNAME:
+      return action.message;
     case types.PROVIDER_GET_DATA_SUCCESS:
       return action.message.username;
     case types.PROVIDER_CHANGE_CREDENTIALS_SUCCESS:
@@ -30,6 +33,8 @@ const username = (
     case types.PROVIDER_CHANGE_CREDENTIALS:
     case types.PROVIDER_CHANGE_CREDENTIALS_FAILURE:
       return state;
+    case LOGOUT_SUCCESS_UNSET_USERNAME:
+        return '';
     default:
       return state;
   }

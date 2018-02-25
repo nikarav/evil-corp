@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import * as types from '../types/index';
+import * as types from '../types/userTypes';
 
 const message = (
   state = '',
