@@ -100,8 +100,8 @@ export function getProviderData() {
 
     return providerService().getData()
       .then((response) => {
-          console.log(response.data);
-          dispatch(getProviderDataSuccess(response.data));
+          console.log({...response.data});
+          dispatch(getProviderDataSuccess({...response.data}));
           //browserHistory.push('/');
       })
       .catch((err) => {

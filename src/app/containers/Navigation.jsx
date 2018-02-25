@@ -27,13 +27,15 @@ class Navigation extends React.Component {
     }
 
     let sign_in_info = null;
+                                                                        // provlima me this.props.parent.username
+                                                                        // an anewseis to username apo th selida my_profile to Navbar edw skaei
     if (this.props.user.authenticated_user) {
         sign_in_info = (<Navbar.Text pullRight>
-                      Συνδεδεμένος ως: <Navbar.Link href="#">Parent</Navbar.Link>
+                      Συνδεδεμένος ως: <Navbar.Link href="#">{this.props.parent.username}</Navbar.Link>
         </Navbar.Text>);
     } else if (this.props.user.authenticated_provider) {
           sign_in_info = (<Navbar.Text pullRight>
-                          Συνδεδεμένος ως: <Navbar.Link href="#">Provider</Navbar.Link>
+                          Συνδεδεμένος ως: <Navbar.Link href="#">{this.props.provider.username}</Navbar.Link>
           </Navbar.Text>);
     } else {
         sign_in_info = null;
@@ -106,7 +108,9 @@ class Navigation extends React.Component {
 function mapStateToProps(state) {
   return {
     user: state.user,
-    Forms: state.Forms
+    Forms: state.Forms,
+    provider: state.provider,
+    parent: state.parent,
   };
 }
 

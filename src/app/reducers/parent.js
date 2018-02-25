@@ -22,7 +22,7 @@ const message = (
   }
 };
 
-
+// maybe to fix add credits to profile?
 const credits = (
 
   state = 0,
@@ -49,8 +49,12 @@ const username = (
   action
 ) => {
   switch (action.type){
+    case types.PARENT_GET_DATA_SUCCESS:
+      return action.message.username;
     case types.PARENT_CHANGE_CREDENTIALS_SUCCESS:
       return {...state, username: action.message}
+    case types.PARENT_CHANGE_CREDENTIALS:
+    case types.PARENT_CHANGE_CREDENTIALS_FAILURE:
     case types.PARENT_CHANGE_CREDENTIALS:
     case types.PARENT_CHANGE_CREDENTIALS_FAILURE:
       return state;
@@ -59,6 +63,8 @@ const username = (
   }
 }
 
+
+// to fix state add other fields for tickets
 const profile = (
   state = {
     name: '',
@@ -73,8 +79,12 @@ const profile = (
   switch (action.type){
     case types.PARENT_CHANGE_PROFILE_SUCCESS:
       return action.message
-  case types.PARENT_CHANGE_PROFILE:
-  case types.PARENT_CHANGE_PROFILE_FAILURE:
+    case types.PARENT_GET_DATA_SUCCESS:
+        return {...state, ...action.message.profile}
+    case types.PARENT_CHANGE_PROFILE:
+    case types.PARENT_CHANGE_PROFILE_FAILURE:
+    case types.PROVIDER_GET_DATA:
+    case types.PROVIDER_GET_DATA_FAILURE:
     return state;
   default:
     return state;

@@ -21,8 +21,12 @@ const username = (
   action
 ) => {
   switch (action.type){
+    case types.PROVIDER_GET_DATA_SUCCESS:
+      return action.message.username;
     case types.PROVIDER_CHANGE_CREDENTIALS_SUCCESS:
       return {...state, username: action.message}
+    case types.PROVIDER_GET_DATA:
+    case types.PROVIDER_GET_DATA_FAILURE:
     case types.PROVIDER_CHANGE_CREDENTIALS:
     case types.PROVIDER_CHANGE_CREDENTIALS_FAILURE:
       return state;
@@ -32,19 +36,26 @@ const username = (
 }
 
 const profile = (
-  state = {  brand_name: '',
+  state = {
+    activities: [],
+    address: '',
+    brand_name: '',
     email: '',
     telephone: '',
     address: '',
     tax_registration: '',
-    bank_iban: '',},
+    bank_iban: '',},    // not using the activated & locked field from backend
   action
 ) => {
   switch (action.type){
     case types.PROVIDER_CHANGE_PROFILE_SUCCESS:
       return action.message
-  case types.PROVIDER_CHANGE_PROFILE:
-  case types.PROVIDER_CHANGE_PROFILE_FAILURE:
+    case types.PROVIDER_GET_DATA_SUCCESS:
+      return {...state, ...action.message.profile}
+    case types.PROVIDER_GET_DATA:
+    case types.PROVIDER_GET_DATA_FAILURE:
+    case types.PROVIDER_CHANGE_PROFILE:
+    case types.PROVIDER_CHANGE_PROFILE_FAILURE:
     return state;
   default:
     return state;

@@ -168,8 +168,8 @@ export function getParentData() {
 
     return parentService().getData()
       .then((response) => {
-          console.log(response.data);
-          dispatch(getParentDataSuccess(response.data));
+          console.log({...response.data});
+          dispatch(getParentDataSuccess({...response.data}));
           //browserHistory.push('/');
       })
       .catch((err) => {
