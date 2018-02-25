@@ -2,6 +2,26 @@ import * as types from '../types/administratorTypes';
 import administratorService from '../services/administratorService';
 import Notifications, { success, error } from 'react-notification-system-redux';
 
+// change Email
+function beginChangeEmailAdmint() {
+    return {
+        type: types.ADMIN_CHANGE_EMAIL
+    };
+}
+function changeEmailAdminSuccess(message) {
+    return {
+        type: types.ADMIN_CHANGE_EMAIL_SUCCESS,
+        message
+    };
+}
+function changeEmailAdminFailure(error) {
+    return {
+        type: types.ADMIN_CHANGE_EMAIL_FAILURE,
+        message: error
+    };
+}
+
+
 //getParentData
 function beginGetAdmintData() {
     return {
@@ -36,6 +56,44 @@ export function getData() {
       });
   };
 }
+
+//providersForApproval
+function beginprovidersForApproval() {
+    return {
+        type: types.ADMIN_PROVIDERS_FOR_APPROVAL
+    };
+}
+function providersForApprovalSuccess(message) {
+    return {
+        type: types.ADMIN_PROVIDERS_FOR_APPROVAL_SUCCESS,
+        message
+    };
+}
+function providersForApprovalFailure(error) {
+    return {
+        type: types.ADMIN_PROVIDERS_FOR_APPROVAL_FAILURE,
+        message: error
+    };
+}
+export function providersForApproval() {
+  return (dispatch) => {
+    dispatch(beginprovidersForApproval());
+
+    return administratorService().providersForApproval()
+      .then((response) => {
+          console.log(response.data.username);
+          console.log(response.data.profile.email);
+          dispatch(providersForApprovalSuccess(response.data));
+          //browserHistory.push('/');
+      })
+      .catch((err) => {
+        dispatch(providersForApprovalFailure('Oops! Something went wrong when trying to get profile data of logged in parent.'));
+      });
+  };
+}
+
+
+/***************  ACTIONS WITH NOTIFICATIONS ********************/
 
 
 // user triggered function -> isLocked
@@ -227,11 +285,15 @@ export function changeEmail(data){
 };
   console.log(data);
   return (dispatch) => {
+    dispatch(beginChangeEmailAdmint());
+
     return administratorService().changeEmail(data)
       .then((response) => {
+          dispatch( changeEmailAdminSuccess(response.data));
           dispatch( success(notificationSuccess));
       })
       .catch((err) => {
+        dispatch(cangeEmailAdminFailure(err));
         dispatch( error(notificationFailure));
       })
   }

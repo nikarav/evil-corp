@@ -3,7 +3,7 @@ import { Form, Control, Errors, combineForms } from 'react-redux-form';
 import { connect } from 'react-redux';
 import { Button, FormControl } from 'react-bootstrap';
 import { Block, Inline } from 'jsxstyle';
-import { isLocked, toogleLock, approveProvider, rejectProvider, forgot, changeEmail, getData} from '../actions/administrator'
+import { isLocked, toogleLock, approveProvider, rejectProvider, forgot, changeEmail, getData, providersForApproval} from '../actions/administrator'
 
 
 
@@ -12,6 +12,7 @@ class AdminPanel extends React.Component {
 
   componentWillMount(){
     this.props.getData();
+    this.props.providersForApproval();
   }
 
 
@@ -41,8 +42,8 @@ class AdminPanel extends React.Component {
           return(
             <div>
               <div>
-                Username: {this.props.admin.profile.username}
-                email:    {this.props.admin.profile.email}
+                Username: {this.props.administrator.profile.username}
+                email:    {this.props.administrator.profile.email}
               </div>
 
             <Form
@@ -94,7 +95,7 @@ class AdminPanel extends React.Component {
 // Any time it updates, mapStateToProps is called.
 function mapStateToProps(state) {
   return {
-    admin: state.administrator,
+    administrator: state.administrator,
     Forms: state.Forms,
   };
 }
@@ -112,5 +113,6 @@ export default connect(mapStateToProps,
     forgot,
     changeEmail,
     getData,
+    providersForApproval,
   })
     (AdminPanel);
