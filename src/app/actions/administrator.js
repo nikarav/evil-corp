@@ -100,7 +100,6 @@ export function providersForApproval() {
 
     return administratorService().providersForApproval()
       .then((response) => {
-          console.log(response.data);
           dispatch(providersForApprovalSuccess(response.data));
           //browserHistory.push('/');
       })
@@ -215,11 +214,15 @@ export function approveProvider(data){
 };
 
   return (dispatch) => {
+    dispatch(beginApproveRejectAdmin());
     return administratorService().approveProvider(data)
       .then((response) => {
         if (response.data.activated){
+          console.log(data.username);
+          dispatch(approveRejectAdminSuccess(data.username));
           dispatch( success(notificationSuccessActivated));
         } else{
+          dispatch(approveRejectAdminFailure(false));
           dispatch( success(notificationSuccessNotActive));
         }
       })
@@ -247,12 +250,14 @@ export function rejectProvider(data){
 };
 
   return (dispatch) => {
+    dispatch(beginApproveRejectAdmin());
     return administratorService().rejectProvider(data)
       .then((response) => {
-
+        dispatch(approveRejectAdminSuccess(data.username));
           dispatch( success(notificationSuccess));
       })
       .catch((err) => {
+        dispatch(approveRejectAdminFailure(false));
         dispatch( error(notificationFailure));
       })
   }
