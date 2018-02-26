@@ -97,7 +97,7 @@ class ActivityCreate extends React.Component {
                                 model=".max_age"
                                 placeholder="5"
                                 required
-                                max={17}
+                                max={16}
                                 validateOn="blur"
                             />
                     <Errors

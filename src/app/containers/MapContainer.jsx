@@ -18,7 +18,7 @@ class MapContainer extends React.Component {
       console.log("Mphka");
 
               var res = posts.map(post =>
-                ({ lat: post.location[0], lng: post.location[1] }));
+                ({ lat: parseFloat(post.geo_location.split(',')[0]), lng: parseFloat(post.geo_location.split(',')[1]) }));
                 return res;
     }
   render(){
