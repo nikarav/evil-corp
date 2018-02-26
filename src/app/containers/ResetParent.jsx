@@ -9,8 +9,8 @@ import { resetParent } from '../actions/reset';
 class ResetParent extends React.Component {
 
   resetPass(value){
-    console.log(value);
-    this.props.resetParent(value);
+    const url_parts = window.location.href.split('/');
+    this.props.resetParent({password: value.password, token: url_parts[url_parts.length-1]});
   }
 
   render() {
