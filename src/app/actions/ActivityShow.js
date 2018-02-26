@@ -1,6 +1,7 @@
 import * as types from '../types/ActivityTypes';
 import * as typesindex from '../types/index';
 import ActivityService from '../services/ActivityService';
+import Notifications, { success, error } from 'react-notification-system-redux';
 
 function beginGetActivities() {
     return {

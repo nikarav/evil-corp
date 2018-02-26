@@ -1,6 +1,7 @@
 import authService from '../services/authService';
 import * as types from '../types/userTypes';
 import { browserHistory } from 'react-router';
+import Notifications, { success, error } from 'react-notification-system-redux';
 
 // LOGIN-LOGOUT set-unset USERNAME actions
 function logInUserSetUsername(message){

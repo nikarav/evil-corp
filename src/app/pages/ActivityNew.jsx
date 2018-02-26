@@ -4,6 +4,7 @@ import Navigation from '../containers/Navigation';
 import { Block } from 'jsxstyle';
 import ActivityCreate from '../components/ActivityCreate';
 import Users from '../pages/Users';
+import NotificationComponent from '../components/NotificationComponent';
 
 const ActivityNew = () => {
     return (
@@ -13,6 +14,7 @@ const ActivityNew = () => {
                   <Block
                         marginTop={60}>
                     <Navigation />
+                    <NotificationComponent />
                     <ActivityCreate />
                   </Block>
                 );

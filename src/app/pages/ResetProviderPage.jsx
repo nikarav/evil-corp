@@ -4,7 +4,7 @@ import Navigation from '../containers/Navigation';
 import NotificationComponent from '../components/NotificationComponent';
 import  ResetProvider from '../containers/ResetProvider.jsx';
 import { Block, Inline } from 'jsxstyle';
-
+import NotificationComponent from '../components/NotificationComponent';
 
 const ResetProviderPage = () => {
     return (

@@ -7,6 +7,7 @@ import SignUpUserForm from '../containers/SignUpUserForm';
 import SignUpProviderForm from '../containers/SignUpProviderForm';
 import { Block } from 'jsxstyle';
 import {Tabs , Tab} from 'react-bootstrap';
+import NotificationComponent from '../components/NotificationComponent';
 
 
 const Users = () => {
@@ -21,6 +22,7 @@ const Users = () => {
             backgroundColor = "#DCDCDC"
             borderRadius={50}>
             <Navigation />
+            <NotificationComponent />
 
             <Tabs defaultActiveKey={2} id="uncontrolled-tab-example">
             <Tab eventKey={1} title="User"  >

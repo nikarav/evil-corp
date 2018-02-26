@@ -1,5 +1,5 @@
 import contactService from '../services/contactService';
-import Notifications, { success } from 'react-notification-system-redux';
+import Notifications, { success, error } from 'react-notification-system-redux';
 
 export function userSendMessage(data) {
   const notificationSuccess = {

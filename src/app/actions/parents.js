@@ -1,5 +1,6 @@
 import * as types from '../types/parentTypes';
 import parentService from '../services/parentService';
+import Notifications, { success, error } from 'react-notification-system-redux';
 
 //getParentData
 function beginGetParentData() {
