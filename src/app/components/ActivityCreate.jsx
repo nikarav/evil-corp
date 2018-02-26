@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { createActivity } from '../actions/ActivityShow';
 import { Button, FormControl } from 'react-bootstrap';
-import dateChoose from '../components/datepicker';
+//import dateChoose from '../components/datepicker';
 
 
 class ActivityCreate extends React.Component {
