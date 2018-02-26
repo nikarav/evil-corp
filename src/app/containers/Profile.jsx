@@ -9,8 +9,6 @@ import { addCredits, getCredits, changeCredentialsUser,changeProfileUser, getPar
 import { changeCredentialsProvider, changeProfileProvider, getProviderData } from '../actions/providers'
 
 
-
-
 class Profile extends React.Component {
 
   render() {
