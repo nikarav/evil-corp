@@ -7,7 +7,9 @@ import ActivitiesShow from './pages/ActivitiesShow';
 import ActivityNew from './pages/ActivityNew';
 import MapPage from './pages/MapPage';
 import Test from './components/ActivitiesDetails';
-import AdminPage from './pages/AdminPage'
+import AdminPage from './pages/AdminPage';
+import ResetProviderPage from './pages/ResetProviderPage';
+import ResetParentPage from './pages/ResetParentPage';
 
 const routes = [
     {
@@ -63,6 +65,16 @@ const routes = [
     {
       path: '/admin',
       component: AdminPage,
+      exact: true
+    },
+    {
+      path: '/api/parent/reset/:id',
+      component: ResetParentPage,
+      exact: true
+    },
+    {
+      path: '/api/provider/reset/:id',
+      component: ResetProviderPage,
       exact: true
     },
     ];
