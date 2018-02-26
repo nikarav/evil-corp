@@ -11,8 +11,11 @@ export function search(req, res, next) {
   const elasticQuery = {
     bool: {
       must: {
-        query_string: {
-          query: queryText
+        multi_match: {
+          query: queryText,
+          fields: ['name', 'description', 'tags'],
+          fuzziness: 1,
+          prefix_length: 1
         }
       },
       filter: {
@@ -50,11 +53,12 @@ export function search(req, res, next) {
           ]
         }
       }
-    },
+    }
   };
 
   Activity.search(
-    elasticQuery, (err, results) => {
+    elasticQuery,
+    (err, results) => {
     if (err) next(err);
     console.log(results);
     return res.send(results);

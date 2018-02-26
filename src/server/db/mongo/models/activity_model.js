@@ -14,7 +14,8 @@ const ActivitySchema = new mongoose.Schema({
     },
     contentType: {
       type: String, es_indexed: false
-    }
+    },
+     es_indexed: false
   },
   total_tickets: { type: Number, min: 0, required: true },
   available_tickets: { type: Number, min: 0, es_indexed: true },
@@ -46,4 +47,25 @@ ActivitySchema.plugin(mongoosastic, {
   index: 'activities'
 });
 
-export default mongoose.model('Activity', ActivitySchema);
+const ActivityModel = mongoose.model('Activity', ActivitySchema);
+
+ActivityModel.createMapping({
+  analysis: {
+    analyzer: {
+        my_analyzer: {
+            tokenizer: 'standard',
+            filter: ['standard', 'lowercase', 'my_stemmer']
+        }
+    },
+    filter: {
+        my_stemmer: {
+            type: 'stemmer',
+            name: 'greek'
+        }
+    }
+}
+}, (err, mapping) => {
+  if (err) console.log(err);
+});
+
+export default ActivityModel;
