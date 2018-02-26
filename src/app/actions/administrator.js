@@ -349,6 +349,19 @@ export function userData(data){
     return administratorService().userData(data)
       .then((response) => {
           // console.log(response.data);
+
+          // get Document of provider
+          if (response.data.data.role == "Provider") {
+            console.log("providerDocument START");
+            return administratorService().providerDocument(data)
+            .then((response) => {
+              console.log("providerDocument success");
+            })
+            .catch((err) =>{
+              console.log("providerDocument fail");
+            })
+          }
+
           dispatch( getUserDataSuccess(response.data));
       })
       .catch((err) => {
