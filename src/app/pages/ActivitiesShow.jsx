@@ -4,6 +4,7 @@ import Navigation from '../containers/Navigation';
 import { Block } from 'jsxstyle';
 import ActivitiesList from '../components/ActivitiesList';
 import PageHeader from 'react-bootstrap';
+import NotificationComponent from '../components/NotificationComponent';
 
 const ActivitiesShow = () => {
   return (
@@ -19,6 +20,7 @@ const ActivitiesShow = () => {
           textAlign= "center">
 
           <Navigation />
+          <NotificationComponent />
 
 
 

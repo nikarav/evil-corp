@@ -99,6 +99,7 @@ const rootReducer = combineReducers({
     adminPanel: {username: '', email: ''},
     resetParent: {password: ''},
     resetProvider: {password: ''},
+    filterPanel: {text: '', min_age: '', max_age: '', min_price: '', max_price: '', distance: '', lat_lon: '', tags: ''},
     newActivity: initialActivityState,
   }, 'Forms'
   ),

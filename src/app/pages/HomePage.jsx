@@ -7,6 +7,7 @@ import playground1 from '../images/playground1.jpg';
 import playground2 from '../images/playgrounds.jpg';
 import playground3 from '../images/playground3.jpeg';
 import logo from '../images/logo.png';
+import NotificationComponent from '../components/NotificationComponent';
 
 const HomePage = () => {
   return (
@@ -53,6 +54,7 @@ align="center"
 
                           >
           <Navigation />
+          <NotificationComponent />
 
 
           <PageHeader>

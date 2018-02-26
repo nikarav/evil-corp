@@ -27,6 +27,7 @@ marginTop={60}
 >
 
 <Navigation />
+<NotificationComponent />
 
 </Block>
 

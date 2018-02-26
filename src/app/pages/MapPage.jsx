@@ -6,7 +6,7 @@ import MapContainer from '../containers/MapContainer';
 import { Block } from 'jsxstyle';
 import { getActivities } from '../actions/ActivityShow';
 import { connect } from 'react-redux';
-
+import NotificationComponent from '../components/NotificationComponent';
 
 const style = {
   width: '100%',
@@ -25,6 +25,7 @@ const HomePage = () => {
         <Block
           marginTop={100}>
           <Navigation />
+          <NotificationComponent />
           <h1>Mapp tester testingg page</h1>
           <MapContainer/>
 

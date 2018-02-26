@@ -1,5 +1,6 @@
 import * as types from '../types/providerTypes';
 import providerService from '../services/providerService';
+import Notifications, { success, error } from 'react-notification-system-redux';
 
 //getProviderData
 function beginGetProviderData() {
