@@ -79,7 +79,7 @@ export function buyTickettwophasecommit(req, res, next) {
   ticket.ticketNumber = generateTicketNumber(ticket.id);
 
 
-  console.log("des");
+
   if( numberOfTickets <=0 || numberOfTickets >10){
     return res.status(400).send('Number of tickets should be between 1 and 10.');
   }
@@ -102,7 +102,6 @@ export function buyTickettwophasecommit(req, res, next) {
         var creditsUpdated = creditsUpdated + 10;
       }
 
-      console.log("edw");
      const transactions=new Transactions({
          _id: new mongoose.Types.ObjectId(),
          source: profileId,
@@ -112,39 +111,23 @@ export function buyTickettwophasecommit(req, res, next) {
          lastModified: new Date()
        })
       transactions.save();
-     console.log("edw2");
+      ticket.save();
       Transactions.findOne({ state: "initial" } , (findErr, t) => {
-      console.log(t);
-     console.log("edw3");
-       Transactions.update({ _id: t._id, state: "initial" },{$set: { state: "pending" },$currentDate: { lastModified: true }},(findErr,trans) => {
-     console.log(price*numberOfTickets);
-     console.log("edw4");
-      ParentProfile.update({ _id:mongoose.Types.ObjectId(t.source), pendingTransactions: { $ne: t._id } },{ $inc: {numberOfTickets:numberOfTickets }, $set:{ credits: creditsUpdated}, $push: { pendingTransactions: t._id } },(findErr,trans2)=> {
-    console.log(trans2);
-    console.log("edw5");
-      Transactions.update({ _id: t._id, state: "pending" },{$set: { state: "applied" },$currentDate: { lastModified: true }},(findErr,trans5) => {
-    console.log(trans5);
-    console.log("edw51");
-      ParentProfile.update(
-    { _id:mongoose.Types.ObjectId(t.source), pendingTransactions: t._id },  { $pull: { pendingTransactions: t._id } } ,(findErr,trans3) => {
-    console.log(trans3);
-    console.log("edw6");
+      Transactions.update({ _id: t._id, state: "initial" },{$set: { state: "pending" },$currentDate: { lastModified: true }},(findErr,trans) => {
+      ParentProfile.findByIdAndUpdate({ _id:mongoose.Types.ObjectId(t.source), pendingTransactions: { $ne: t._id } },{ $inc: {numberOfTickets:numberOfTickets }, $set:{ credits: creditsUpdated}, $push: { pendingTransactions: t._id, tickets: ticket } },{ new: true},(findErr,trans2)=> {
+      Activity.findByIdAndUpdate({ _id:mongoose.Types.ObjectId(t.destination), pendingTransactions: { $ne: t._id } },{ $inc: { available_tickets: -numberOfTickets }, $push: { pendingTransactions: t._id}}, { new: true}, (findErr, dest)=> {
+      Transactions.update({ _id: t._id, state: "pending" },{$set: { state: "applied" },$currentDate: { lastModified: true }}, {new: true}, (findErr,trans5) => {
+      ParentProfile.findByIdAndUpdate({ _id:mongoose.Types.ObjectId(t.source), pendingTransactions: t._id },  { $pull: { pendingTransactions: t._id } } , {new: true}, (findErr,profile) => {
+      Activity.findByIdAndUpdate({ _id:mongoose.Types.ObjectId(t.destination), pendingTransactions: t._id },  { $pull: { pendingTransactions: t._id } },  {new: true}, (findErr, dest2)=> {
       Transactions.update({ _id: t._id, state: "applied" }, {$set: { state: "done" }, $currentDate: { lastModified: true }},(findErr,trans4) => {
-    console.log(trans4)
-    console.log("edw7");
-//      return data.update({ $inc: { available_tickets: -numberOfTickets } }, (err) => {
-//        if (err) return next(err);
-//        ticket.save((err) => {
-//          if (err) return next(err);
-//          return ParentProfile.findByIdAndUpdate(
-//            profileId, { $push: { tickets: ticket}, $inc: { numberOfTickets: +numberOfTickets}, $set: { credits: creditsUpdated } }, { new: true }, (err, profile) => {
-//              if (err) return next(err);
+
+
               return res.send(profile);
-//            });
-//          });
-//        });
+
               });
             });
+          });
+          });
           });
           });
         });

@@ -8,13 +8,14 @@ const ActivitySchema = new mongoose.Schema({
   date: { type: Date, required: true },
   photo: { data: Buffer, contentType: String },
   total_tickets: { type: Number, min: 0, required: true },
-  available_tickets: { type: Number, min: 0, pendingTransactions: []},
+  available_tickets: { type: Number, min: 0},
   min_age: { type: Number, min: 3, default: 3 },
   max_age: { type: Number, min: 3, max: 16, default: 16 },
   tags: [String],
   price: { type: Number, min: 0, required: true },
   provider: { type: mongoose.Schema.Types.ObjectId, ref: USER_TYPES.Provider, require: true },
-  locked: { type: Boolean, default: false } // true in case provider is locked
+  locked: { type: Boolean, default: false }, // true in case provider is locked
+  pendingTransactions: [{ type: mongoose.Schema.Types.ObjectId, default: [] }]
 }, {
   toJSON: {
   virtuals: true
