@@ -42,7 +42,6 @@ ActivitySchema.virtual('sold_tickets').get(function () {
   return this.total_tickets - this.available_tickets;
 });
 
-// Elastic search -- use at your own risk :P
 ActivitySchema.plugin(mongoosastic, {
   index: 'activities'
 });

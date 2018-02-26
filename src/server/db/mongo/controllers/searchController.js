@@ -1,11 +1,29 @@
 import Activity from '../models/activity_model';
 
+function processResults(results) {
+  const hits = results.hits.total;
+  if (hits === 0) return [];
+  const data = results.hits.hits;
+  return data.map((value) => {
+    return {
+      activityId: value._id,
+      activityURL: `/api/activity/${value._id}`,
+      name: value._source.name,
+      description: value._source.description,
+      min_age: value._source.min_age,
+      max_age: value._source.max_age,
+      price: value._source.price,
+      tags: value._source.tags
+    };
+  });
+}
+
 export function search(req, res, next) {
   const queryText = req.body.text || '*';
   const min_age = req.body.min_age || 0;
   const max_age = req.body.max_age || 20;
   const min_price = req.body.min_price || 0;
-  const max_price = req.body.max_price || 100;
+  const max_price = req.body.max_price || 1000;
   const distance = req.body.distance || 100000;
 
   const elasticQuery = {
@@ -60,8 +78,8 @@ export function search(req, res, next) {
     elasticQuery,
     (err, results) => {
     if (err) next(err);
-    console.log(results);
-    return res.send(results);
+    const searchOutput = processResults(results);
+    return res.send(searchOutput);
   });
 }
 
