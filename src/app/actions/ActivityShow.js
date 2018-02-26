@@ -60,11 +60,26 @@ function resetPostFields() {
 }
 
 
-function resetActivePost() {
+export function resetActiveActivity() {
     return {
         type: types.RESET_ACTIVE_ACTIVITY
     };
 }
+
+function fetchPostSuccess(activePost) {
+  return {
+    type: types.FETCH_ACTIVITY_SUCCESS,
+    payload: activePost
+  };
+}
+
+function fetchPostFailure(error) {
+  return {
+    type: types.FETCH_ACTIVITY_FAILURE,
+    payload: error
+  };
+}
+
 
 export function getActivities() {
     return (dispatch) => {
@@ -92,4 +107,12 @@ export function createActivity(data) {
                 dispatch(createActivityFailure(err));
             });
     };
+}
+
+export function updateCurrentActivity(data){
+    return (dispatch) => {
+      dispatch(fetchPostSuccess(data));
+      return dispatch(fetchPostSuccess(data));
+    };
+
 }

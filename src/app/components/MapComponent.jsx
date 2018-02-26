@@ -36,6 +36,7 @@ class MapComponent extends React.Component {
     const clickedMarkers = markerClusterer.getMarkers()
     console.log(`Current clicked markers length: ${clickedMarkers.length}`)
     console.log(clickedMarkers)
+    console.log(this.props.postsList);
   }
 
   //
@@ -92,6 +93,8 @@ class MapComponent extends React.Component {
         >
           {!this.props.markers?null:
             this.props.markers.map((marker, index) => (
+              console.log(typeof(marker.lat)),
+              console.log(marker.lat),
               <CustomMarker
                 key={index}
                 id={index}

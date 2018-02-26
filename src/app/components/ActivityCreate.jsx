@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { createActivity } from '../actions/ActivityShow';
 import { Button, FormControl } from 'react-bootstrap';
+import dateChoose from '../components/datepicker';
 
 
 class ActivityCreate extends React.Component {
@@ -24,6 +25,7 @@ class ActivityCreate extends React.Component {
                         model="Forms.newActivity"
                         encType="multipart/form-data"
                         onSubmit={(val, event) => this.handleSubmit(val, event)}
+                        className="container h-100"
                     >
                   <div className="field">
                     <label> Όνομα Δραστηριότητας</label>
@@ -37,11 +39,24 @@ class ActivityCreate extends React.Component {
                     <label> Περιγραφή Δραστηριότητας </label>
                     <Control.textarea model=".description" required />
                   </div>
-                  <div className="field">
-                    <label> Ημερομηνία </label>
-                    <Control.text model=".date" />
-                  </div>
-                  <div className="field">
+                  {/* <div className="field"   className="row h-100 justify-content-center align-items-center">
+                    <Control model=".date"
+                      component={dateChoose}
+
+                    /> */}
+                    <div className="field"   className="row h-100 justify-content-center align-items-center">
+                      <Control.text model=".date"
+                      //  component={dateChoose}
+                      //  getValue={(event) => event.target.value}
+                      />
+                    </div>
+                  {/* <div className="field"   className="row h-100 justify-content-center align-items-center">
+                    <Control model=".date"
+                      component={dateChoose}
+                      getValue={(event) => event.target.value}
+                    />
+                  </div> */}
+                  <div className="field" class="container h-100">
                     <label> Φωτο </label>
                     <Control.file model=".photo" />
                   </div>

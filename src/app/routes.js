@@ -6,7 +6,7 @@ import Users from './pages/Users';
 import ActivitiesShow from './pages/ActivitiesShow';
 import ActivityNew from './pages/ActivityNew';
 import MapPage from './pages/MapPage';
-import AdminPage from './pages/AdminPage'
+import Test from './components/ActivitiesDetails';
 
 const routes = [
     {
@@ -21,7 +21,7 @@ const routes = [
     },
     {
       path: '/Reservations',
-      component: HomePage,
+      component: Homepage,
       exact: true
     },
     {
@@ -55,9 +55,9 @@ const routes = [
       exact: true
     },
     {
-      path: '/admin',
-      component: AdminPage,
-      exact: true
-    },
+        path: '/act/:id',
+        component: Test,
+        exact: true
+    }
     ];
 export default routes;

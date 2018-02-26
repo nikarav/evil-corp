@@ -2,6 +2,7 @@ import * as types from '../types/ActivityTypes';
 
 
 const INITIAL_STATE = { postsList: {posts: [], error: null, loading: false},
+                        activePost:{post:null, error:null, loading: false},
 };
 
 export default function (state = INITIAL_STATE, action) {
@@ -17,6 +18,15 @@ export default function (state = INITIAL_STATE, action) {
             return { ...state, postsList: {posts: [], error, loading: false} };
         case types.RESET_ACTIVITIES:// reset postList to initial state
             return { ...state, postsList: {posts: [], error: null, loading: false} };
+
+      case types.FETCH_ACTIVITY_SUCCESS:
+        return { ...state, activePost: {post: action.payload, error:null, loading: false}};
+      case types.FETCH_ACTIVITY_FAILURE:
+        error = action.payload || {message: action.payload.message};//2nd one is network or server down errors
+        return { ...state, activePost: {post: null, error:error, loading:false}};
+      case types.RESET_ACTIVE_ACTIVITY:
+        return { ...state, activePost: {post: null, error:null, loading: false}};
+
         default:
             return state;
     }
