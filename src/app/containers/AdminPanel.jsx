@@ -4,7 +4,7 @@ import { Form, Control, Errors, combineForms } from 'react-redux-form';
 import { connect } from 'react-redux';
 import { Button, FormControl } from 'react-bootstrap';
 import { Block, Inline } from 'jsxstyle';
-import { isLocked, toogleLock, approveProvider, rejectProvider, forgot, changeEmail, getData, providersForApproval} from '../actions/administrator'
+import { isLocked, toogleLock, approveProvider, rejectProvider, forgot, changeEmail, getData, providersForApproval, userData} from '../actions/administrator'
 
 
 
@@ -39,6 +39,10 @@ class AdminPanel extends React.Component {
     this.props.changeEmail({email: this.props.Forms.adminPanel.email});
   }
 
+  handleButton6() {
+    this.props.userData({username: this.props.Forms.adminPanel.username});
+  }
+
   onProviderClick(provider){
     console.log("provider selected");
     console.log(provider.username);
@@ -48,20 +52,52 @@ class AdminPanel extends React.Component {
     return !providers?
     <div><h3> Δεν υπάρχουν πάροχοι για έγκριση </h3></div>
     :
-    providers.map((provider, index) => {
+    <div><h3> Πάροχοι προς έγκριση </h3>
+    {providers.map((provider, index) => {
       return (
           <li key={index}>
-
-            {/* <Link  onClick={(e) => this.onProviderClick(provider)}> */}
               <h2>  {provider.username} </h2>
-              {/* <h2> item </h2> */}
           </li>
           );
           }
         )
+    }
+        </div>
       }
   render() {
 
+    // provider:: get data of a user (Provider or Parent)
+    let get_userData = null;
+
+      if (this.props.administrator.userData.role == "Parent"){
+        get_userData = (
+          <div>
+              <h2> Στοιχεία parent που ζητήθηκαν </h2>
+            name: '', {this.props.administrator.userData.parentData.name}
+             surname: '', {this.props.administrator.userData.parentData.surname}
+             email: '', {this.props.administrator.userData.parentData.email}
+             telephone: '', {this.props.administrator.userData.parentData.telephone}
+             address: '', {this.props.administrator.userData.parentData.address}
+             birthday: '', {this.props.administrator.userData.parentData.birthday}
+             numberOfTickets: '', {this.props.administrator.userData.parentData.numberOfTickets}
+
+          </div>
+        );
+
+
+    } else if (this.props.administrator.userData.role == "Provider"){
+       get_userData = (<div>
+         <h2> Στοιχεία provider που ζητήθηκαν </h2>
+        brand_name: '',  {this.props.administrator.userData.providerData.brand_name}
+        email:    '',   {this.props.administrator.userData.providerData.email}
+        telephone:  '', {this.props.administrator.userData.providerData.telephone}
+        address:  '',   {this.props.administrator.userData.providerData.address}
+        tax_registration: '', {this.props.administrator.userData.providerData.tax_registration}
+        bank_iban: '', {this.props.administrator.userData.providerData.bank_iban}
+      </div>);
+    } else{
+        get_userData = null;
+    }
 
 
           return(
@@ -91,6 +127,7 @@ class AdminPanel extends React.Component {
           <Button bsStyle="danger" onClick={() => this.handleButton3()}> approveProvider </Button>
           <Button bsStyle="danger" onClick={() => this.handleButton4()}> rejectProvider </Button>
           <Button bsStyle="danger" onClick={() => this.handleButton5()}> forgot </Button>
+          <Button bsStyle="danger" onClick={() => this.handleButton6()}> get data of a user </Button>
 
           <Form
             model="Forms.adminPanel"
@@ -112,6 +149,11 @@ class AdminPanel extends React.Component {
         <ul>
           {this.renderProviders(this.props.administrator.profile.providers)}
         </ul>
+
+
+        {get_userData}
+
+        
         </div>
 
           );
@@ -142,5 +184,6 @@ export default connect(mapStateToProps,
     changeEmail,
     getData,
     providersForApproval,
+    userData
   })
     (AdminPanel);

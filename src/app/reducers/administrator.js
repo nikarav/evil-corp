@@ -36,9 +36,48 @@ const profile = (
 }
 }
 
+const userData = (
+  state = {
+    role: '',
+    parentData: {
+      name: '',
+       surname: '',
+       email: '',
+       telephone: '',
+       address: '',
+       birthday: '',
+       numberOfTickets: '',
+    },
+    providerData: {
+      brand_name: '',
+      email:    '',
+      telephone:  '',
+      address:  '',
+      tax_registration: '',
+      bank_iban: '',
+    }
+  },
+  action
+) => {
+  switch (action.type){
+  case types.ADMIN_GET_USER_DATA_SUCCESS:
+    if (action.message.data.role == "Parent"){
+      return {...state, role: action.message.data.role, parentData: action.message.data.profile, providerData: '' }
+    } else if (action.message.data.role == "Provider"){
+      return {...state, role: action.message.data.role, providerData: action.message.data.profile, parentData: '' }
+    } else
+      return state;
+  case types.ADMIN_GET_USER_DATA:
+  case types.ADMIN_GET_USER_DATA_FAILURE:
+    return state;
+  default:
+    return state;
+  }
+}
 
 const administratorReducer = combineReducers({
-  profile
+  profile,
+  userData,
 });
 
 
