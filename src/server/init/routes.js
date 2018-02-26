@@ -14,6 +14,7 @@ const providerController = controllers && controllers.providerController;
 const administratorController = controllers && controllers.administratorController;
 const activityController = controllers && controllers.activityController;
 const ticketController = controllers && controllers.ticketController;
+const searchController = controllers && controllers.searchController;
 
 const upload = multer();
 
@@ -94,5 +95,12 @@ export default (app) => {
     app.get('/api/parent/ticket/:ticketId/pdf/', parentController.authorizeParent, ticketController.generateAndEmailPdf);
   } else {
     console.warn(unsupportedMessage('ticket routes'));
+  }
+
+  // search routes
+  if (searchController) {
+    app.post('/api/search/', searchController.search);
+  } else {
+    console.warn(unsupportedMessage('search routes'));
   }
 };
