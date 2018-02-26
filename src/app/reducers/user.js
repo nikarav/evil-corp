@@ -35,6 +35,7 @@ const isWaiting = (
     case types.SIGNUP_PROVIDER:
     case types.LOGOUT:
       return true;
+    case types.LOGIN_SUCCESS_ADMINISTRATOR:
     case types.LOGIN_SUCCESS_PARENT:
     case types.LOGIN_SUCCESS_PROVIDER:
     case types.SIGNUP_SUCCESS_USER:
@@ -86,10 +87,27 @@ const authenticated_provider = (
   }
 };
 
+const authenticated_administrator = (
+  state = false,
+  action
+) => {
+  switch (action.type) {
+    case types.LOGIN_SUCCESS_ADMINISTRATOR:
+    case types.LOGOUT_ERROR:
+      return true;
+    case types.LOGIN_ERROR:
+    case types.LOGOUT_SUCCESS:
+      return false;
+    default:
+      return state;
+  }
+};
+
 const userReducer = combineReducers({
   isWaiting,
   authenticated_user,
   authenticated_provider,
+  authenticated_administrator,
   message
 });
 
