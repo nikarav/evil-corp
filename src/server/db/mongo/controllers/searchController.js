@@ -18,13 +18,16 @@ function processResults(results) {
   });
 }
 
+// Currently default region is assumed to be 10km from
+// Athens
 export function search(req, res, next) {
   const queryText = req.body.text || '*';
   const min_age = req.body.min_age || 0;
   const max_age = req.body.max_age || 20;
   const min_price = req.body.min_price || 0;
   const max_price = req.body.max_price || 1000;
-  const distance = req.body.distance || 100000;
+  const distance = req.body.distance || 10;
+  const lat_lon = req.body.lat_lon || '37.983,23.733';
 
   const elasticQuery = {
     bool: {
@@ -62,10 +65,9 @@ export function search(req, res, next) {
               }
             },
             {
-              range: {
-                available_tickets: {
-                  gt: 0,
-                },
+              geo_distance: {
+                distance: `${distance}km`,
+                geo_location: lat_lon
               }
             }
           ]
@@ -77,9 +79,10 @@ export function search(req, res, next) {
   Activity.search(
     elasticQuery,
     (err, results) => {
-    if (err) next(err);
-    const searchOutput = processResults(results);
-    return res.send(searchOutput);
+      console.log(results);
+      if (err) return next(err);
+      const searchOutput = processResults(results);
+      return res.send(searchOutput);
   });
 }
 

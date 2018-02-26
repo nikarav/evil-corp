@@ -18,7 +18,7 @@ const ActivitySchema = new mongoose.Schema({
      es_indexed: false
   },
   total_tickets: { type: Number, min: 0, required: true },
-  available_tickets: { type: Number, min: 0, es_indexed: false },
+  available_tickets: { type: Number, min: 0 },
   min_age: { type: Number, min: 3, default: 3, es_indexed: true },
   max_age: { type: Number, min: 3, max: 16, default: 16, es_indexed: true },
   tags: { type: [String], es_indexed: true, es_analyzer: 'greek' },
