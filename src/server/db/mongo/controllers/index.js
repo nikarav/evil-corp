@@ -3,7 +3,8 @@ import parentController from './parentController';
 import providerController from './providerController';
 import activityController from './activityController';
 import ticketController from './ticketController';
-import administratorController from './administratorController'
+import administratorController from './administratorController';
+import searchController from './searchController';
 
 export {
   userController,
@@ -11,7 +12,8 @@ export {
   providerController,
   activityController,
   ticketController,
-  administratorController
+  administratorController,
+  searchController
 };
 
 export default {
@@ -20,5 +22,6 @@ export default {
   providerController,
   activityController,
   ticketController,
-  administratorController
+  administratorController,
+  searchController
 };
