@@ -69,7 +69,7 @@ export default (app) => {
     app.post('/api/administrator/forgot', administratorController.authorizeAdministrator, administratorController.forgotPassword);
     app.post('/api/administrator/userData', administratorController.authorizeAdministrator, administratorController.userData);
     app.get('/api/administrator/providersForApproval', administratorController.authorizeAdministrator, administratorController.providersForApproval);
-    app.post('/api/administrator/providerDocument', administratorController.authorizeAdministrator, administratorController.authorizeAdministrator, administratorController.fetchProviderDocument);
+    app.post('/api/administrator/providerDocument', administratorController.authorizeAdministrator, administratorController.fetchProviderDocument);
   } else {
     console.warn(unsupportedMessage('administrator routes'));
   }
