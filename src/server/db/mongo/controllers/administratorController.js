@@ -324,13 +324,21 @@ export function forgotPassword(req, res, next){
       if(parent) {
         ParentProfile.findById(profileId, (err, profile) => {
           if (err) return next(err);
-          return res.send({ profile });
+          const data = {
+            role: role,
+            profile: profile
+          };
+          return res.send({ data });
         });
      }
      else if (provider) {
        ProviderProfile.findById(profileId, (err, profile) => {
          if (err) return next(err);
-         return res.send({ profile });
+         const data = {
+            role: role,
+            profile: profile
+          };
+          return res.send({ data });
        });
      }
      else{
@@ -387,4 +395,3 @@ export default {
   providersForApproval,
   fetchProviderDocument
 };
-

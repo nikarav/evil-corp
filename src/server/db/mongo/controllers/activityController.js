@@ -23,7 +23,7 @@ export function postActivity(req, res, next) {
     if (err) next(err);
     const activity = new Activity({
       name: req.body[formName + '.name'],
-      location: req.body[formName + '.location'].split(',').map(x => parseFloat(x)),
+      geo_location: req.body[formName + '.location'],
       description: req.body[formName + '.description'],
       date: req.body[formName + '.date'],
       photo: {
@@ -34,7 +34,7 @@ export function postActivity(req, res, next) {
       available_tickets: req.body[formName + '.total_tickets'],
       min_age: req.body[formName + '.min_age'],
       max_age: req.body[formName + '.max_age'],
-      tags: req.body['user.tags'],
+      tags: req.body['user.tags'].split(',').map(x => x.trim()),
       price: req.body[formName + '.price'],
       provider: profileId
     });

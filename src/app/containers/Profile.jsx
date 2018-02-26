@@ -1,14 +1,12 @@
 import React from 'react';
 import { Form, Control, Errors, combineForms } from 'react-redux-form';
 import { connect } from 'react-redux';
-import { Button, FormControl } from 'react-bootstrap';
+import { Button, FormControl , Alert} from 'react-bootstrap';
 import { Block, Inline } from 'jsxstyle';
 import ParentProfile from 'components/ParentProfile';
 import ProviderProfile from 'components/ProviderProfile';
 import { addCredits, getCredits, changeCredentialsUser,changeProfileUser, getParentData } from '../actions/parents'
 import { changeCredentialsProvider, changeProfileProvider, getProviderData } from '../actions/providers'
-
-
 
 
 class Profile extends React.Component {
@@ -31,7 +29,7 @@ class Profile extends React.Component {
 
           return (
             <div>
-              <h1> ProviderProfile </h1>
+
               <ProviderProfile
                 changeCredentials={this.props.changeCredentialsProvider}
                 changeProfile={this.props.changeProfileProvider}
@@ -43,9 +41,10 @@ class Profile extends React.Component {
         }
         else {
           return(
-            <Block>
-              You are not logged in as a parent or provider. Please log in or sign  up.
-            </Block>
+            <Alert bsStyle="warning">
+  <strong>Δεν είστε Συνδεδεμένος ως Χρήστης ή ως Πάροχος!</strong> Παρακαλούμε συνδεθείτε, η κάνετε Εγγραφή!
+
+</Alert>
           );
       }
   }

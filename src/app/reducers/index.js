@@ -97,6 +97,8 @@ const rootReducer = combineReducers({
     providerChangeCredentials: {username: '', password: ''},
     contact: {email: '', subject: '', message: ''},
     adminPanel: {username: '', email: ''},
+    resetParent: {password: ''},
+    resetProvider: {password: ''},
     newActivity: initialActivityState,
   }, 'Forms'
   ),

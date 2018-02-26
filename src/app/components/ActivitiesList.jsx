@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Navbar, Nav, NavItem, Button, FormGroup, FormControl } from 'react-bootstrap';
+import { Navbar, Nav, NavItem, Button, FormGroup, FormControl , Media} from 'react-bootstrap';
 import { getActivities, updateCurrentActivity } from '../actions/ActivityShow';
 
 class ActivitiesList extends React.Component {
@@ -33,18 +33,59 @@ class ActivitiesList extends React.Component {
             posts.map((post) => {
 
               return (
-                <li className="list-group-item" key={post._id}>
-                  <img src={post.photo}  height={100} width={100}/>
-                  <h3 >{post.name}</h3>
-                  <h3 >{post.description}</h3>
-                  <h4>{post.price} </h4>
-                  <h5> Ηλικία από {post.min_age} έως {post.max_age}</h5>
-                    <Link id={post._id} style={{color:'black'}} to={"act/" + post._id}
-                    onClick={(e) => this.handleClick(post)}>
-                    <h2> Περισσότερα </h2>
-                  </Link>
-                </li>
+                <div>
+<Media>
+<Media.Left align="top">
+  <img width={200} height={200} src={post.photo} alt="thumbnail" />
+</Media.Left>
+<Media.Body>
+  <Media.Heading>{post.name}</Media.Heading>
+  <p>
+        {post.description}
+      </p>
+
+  <p>  Τιμή: {post.price} </p>
+  <p>  Ημερομηνία: {post.date} </p>
+
+  <p>  Ηλικία από {post.min_age} έως {post.max_age} </p>
+
+
+
+  <Link id={post._id} style={{backgroundcolor: 'powderblue'}, {textDecoration: 'underline'}} to={"act/" + post._id}
+      onClick={(e) => this.handleClick(post)}>
+     <h2> Περισσότερα </h2>
+    </Link>
+
+
+</Media.Body>
+</Media>
+</div>
+
+
+
+
+
+                // <li className="list-group-item    " key={post._id}
+                //     style={{backgroundColor: 'powderblue'}, {textDecoration: 'underline'} ,{textAlign : "center"}   }    >
+                //   <img src={post.photo}  height={100} width={100}/>
+                //   <h3 >{post.name}</h3>
+                //   <h3 >{post.description}</h3>
+                //   <h4>{post.price} </h4>
+                //   <h5> Ηλικία από {post.min_age} έως {post.max_age}</h5>
+                //     <Link id={post._id} style={{color:'black'}} to={"act/" + post._id}
+                //     onClick={(e) => this.handleClick(post)}>
+                //     <h2> Περισσότερα </h2>
+                //   </Link>
+                // </li>
+
+
+
+
+
               );
+
+
+
             });
   }
 
@@ -61,7 +102,7 @@ class ActivitiesList extends React.Component {
     return (
       <div className="container">
         <h1>Activities</h1>
-        <Link  style={{color:'black'}} to="/map"
+        <Link  style={{color:'black'} , {textDecoration: 'underline'}   } to="/map"
       //  onClick={(e) => this.handleClickMap(posts)}
       >
         <h2> Χάρτης Αποτελεσμάτων </h2>

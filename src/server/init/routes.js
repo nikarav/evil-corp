@@ -14,6 +14,7 @@ const providerController = controllers && controllers.providerController;
 const administratorController = controllers && controllers.administratorController;
 const activityController = controllers && controllers.activityController;
 const ticketController = controllers && controllers.ticketController;
+const searchController = controllers && controllers.searchController;
 
 const upload = multer();
 
@@ -60,14 +61,14 @@ export default (app) => {
   if (administratorController) {
     app.post('/api/administrators', administratorController.administratorSignup);  // only for backend
     app.get('/api/administrator', administratorController.authorizeAdministrator, administratorController.administratorData);
-    app.post('/api/administrator/lockUnlockUser', administratorController.lockUnlockUser);
-    app.post('/api/administrator/checkIfLocked', administratorController.checkIfLocked);
-    app.post('/api/administrator/changeEmail', administratorController.authorizeAdministrator, administratorController.changeEmail);
-    app.post('/api/administrator/approveProvider', administratorController.approveProvider);
-    app.post('/api/administrator/rejectProvider', administratorController.rejectProvider);
-    app.post('/api/administrator/forgot', administratorController.forgotPassword);
-    app.post('/api/administrator/userData', administratorController.userData);
-    app.get('/api/administrator/providersForApproval', administratorController.providersForApproval);
+    app.post('/api/administrator/lockUnlockUser', administratorController.authorizeAdministrator, administratorController.lockUnlockUser);
+    app.post('/api/administrator/checkIfLocked', administratorController.authorizeAdministrator, administratorController.checkIfLocked);
+    app.post('/api/administrator/changeEmail', administratorController.authorizeAdministrator, administratorController.authorizeAdministrator, administratorController.changeEmail);
+    app.post('/api/administrator/approveProvider', administratorController.authorizeAdministrator, administratorController.approveProvider);
+    app.post('/api/administrator/rejectProvider', administratorController.authorizeAdministrator, administratorController.rejectProvider);
+    app.post('/api/administrator/forgot', administratorController.authorizeAdministrator, administratorController.forgotPassword);
+    app.post('/api/administrator/userData', administratorController.authorizeAdministrator, administratorController.userData);
+    app.get('/api/administrator/providersForApproval', administratorController.authorizeAdministrator, administratorController.providersForApproval);
     app.post('/api/administrator/providerDocument', administratorController.authorizeAdministrator, administratorController.fetchProviderDocument);
   } else {
     console.warn(unsupportedMessage('administrator routes'));
@@ -94,5 +95,12 @@ export default (app) => {
     app.get('/api/parent/ticket/:ticketId/pdf/', parentController.authorizeParent, ticketController.generateAndEmailPdf);
   } else {
     console.warn(unsupportedMessage('ticket routes'));
+  }
+
+  // search routes
+  if (searchController) {
+    app.post('/api/search/', searchController.search);
+  } else {
+    console.warn(unsupportedMessage('search routes'));
   }
 };

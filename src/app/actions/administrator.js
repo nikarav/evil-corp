@@ -320,3 +320,39 @@ export function changeEmail(data){
       })
   }
 }
+
+//getParentData
+function beginGetUserData() {
+    return {
+        type: types.ADMIN_GET_USER_DATA
+    };
+}
+function getUserDataSuccess(message) {
+    return {
+        type: types.ADMIN_GET_USER_DATA_SUCCESS,
+        message
+    };
+}
+function getUserDataFailure(error) {
+    return {
+        type: types.ADMIN_GET_USER_DATA_FAILURE,
+        message: error
+    };
+}
+
+export function userData(data){
+  console.log(data);
+
+  return (dispatch) => {
+    dispatch(beginGetUserData());
+
+    return administratorService().userData(data)
+      .then((response) => {
+          // console.log(response.data);
+          dispatch( getUserDataSuccess(response.data));
+      })
+      .catch((err) => {
+        dispatch(getUserDataFailure(err));
+      })
+  }
+}

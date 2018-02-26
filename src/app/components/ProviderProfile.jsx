@@ -26,17 +26,42 @@ class ProviderProfile extends React.Component {
   render() {
         return (
           <Block>
-            <Block>
-              <h3> Στοιχεία Provider </h3>
-              address: {this.props.profile.address}
-              bank_iban: {this.props.profile.bank_iban}
-              brand_name: {this.props.profile.brand_name}
-              email       {this.props.profile.email}
-              tax_registration:   {this.props.profile.tax_registration}
-              telephone:          {this.props.profile.telephone}
+
+
+            <Block
+            textDecoration= "underline  "
+            color="#20B2AA"
+
+            >
+              <h3> Στοιχεία Παρόχου </h3>
+
+          </Block>
+
+              <Block>
+              <h4>Διέυθυνση: {this.props.profile.address}</h4>
+            <h4>  Τραπεζικό iban: {this.props.profile.bank_iban}</h4>
+            <h4>  Όνομα Εταιρείας: {this.props.profile.brand_name}</h4>
+            <h4>  Email:{this.props.profile.email}</h4>
+              <h4>Φορολογική Εγγραφή : {this.props.profile.tax_registration}</h4>
+            <h4>  Τηλέφωνο:          {this.props.profile.telephone}</h4>
 
             </Block>
-           <Block>
+
+
+
+           <Block
+
+           marginRight={900}
+           textDecoration= "underline  "
+           fontStyle="italic"
+           color="#F4A460"
+
+
+
+           >
+
+
+
               <h1> Αλλαγή στοιχείων προφιλ Provider</h1>
               <Form
                 model="Forms.providerChangeProfile"
@@ -72,13 +97,13 @@ class ProviderProfile extends React.Component {
                 </div>
 
                 <div className="field">
-                  <label> address </label>
+                  <label> Διέυθυνση </label>
                   <Control.text
                     model=".address"
                     component={FormControl}
                   />
 
-                    <label> telephone </label>
+                    <label> Τηλέφωνο </label>
                     <Control.text
                       model=".telephone"
                       component={FormControl}
@@ -87,9 +112,9 @@ class ProviderProfile extends React.Component {
                 </div>
 
                 <div className="field">
-                  <label> tax registration </label>
-                  <Control
-                    type="number"
+                  <label> Φορολογική Εγγραφή </label>
+                  <Control.text
+                    // type="number"
                     model=".tax_registration"
                     placeholder="99"
                     required
@@ -97,9 +122,9 @@ class ProviderProfile extends React.Component {
                     validateOn="blur"
                     component={FormControl}
                   />
-                  <label> IBAN bank </label>
-                  <Control
-                    type="number"
+                  <label> Τραπεζικό IBAN</label>
+                  <Control.text
+                    // type="number"
                     model=".bank_iban"
                     placeholder="99"
                     required
@@ -108,21 +133,44 @@ class ProviderProfile extends React.Component {
                     component={FormControl}
                   />
                 </div>
-                <Button type="submit">Αλλαγή στοιχείων προφιλ!</Button>
+                <Button type="submit" bsStyle="primary">Αλλαγή Στοιχείων Προφιλ</Button>
 
 
               </Form>
           </Block>
 
 
-<Block>
-          <h1> Αλλαγή στοιχείων Credential Provider </h1>
+
+
+
+          <Block
+          marginRight={100}
+          textDecoration= "underline  "
+          fontStyle="italic"
+
+          color="#B22222"
+
+
+          >
+              <h1> Αλλαγή στοιχείων Credential Provider </h1>
+          </Block>
+
+<Block
+marginRight={900}
+textDecoration= "underline  "
+fontStyle="italic"
+
+color="#B22222"
+
+
+>
+
           <Form
             model="Forms.providerChangeCredentials"
             onSubmit={(val) => this.handleCredentialsSubmit(val)}
           >
           <div className="field">
-              <label>Username</label>
+              <label>Όνομα Χρήστη</label>
               <Control.text
                 model=".username"
                 placeholder="username"
@@ -141,13 +189,13 @@ class ProviderProfile extends React.Component {
                 }}
               />
 
-              <label> Password </label>
+              <label> Κωδικός Πρόσβασης </label>
               <Control.text
                 model=".password"
                 component={FormControl}
                />
 
-               <Button type="submit">Αλλαγή Credentials!</Button>
+               <Button type="submit"bsStyle="primary">Αλλαγή Διαπιστευτηρίων Χρήστη</Button>
 
           </div>
         </Form>
