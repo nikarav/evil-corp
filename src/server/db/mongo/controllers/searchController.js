@@ -13,7 +13,7 @@ export function search(req, res, next) {
       must: {
         multi_match: {
           query: queryText,
-          fields: ['name', 'description', 'tags'],
+          analyzer: 'greek',
           fuzziness: 1,
           prefix_length: 1
         }
