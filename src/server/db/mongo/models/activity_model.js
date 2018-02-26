@@ -5,7 +5,7 @@ import { USER_TYPES } from '../../../../config/userTypes';
 
 const ActivitySchema = new mongoose.Schema({
   name: { type: String, required: true, es_indexed: true, es_analyzer: 'greek' },
-  location: { type: [Number], index: { type: '2dsphere', sparse: true }, required: true, es_indexed: true },
+  geo_location: { type: String, required: true, es_type: 'geo_point', es_indexed: true },
   description: { type: String, required: true, es_indexed: true, es_analyzer: 'greek' },
   date: { type: Date, required: true },
   photo: {
@@ -18,7 +18,7 @@ const ActivitySchema = new mongoose.Schema({
      es_indexed: false
   },
   total_tickets: { type: Number, min: 0, required: true },
-  available_tickets: { type: Number, min: 0, es_indexed: true },
+  available_tickets: { type: Number, min: 0, es_indexed: false },
   min_age: { type: Number, min: 3, default: 3, es_indexed: true },
   max_age: { type: Number, min: 3, max: 16, default: 16, es_indexed: true },
   tags: { type: [String], es_indexed: true, es_analyzer: 'greek' },

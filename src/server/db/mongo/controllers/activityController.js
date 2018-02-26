@@ -23,7 +23,7 @@ export function postActivity(req, res, next) {
     if (err) next(err);
     const activity = new Activity({
       name: req.body[formName + '.name'],
-      location: req.body[formName + '.location'].split(',').map(x => parseFloat(x)),
+      geo_location: req.body[formName + '.location'],
       description: req.body[formName + '.description'],
       date: req.body[formName + '.date'],
       photo: {
