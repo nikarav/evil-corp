@@ -7,7 +7,7 @@ import ActivitiesShow from './pages/ActivitiesShow';
 import ActivityNew from './pages/ActivityNew';
 import MapPage from './pages/MapPage';
 import Test from './components/ActivitiesDetails';
-import AdminPage from './pages/AdminPage'
+import AdminPage from './pages/AdminPage';
 
 const routes = [
     {

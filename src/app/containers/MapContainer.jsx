@@ -13,31 +13,17 @@ const style = {
 class MapContainer extends React.Component {
   componentWillMount() {
       this.props.getActivities();
-      //console.log(this.props);
     }
     createMarkers(posts){
       console.log("Mphka");
-      // return !posts?  null
-      //         :
+
               var res = posts.map(post =>
                 ({ lat: post.location[0], lng: post.location[1] }));
                 return res;
-              // posts.map((post) => {
-              //   mark.push({
-              //     lat: post.location[0],
-              //     lng: post.location[1]
-              //   });
-              // });
-              // mark.map((ma) =>{
-              //   console.log(mark.lat);
-              // });
-              //
-              // return mark;
     }
   render(){
     const { posts, loading, error } = this.props.postsList;
-    //console.log(this.props.postsList);
-    //console.log(typeof(posts[0].location[0]));
+
 
     return(
       <MapComponent
@@ -47,6 +33,7 @@ containerElement={<div style={{ height: `400px` }} />}
 mapElement={<div style={{ height: `100%` }} />}
 //markers={[{lat: 37.76, lng: 23.78}, {lat: 37.86, lng: 23.88}, {lat: 38.013, lng: 23.8218}, {lat: 37.9429, lng: 23.64698}, {lat: 38.01175, lng: 23.85483} ]}
  markers={this.createMarkers(posts)}
+ activityList={posts}
 //markers={null}
 />
 

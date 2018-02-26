@@ -1,19 +1,15 @@
 import React from 'react';
 import { Block } from 'jsxstyle';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { withScriptjs,withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps"
-
+import { updateCurrentActivity } from '../actions/ActivityShow';
 import { compose, withProps,withHandlers, withStateHandlers } from  "recompose"
 const { MarkerWithLabel } = require("react-google-maps/lib/components/addons/MarkerWithLabel");
 
-
-const FaAnchor = require("react-icons/lib/fa/anchor");
-
+//const FaAnchor = require("react-icons/lib/fa/anchor");
 
 const { MarkerClusterer } = require("react-google-maps/lib/components/addons/MarkerClusterer");
-
-
-
-
 
 class MapComponent extends React.Component {
 
@@ -31,6 +27,13 @@ class MapComponent extends React.Component {
     this.onMarkerClustererClick = this.onMarkerClustererClick.bind(this);
   }
 
+  handleClick(post){
+    console.log("handleClick");
+    console.log(post._id);
+    console.log(post.photo);
+  //  console.log(e);
+     this.props.updateCurrentActivity(post);
+  }
 
   onMarkerClustererClick (markerClusterer) {
     const clickedMarkers = markerClusterer.getMarkers()
@@ -103,7 +106,11 @@ class MapComponent extends React.Component {
               >
               {this.state.showingInfoWindow && this.state.activeMarker == index &&
               <InfoWindow>
-                  <FaAnchor />
+                <Link id={this.props.activityList[index]._id} style={{color:'black'}}
+                  to={"act/" + this.props.activityList[index]._id}
+                onClick={(e) => this.handleClick(this.props.activityList[index])}>
+                <h6> {this.props.activityList[index].name} </h6>
+              </Link>
               </InfoWindow>}
               }
               </CustomMarker>
@@ -119,4 +126,5 @@ class MapComponent extends React.Component {
 }
 
 
-export default withScriptjs(withGoogleMap(MapComponent));
+//export default withScriptjs(withGoogleMap(MapComponent));
+export default connect (null, {updateCurrentActivity})(withScriptjs(withGoogleMap(MapComponent)));
