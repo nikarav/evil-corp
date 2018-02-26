@@ -6,7 +6,7 @@ import { compose, withProps,withHandlers, withStateHandlers } from  "recompose"
 const { MarkerWithLabel } = require("react-google-maps/lib/components/addons/MarkerWithLabel");
 
 
-const FaAnchor = require("react-icons/lib/fa/anchor");
+// const FaAnchor = require("react-icons/lib/fa/anchor");
 
 
 const { MarkerClusterer } = require("react-google-maps/lib/components/addons/MarkerClusterer");
@@ -24,6 +24,8 @@ class MapComponent extends React.Component {
       showingInfoWindow: false,
       activeMarker: null,
     }
+
+
 
     // binding this to event-handler functions
     this.onMarkerClick = this.onMarkerClick.bind(this);
@@ -103,7 +105,10 @@ class MapComponent extends React.Component {
               >
               {this.state.showingInfoWindow && this.state.activeMarker == index &&
               <InfoWindow>
-                  <FaAnchor />
+                  {/* <FaAnchor /> */}
+                  
+                    <h1> Hello </h1>
+
               </InfoWindow>}
               }
               </CustomMarker>
