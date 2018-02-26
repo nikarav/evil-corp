@@ -61,5 +61,12 @@ export default () => {
       method: 'GET',
       url: '/api/administrator/providersForApproval',
     }),
+    providerDocument: ({username} ) => client.request({
+      method: 'POST',
+      url: '/api/administrator/providerDocument',
+      data: {
+        username,
+      }
+    }),
   };
 };
