@@ -1,6 +1,6 @@
 import Activity from '../models/activity_model';
 
-function processResults(results) {
+function processResults(results, tags) {
   const hits = results.hits.total;
   if (hits === 0) return [];
   const data = results.hits.hits;
@@ -20,7 +20,11 @@ function processResults(results) {
       locked: value.locked
     };
   }).filter((value) => {
-    return value.is_active && (!value.locked) && (value.available_tickets > 0);
+    const valid = value.is_active && (!value.locked) && (value.available_tickets > 0);
+    if (!tags) return valid;
+    const searchTags = new Set(tags);
+    const common = (value.tags.filter(x => searchTags.has(x))).length > 0;
+    return valid && common;
   });
 }
 
@@ -34,6 +38,10 @@ export function search(req, res, next) {
   const max_price = req.body.max_price || 1000;
   const distance = req.body.distance || 10;
   const lat_lon = req.body.lat_lon || '37.983,23.733';
+  let tags = null;
+  if (req.body.tags) {
+    tags = req.body.tags.split(',').map(x => x.trim());
+  }
 
   const elasticQuery = {
     bool: {
@@ -87,7 +95,7 @@ export function search(req, res, next) {
     { hydrate: true },
     (err, results) => {
       if (err) return next(err);
-      const searchOutput = processResults(results);
+      const searchOutput = processResults(results, tags);
       return res.send(searchOutput);
   });
 }

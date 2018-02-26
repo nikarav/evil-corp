@@ -34,7 +34,7 @@ export function postActivity(req, res, next) {
       available_tickets: req.body[formName + '.total_tickets'],
       min_age: req.body[formName + '.min_age'],
       max_age: req.body[formName + '.max_age'],
-      tags: req.body['user.tags'],
+      tags: req.body['user.tags'].split(',').map(x => x.trim()),
       price: req.body[formName + '.price'],
       provider: profileId
     });
