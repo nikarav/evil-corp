@@ -28,7 +28,7 @@ class ContactForm extends React.Component {
       }
         else {
           email_info = (  <div>
-                        <label> email </label>
+                        <label> Email </label>
                         <Control.text
                           model=".email"
                           placeholder="username"
@@ -46,7 +46,7 @@ class ContactForm extends React.Component {
             >
               {email_info}
             <div className="field">
-                <label> subject </label>
+                <label> Θέμα </label>
                 <Control.text
                   model=".subject"
                   placeholder="username"
@@ -55,13 +55,13 @@ class ContactForm extends React.Component {
                   component={FormControl}
                 />
 
-                <label> Message </label>
+                <label> Μήνυμα </label>
                 <Control.text
                   model=".message"
                   component={FormControl}
                  />
 
-                 <Button type="submit">Υποβολή φόρμας!</Button>
+                 <Button type="submit" bsStyle="primary">Υποβολή φόρμας!</Button>
 
             </div>
           </Form>

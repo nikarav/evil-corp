@@ -19,7 +19,7 @@ class SignUpUserForm extends React.Component {
   render() {
     return (
       <div>
-        <h1> Εγγραφή ως χρήστης </h1>
+        <h1> Εγγραφή ως Χρήστης </h1>
 
 
 
@@ -134,12 +134,12 @@ class SignUpUserForm extends React.Component {
           </div>
 
           <Button type="submit"
-          bsStyle="primary">Εγγραφή</Button>
+          bsStyle="success">Εγγραφή</Button>
 
 
         </Form>
       </div>
-    );
+    )
   }
 }
 

@@ -15,15 +15,15 @@ const Users = () => {
         return (
           <Block
             marginTop={60}
-            marginLeft={350}
-            marginRight={350}
-            color="#C71585"
-            backgroundColor = "#00BFFF"
+            marginLeft={500}
+            marginRight={500}
+            color="#0084b4"
+            backgroundColor = "#DCDCDC"
             borderRadius={50}>
             <Navigation />
 
             <Tabs defaultActiveKey={2} id="uncontrolled-tab-example">
-            <Tab eventKey={1} title="User">
+            <Tab eventKey={1} title="User"  >
               <SignUpUserForm />
              </Tab>
 
@@ -31,12 +31,12 @@ const Users = () => {
             <SignUpProviderForm />
             </Tab>
 
-            </Tabs>;
+            </Tabs>
           </Block>
-          );  }
+          )  }
     }
     />
-    );
-};
+    )
+}
 
 export default Users;

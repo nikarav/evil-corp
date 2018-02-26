@@ -87,7 +87,7 @@ class SignUpProviderForm extends React.Component {
 
         <Button type="submit"
 
-        bsStyle="primary">
+        bsStyle="success">
           Εγγραφή
         </Button>
       </Form>
