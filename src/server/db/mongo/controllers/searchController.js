@@ -8,13 +8,19 @@ function processResults(results) {
     return {
       activityId: value._id,
       activityURL: `/api/activity/${value._id}`,
-      name: value._source.name,
-      description: value._source.description,
-      min_age: value._source.min_age,
-      max_age: value._source.max_age,
-      price: value._source.price,
-      tags: value._source.tags
+      name: value.name,
+      description: value.description,
+      lat_lon: value.geo_location,
+      min_age: value.min_age,
+      max_age: value.max_age,
+      price: value.price,
+      tags: value.tags,
+      available_tickets: value.available_tickets,
+      is_active: value.is_active,
+      locked: value.locked
     };
+  }).filter((value) => {
+    return value.is_active && (!value.locked) && (value.available_tickets > 0);
   });
 }
 
@@ -78,8 +84,8 @@ export function search(req, res, next) {
 
   Activity.search(
     elasticQuery,
+    { hydrate: true },
     (err, results) => {
-      console.log(results);
       if (err) return next(err);
       const searchOutput = processResults(results);
       return res.send(searchOutput);
