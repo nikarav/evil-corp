@@ -16,7 +16,7 @@ class Navigation extends React.Component {
 
   render() {
     let sign_up_button, forgot_button = null;
-    if (!this.props.user.authenticated_user && !this.props.user.authenticated_provider) {
+    if (!this.props.user.authenticated_user && !this.props.user.authenticated_provider && !this.props.user.authenticated_administrator) {
       sign_up_button = (<Nav pullRight>
         <LinkContainer to="/register">
           <NavItem eventKey={1}> Εγγραφή </NavItem>
@@ -44,7 +44,13 @@ class Navigation extends React.Component {
           sign_in_info = (<Navbar.Text pullRight>
                           Συνδεδεμένος ως: <Navbar.Link href="#">{this.props.provider.username}</Navbar.Link>
           </Navbar.Text>);
-    } else {
+
+    } else if (this.props.user.authenticated_administrator) {
+          sign_in_info = (<Navbar.Text pullRight>
+                          Συνδεδεμένος ως: <Navbar.Link href="#">{this.props.admin.profile.username}</Navbar.Link>
+          </Navbar.Text>);
+        }
+    else {
         sign_in_info = null;
     }
 
@@ -101,6 +107,15 @@ class Navigation extends React.Component {
             </Nav>
 
         }
+
+        {this.props.user.authenticated_administrator &&
+        <Nav pullRight>
+          <LinkContainer to="/admin">
+            <NavItem eventKey={2}> Πάνελ ελέγχου </NavItem>
+          </LinkContainer>
+        </Nav>
+
+    }
           </Navbar.Collapse>
         </Navbar>
 
@@ -118,6 +133,7 @@ function mapStateToProps(state) {
     Forms: state.Forms,
     provider: state.provider,
     parent: state.parent,
+    admin: state.administrator,
   };
 }
 

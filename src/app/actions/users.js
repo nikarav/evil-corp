@@ -5,19 +5,26 @@ import { browserHistory } from 'react-router';
 // LOGIN-LOGOUT set-unset USERNAME actions
 function logInUserSetUsername(message){
   return {
-    type: types.LOGIN_SUCCES_USER_USERNAME,
+    type: types.LOGIN_SUCCESS_USER_USERNAME,
     message
   }
 }
 function logInProviderSetUsername(message){
   return {
-    type: types.LOGIN_SUCCES_PROVIDER_USERNAME,
+    type: types.LOGIN_SUCCESS_PROVIDER_USERNAME,
     message
   }
 }
 function logoutUnSetUsername(){
   return {
     type: types.LOGOUT_SUCCESS_UNSET_USERNAME,
+  }
+}
+
+function logInAdministratorSetUsername(message){
+  return {
+    type: types.LOGIN_SUCCESS_ADMINISTRATOR_USERNAME,
+    message
   }
 }
 
@@ -37,6 +44,13 @@ function loginSuccessUser(message) {
 function loginSuccessProvider(message) {
   return {
     type: types.LOGIN_SUCCESS_PROVIDER,
+    message
+  };
+}
+
+function loginSuccessAdministrator(message) {
+  return {
+    type: types.LOGIN_SUCCESS_ADMINISTRATOR,
     message
   };
 }
@@ -170,7 +184,12 @@ export function manualLogin(data) {
               dispatch(loginSuccessProvider('You have been successfully logged in as a parent'));
               dispatch(logInProviderSetUsername(response.data.username));
             }
-            else
+            else if ( response.data.user_role == 'Administrator'){
+              dispatch(loginSuccessAdministrator('You have been successfully logged in as a parent'));
+              dispatch(logInAdministratorSetUsername(response.data.username));
+              // dispatch
+
+            } else
               console.log("Not supported type of login");
             //browserHistory.push('/');
         })

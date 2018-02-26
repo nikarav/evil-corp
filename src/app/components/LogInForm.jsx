@@ -19,7 +19,7 @@ class LogInForm extends React.Component {
 
   render() {
 
-    if (!this.props.user.authenticated_user && !this.props.user.authenticated_provider) {
+    if (!this.props.user.authenticated_user && !this.props.user.authenticated_provider && !this.props.user.authenticated_administrator) {
       return (
 
 
@@ -51,7 +51,7 @@ class LogInForm extends React.Component {
 
       );
     }
-    else if (this.props.user.authenticated_user || this.props.user.authenticated_provider)
+    else if (this.props.user.authenticated_user || this.props.user.authenticated_provider || this.props.user.authenticated_administrator)
       return(
           <Button
             bsStyle="danger"

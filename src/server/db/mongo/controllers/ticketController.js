@@ -10,6 +10,7 @@ import Transactions from '../models/transaction_model';
 import mongoose from 'mongoose';
 
 
+
 function generateTicketNumber(string) {
   const h = crypto.createHash('sha1');
   h.update(string);
@@ -112,35 +113,24 @@ export function buyTickettwophasecommit(req, res, next) {
        })
       transactions.save();
      console.log("edw2");
-      var t = Transactions.findOne( { state: "initial" } );
+      Transactions.findOne({ state: "initial" } , (findErr, t) => {
       console.log(t);
      console.log("edw3");
-       Transactions.update(
-     { _id: t._id, state: "initial" },
-     {
-       $set: { state: "pending" },
-       $currentDate: { lastModified: true }
-     }
-     )
+       Transactions.update({ _id: t._id, state: "initial" },{$set: { state: "pending" },$currentDate: { lastModified: true }},(findErr,trans) => {
      console.log(price*numberOfTickets);
      console.log("edw4");
-      ParentProfile.update(
-    { _id: t.source, pendingTransactions: { $ne: t._id } },
-    { $inc: { credits: -price*numberOfTickets }, $push: { pendingTransactions: t._id } }
-    )
+      ParentProfile.update({ _id:mongoose.Types.ObjectId(t.source), pendingTransactions: { $ne: t._id } },{ $inc: {numberOfTickets:numberOfTickets }, $set:{ credits: creditsUpdated}, $push: { pendingTransactions: t._id } },(findErr,trans2)=> {
+    console.log(trans2);
     console.log("edw5");
+      Transactions.update({ _id: t._id, state: "pending" },{$set: { state: "applied" },$currentDate: { lastModified: true }},(findErr,trans5) => {
+    console.log(trans5);
+    console.log("edw51");
       ParentProfile.update(
-    { _id: t.source, pendingTransactions: t._id },
-    { $pull: { pendingTransactions: t._id } }
-    )
+    { _id:mongoose.Types.ObjectId(t.source), pendingTransactions: t._id },  { $pull: { pendingTransactions: t._id } } ,(findErr,trans3) => {
+    console.log(trans3);
     console.log("edw6");
-      Transactions.update(
-   { _id: t._id, state: "applied" },
-   {
-     $set: { state: "done" },
-     $currentDate: { lastModified: true }
-   }
-    )
+      Transactions.update({ _id: t._id, state: "applied" }, {$set: { state: "done" }, $currentDate: { lastModified: true }},(findErr,trans4) => {
+    console.log(trans4)
     console.log("edw7");
 //      return data.update({ $inc: { available_tickets: -numberOfTickets } }, (err) => {
 //        if (err) return next(err);
@@ -153,6 +143,12 @@ export function buyTickettwophasecommit(req, res, next) {
 //            });
 //          });
 //        });
+              });
+            });
+          });
+          });
+        });
+      });
     });
   });
 }

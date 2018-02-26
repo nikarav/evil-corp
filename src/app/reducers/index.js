@@ -7,6 +7,7 @@ import ActivityList from '../reducers/ActivityShow';
 import ActivityCreate from '../reducers/ActivityCreate';
 import parent from '../reducers/parent';
 import provider from '../reducers/provider';
+import administrator from '../reducers/administrator';
 import {reducer as notifications} from 'react-notification-system-redux';
 
 
@@ -79,6 +80,7 @@ const initialProviderProfile = {
 const rootReducer = combineReducers({
   isFetching,
   user,
+  administrator,
   ActivityList,
   ActivityCreate,
   parent,
@@ -94,6 +96,7 @@ const rootReducer = combineReducers({
     providerChangeProfile: initialProviderProfile,
     providerChangeCredentials: {username: '', password: ''},
     contact: {email: '', subject: '', message: ''},
+    adminPanel: {username: '', email: ''},
     newActivity: initialActivityState,
   }, 'Forms'
   ),
