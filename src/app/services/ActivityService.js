@@ -16,6 +16,20 @@ export default () => {
             'Content-Type': 'multipart/form-data'
           },
           data: formData
+        }),
+        search: ({text, min_age, max_age, min_price, max_price, distance, lat_lon, tags}) => client.request({
+          method: 'POST',
+          url: '/api/search',
+          data: {
+            text,
+            min_age,
+            max_age,
+            min_price,
+            max_price,
+            distance,
+            lat_lon,
+            tags
+          }
         })
     };
 };

@@ -115,5 +115,50 @@ export function updateCurrentActivity(data){
       dispatch(fetchPostSuccess(data));
       return dispatch(fetchPostSuccess(data));
     };
+}
 
+export function beginSearch() {
+    return {
+        type: types.BEGIN_SEARCH
+    };
+}
+
+function searchSuccess(activePost) {
+  return {
+    type: types.SEARCH_SUCCESS,
+    payload: activePost
+  };
+}
+
+function searchFailure(error) {
+  return {
+    type: types.SEARCH_FAILURE,
+    payload: error
+  };
+}
+
+export function search(data){
+  return (dispatch) => {
+    dispatch(beginSearch());
+
+    return ActivityService().search(data)
+      .then((response) => {
+        // console.log('search');
+        // console.log(response.data);
+        //   if (response.data){
+        //   // response.data.map(post =>
+        //   //   // dispatch(searchSuccess(post.activityId))
+        //       console.log(post.activityId)
+        //   // );
+        //   }
+        //   // dispatch(searchSuccess(response.data));
+        //   //browserHistory.push('/');
+        dispatch(searchSuccess(response.data));
+
+
+      })
+      .catch((err) => {
+        dispatch(searchFailure('Oops! Something went wrong when trying to get profile data of logged in parent.'));
+      });
+  };
 }
