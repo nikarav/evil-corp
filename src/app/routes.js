@@ -83,7 +83,7 @@ const routes = [
       path: '/provider/Statistics',
       component: ProviderStatsPage,
       exact: true
-    },
+    }
 
     ];
 export default routes;
