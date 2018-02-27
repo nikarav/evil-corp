@@ -143,9 +143,19 @@ export function search(data){
 
     return ActivityService().search(data)
       .then((response) => {
-          console.log(response.data);
-          // dispatch(searchSuccess({...response.data}));
-          //browserHistory.push('/');
+        // console.log('search');
+        // console.log(response.data);
+        //   if (response.data){
+        //   // response.data.map(post =>
+        //   //   // dispatch(searchSuccess(post.activityId))
+        //       console.log(post.activityId)
+        //   // );
+        //   }
+        //   // dispatch(searchSuccess(response.data));
+        //   //browserHistory.push('/');
+        dispatch(searchSuccess(response.data));
+
+
       })
       .catch((err) => {
         dispatch(searchFailure('Oops! Something went wrong when trying to get profile data of logged in parent.'));

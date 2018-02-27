@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {  Button, FormGroup, FormControl , Media} from 'react-bootstrap';
 import {Form ,Control} from 'react-redux-form';
+import {Col } from 'jsxstyle';
+// import Slider,{Range} from 'rc-slider';
 
 class FilterPanel extends React.Component {
   handleSubmit(val){
@@ -15,7 +17,7 @@ class FilterPanel extends React.Component {
   render() {
 
     return (
-      <div>
+      <Col>
         <h1> Φίλτρα Αναζήτησης </h1>
 
       <Form
@@ -62,7 +64,7 @@ class FilterPanel extends React.Component {
           Αναζήτηση
         </Button>
       </Form>
-        </div>
+    </Col>
     );
   }
 }

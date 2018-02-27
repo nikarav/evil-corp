@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Navbar, Nav, NavItem, Button, FormGroup, FormControl , Media} from 'react-bootstrap';
 import { getActivities, updateCurrentActivity, search } from '../actions/ActivityShow';
 import FilterPanel from '../components/FilterPanel';
+import {Col } from 'jsxstyle';
 
 class ActivitiesList extends React.Component {
   componentWillMount() {
@@ -34,7 +35,7 @@ class ActivitiesList extends React.Component {
             posts.map((post) => {
 
               return (
-                <div>
+                <Col>
 <Media>
 <Media.Left align="top">
   <img width={200} height={200} src={post.photo} alt="thumbnail" />
@@ -60,7 +61,7 @@ class ActivitiesList extends React.Component {
 
 </Media.Body>
 </Media>
-</div>
+</Col>
 
 
 
