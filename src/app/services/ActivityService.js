@@ -30,6 +30,9 @@ export default () => {
             lat_lon,
             tags
           }
-        })
-    };
-};
+        }),
+        getActivity: ({id}) => client.request({
+            method: 'GET',
+            url: `/api/activity/${id}`
+    }),
+  };

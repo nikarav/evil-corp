@@ -6,11 +6,12 @@ import Users from './pages/Users';
 import ActivitiesShow from './pages/ActivitiesShow';
 import ActivityNew from './pages/ActivityNew';
 import MapPage from './pages/MapPage';
-import Test from './components/ActivitiesDetails';
+import ActivityDetailsContainer from './containers/ActivityDetailsContainer';
 import AdminPage from './pages/AdminPage';
 import ResetProviderPage from './pages/ResetProviderPage';
 import ResetParentPage from './pages/ResetParentPage';
 import ProviderStatsPage from './pages/ProviderStatsPage';
+import ParentReservationsPage from './pages/ParentReservationsPage';
 
 const routes = [
     {
@@ -25,7 +26,7 @@ const routes = [
     },
     {
       path: '/Reservations',
-      component: ProviderStatsPage,
+      component: ParentReservationsPage,
       exact: true
     },
     {
@@ -60,7 +61,7 @@ const routes = [
     },
     {
         path: '/act/:id',
-        component: Test,
+        component: ActivityDetailsContainer,
         exact: true
     },
     {
@@ -82,6 +83,7 @@ const routes = [
       path: '/provider/Statistics',
       component: ProviderStatsPage,
       exact: true
-    },
+    }
+
     ];
 export default routes;

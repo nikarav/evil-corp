@@ -53,6 +53,25 @@ class Navigation extends React.Component {
     else {
         sign_in_info = null;
     }
+    let res_or_stats = null;
+    if(this.props.user.authenticated_user){
+      res_or_stats = (  <LinkContainer to="/Reservations">
+          <NavItem eventKey={1}> Κρατήσεις </NavItem>
+        </LinkContainer>);
+    }
+    else if(this.props.user.authenticated_provider){
+      res_or_stats = (  <LinkContainer to="/provider/Statistics">
+          <NavItem eventKey={1}> Στατιστικά </NavItem>
+        </LinkContainer>);
+    }
+    else{
+      res_or_stats = (  <LinkContainer to="/Reservations">
+          <NavItem eventKey={1}> Κρατήσεις </NavItem>
+        </LinkContainer>);
+    }
+    // else{
+    //   res_or_stats = null;
+    // }
 
     let statistics = null;
     if (this.props.user.authenticated_user) {
@@ -83,10 +102,7 @@ class Navigation extends React.Component {
           </Navbar.Header>
           <Navbar.Collapse>
             <Nav>
-              {/* <LinkContainer to="/Reservations">
-                <NavItem eventKey={1}> Κρατήσεις </NavItem>
-              </LinkContainer> */}
-              {statistics}
+              {res_or_stats}
 
               <LinkContainer to="/Offers">
                 <NavItem eventKey={2} > Δραστηριότητες </NavItem>
