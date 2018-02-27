@@ -25,8 +25,9 @@ class Test extends React.Component {
           <img src={post.photo}  height={100} width={100}/>
           <h3>{post.name}</h3>
         <h6>Categories: {post.description}</h6>
-      //  <p>{post.content}</p>
+      {/* //  <p>{post.content}</p> */}
 
+        <Button bsStyle="danger" type="submit"> Αγορά </Button>
       </div>
     );
   }

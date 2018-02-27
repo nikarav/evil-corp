@@ -23,8 +23,6 @@ class LogInForm extends React.Component {
       return (
 
 
-
-
           <Form
             model="Forms.logIn"
             onSubmit={(val) => this.handleSubmit(val)}

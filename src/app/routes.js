@@ -10,6 +10,7 @@ import Test from './components/ActivitiesDetails';
 import AdminPage from './pages/AdminPage';
 import ResetProviderPage from './pages/ResetProviderPage';
 import ResetParentPage from './pages/ResetParentPage';
+import ProviderStatsPage from './pages/ProviderStatsPage';
 
 const routes = [
     {
@@ -24,7 +25,7 @@ const routes = [
     },
     {
       path: '/Reservations',
-      component: HomePage,
+      component: ProviderStatsPage,
       exact: true
     },
     {
@@ -75,6 +76,11 @@ const routes = [
     {
       path: '/api/provider/reset/:id',
       component: ResetProviderPage,
+      exact: true
+    },
+    {
+      path: '/provider/Statistics',
+      component: ProviderStatsPage,
       exact: true
     },
     ];

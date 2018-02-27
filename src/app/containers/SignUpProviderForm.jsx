@@ -77,11 +77,25 @@ class SignUpProviderForm extends React.Component {
           <Control.text
             component={FormControl}
             model=".username"
+            placeholder="username"
+            required
+            validators={{ maxLength: (val) => val.length <= 12 }}
+            validateOn="blur"
+          />
+          <Errors
+            className="errors"
+            model=".username"
+            show="touched"
+            messages={{
+              valueMissing: 'Username is required',
+              maxLength: 'Must be 12 characters or less'
+            }}
           />
           <label>Κωδικός Πρόσβασης</label>
           <Control.text
             component={FormControl}
             model=".password"
+            required
           />
         </div>
 

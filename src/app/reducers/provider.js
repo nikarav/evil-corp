@@ -66,12 +66,32 @@ const profile = (
     return state;
 }
 }
+const activities = (
+  state = {
+    actList: {posts: [] },},    // not using the activated & locked field from backend
+  action
+) => {
+  switch (action.type){
+    case types.PROVIDER_GET_ACTIVITIES:
+      return {...state, actList: {posts: []}}
+    case types.PROVIDER_GET_ACTIVITIES_SUCCESS:
+      return {...state, actList: {posts: action.payload}}
+    case types.PROVIDER_GET_DATA:
+    case types.PROVIDER_GET_DATA_FAILURE:
+    case types.PROVIDER_CHANGE_PROFILE:
+    case types.PROVIDER_GET_ACTIVITIES_FAILURE:
+    return state;
+  default:
+    return state;
+}
+}
 
 
 const providerReducer = combineReducers({
   username,
   profile,
   message,
+  activities,
 });
 
 

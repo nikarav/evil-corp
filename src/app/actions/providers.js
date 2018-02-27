@@ -2,6 +2,24 @@ import * as types from '../types/providerTypes';
 import providerService from '../services/providerService';
 import Notifications, { success, error } from 'react-notification-system-redux';
 
+//getProviderActivities
+function beginGetProviderActivitiesData() {
+    return {
+        type: types.PROVIDER_GET_ACTIVITIES
+    };
+}
+function getProviderActivitiesDataSuccess(credits) {
+    return {
+        type: types.PROVIDER_GET_ACTIVITIES_SUCCESS,
+        payload: credits
+    };
+}
+function getProviderActivitiesDataFailure(error) {
+    return {
+        type: types.PROVIDER_GET_ACTIVITIES_FAILURE,
+        message: error
+    };
+}
 //getProviderData
 function beginGetProviderData() {
     return {
@@ -135,6 +153,24 @@ export function getProviderData() {
       })
       .catch((err) => {
         dispatch(getProviderDataFailure('Oops! Something went wrong when trying to get profile data of logged in provider.'));
+      });
+  };
+}
+
+// user triggered function GET PROVIDER ACTIVITIES data
+// user triggered function -> getData
+export function getProviderActivitiesData() {
+  return (dispatch) => {
+    dispatch(beginGetProviderActivitiesData());
+
+    return providerService().getProviderActivities()
+      .then((response) => {
+          console.log({...response.data});
+          dispatch(getProviderActivitiesDataSuccess(response.data));
+          //browserHistory.push('/');
+      })
+      .catch((err) => {
+        dispatch(getProviderActivitiesDataFailure('Oops! Something went wrong when trying to get your Statistics.'));
       });
   };
 }

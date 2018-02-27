@@ -175,7 +175,7 @@ color="#B22222"
                 model=".username"
                 placeholder="username"
                 required
-                validators={{ maxLength: (val) => val.length <= 10 }}
+                validators={{ maxLength: (val) => val.length <= 12 }}
                 validateOn="blur"
                 component={FormControl}
               />
@@ -185,7 +185,7 @@ color="#B22222"
                 show="touched"
                 messages={{
                   valueMissing: 'Username is required',
-                  maxLength: 'Must be 10 characters or less'
+                  maxLength: 'Must be 12 characters or less'
                 }}
               />
 
@@ -193,6 +193,7 @@ color="#B22222"
               <Control.text
                 model=".password"
                 component={FormControl}
+                required
                />
 
                <Button type="submit"bsStyle="primary">Αλλαγή Διαπιστευτηρίων Χρήστη</Button>
