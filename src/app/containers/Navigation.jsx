@@ -54,6 +54,22 @@ class Navigation extends React.Component {
         sign_in_info = null;
     }
 
+    let statistics = null;
+    if (this.props.user.authenticated_user) {
+        statistics =         (<LinkContainer to="/Reservations">
+                  <NavItem eventKey={1}> Κρατήσεις </NavItem>
+                </LinkContainer>);
+    } else if (this.props.user.authenticated_provider) {
+          statistics =         (<LinkContainer to="/Reservations">
+                    <NavItem eventKey={1}> Στατιστικά </NavItem>
+                  </LinkContainer>);
+
+    } else if (this.props.user.authenticated_administrator) {
+          statistics = null;
+    }else {
+        statistics = null;
+    }
+
     return (
       <div className="Navigation Component">
         <Navbar fixedTop fluid collapseOnSelect>
@@ -67,12 +83,13 @@ class Navigation extends React.Component {
           </Navbar.Header>
           <Navbar.Collapse>
             <Nav>
-              <LinkContainer to="/Reservations">
+              {/* <LinkContainer to="/Reservations">
                 <NavItem eventKey={1}> Κρατήσεις </NavItem>
-              </LinkContainer>
+              </LinkContainer> */}
+              {statistics}
 
               <LinkContainer to="/Offers">
-                <NavItem eventKey={2} > Προσφορές </NavItem>
+                <NavItem eventKey={2} > Δραστηριότητες </NavItem>
               </LinkContainer>
 
               <LinkContainer to="/MyProfile">
