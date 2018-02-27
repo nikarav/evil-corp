@@ -59,11 +59,32 @@ class SignUpProviderForm extends React.Component {
           <Control.text
             component={FormControl}
             model=".tax_registration"
+            validators={{ maxLength: (val) => val.length > 10 }}
           />
+          <Errors
+            className="errors"
+            model=".tax_registration"
+            show="touched"
+            messages={{
+              valueMissing: 'Username is required',
+              maxLength: 'Must be 12 characters or less'
+            }}
+          />
+
           <label>Τραπεζικό iban</label>
           <Control.text
             component={FormControl}
             model=".bank_iban"
+          />
+          <Errors
+            className="errors"
+            model=".bank_iban"
+            show="touched"
+            validators={{ maxLength: (val) => val.length > 10 }}
+            messages={{
+              valueMissing: 'Username is required',
+              maxLength: 'Must be 12 characters or less'
+            }}
           />
         </div>
 

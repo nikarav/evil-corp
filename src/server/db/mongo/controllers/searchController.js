@@ -5,6 +5,7 @@ function processResults(results, tags) {
   if (hits === 0) return [];
   const data = results.hits.hits;
   return data.map((value) => {
+    const photoURL = `/api/activity/${value._id}/photo`;
     return {
       activityId: value._id,
       activityURL: `/api/activity/${value._id}`,
@@ -17,7 +18,9 @@ function processResults(results, tags) {
       tags: value.tags,
       available_tickets: value.available_tickets,
       is_active: value.is_active,
-      locked: value.locked
+      locked: value.locked,
+      date: value.date,
+      photo: photoURL
     };
   }).filter((value) => {
     const valid = value.is_active && (!value.locked) && (value.available_tickets > 0);
