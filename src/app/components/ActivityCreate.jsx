@@ -46,7 +46,7 @@ class ActivityCreate extends React.Component {
                 marginTop={0}
                 marginBot= {150}
                 fontStyle="oblique"
-                textDecoration= "underline  "
+                // textDecoration= "underline  "
                 backgroundColor = "	#E6E6FA"
                 borderRadius={100}
                 marginRight={400}
@@ -66,7 +66,7 @@ class ActivityCreate extends React.Component {
                       <Block color="#4B0082"
                       fontWeight={900}
                       fontStyle="oblique"
-                      textDecoration= "underline  "
+                      // textDecoration= "underline  "
                       marginRight = {100}
                       marginLeft = {100}
                       marginTop = {60}
@@ -78,6 +78,7 @@ class ActivityCreate extends React.Component {
                   <div className="field">
                     <label> Όνομα Δραστηριότητας:</label>
                     <Control.text
+                      placeholder="Δώστε το όνομα της Δραστηριότητας"
                       component={FormControl}
                       model=".name" required />
                   </div>
@@ -87,7 +88,7 @@ class ActivityCreate extends React.Component {
                   <Block color="#4B0082"
                   fontWeight={900}
                   fontStyle="oblique"
-                  textDecoration= "underline  "
+                  // textDecoration= "underline  "
                   marginRight = {100}
                   marginLeft = {100}
                   marginTop = {20}
@@ -99,8 +100,9 @@ class ActivityCreate extends React.Component {
                   <div className="field">
                     <label> Τοποθεσία :</label>
                     <Control.text
+                      placeholder="π.χ. 37.53 , 23.63  (Γεωγραφικό μήκος/πλάτος)"
                       component={FormControl}
-                      model=".name" required />
+                      model=".location" required />
                   </div>
 
                   </Block>
@@ -108,7 +110,7 @@ class ActivityCreate extends React.Component {
                   <Block color="#4B0082"
                   fontWeight={900}
                   fontStyle="oblique"
-                  textDecoration= "underline  "
+                  // textDecoration= "underline  "
                   marginRight = {100}
                   marginLeft = {100}
                   marginTop = {20}
@@ -121,6 +123,8 @@ class ActivityCreate extends React.Component {
                   <div className="field">
                     <label> Περιγραφή Δραστηριότητας :</label>
                     <Control.textarea
+                      type="text"
+                      placeholder="Γράψτε εδώ την περιγραφή σας..."
                       component={FormControl}
                       model=".description" required />
                   </div>
@@ -134,7 +138,7 @@ class ActivityCreate extends React.Component {
                     <Block color="#4B0082"
                     fontWeight={900}
                     fontStyle="oblique"
-                    textDecoration= "underline  "
+                    // textDecoration= "underline  "
                     marginRight = {110}
                     marginLeft = {120}
                     marginTop = {20}
@@ -146,6 +150,8 @@ class ActivityCreate extends React.Component {
                     <div className="field"   className="row h-100 justify-content-center align-items-center">
                       <label>Ημερομηνία Διεξαγωγής Δραστηριότητας:</label>
                       <Control.text
+                        type="date"
+                        placeholder="ΗΗ/ΜΜ/ΕΕΕΕ"
                         component = {FormControl}
                         model=".date"
 
@@ -160,7 +166,7 @@ class ActivityCreate extends React.Component {
                     <Block color="#4B0082"
                     fontWeight={900}
                     fontStyle="oblique"
-                    textDecoration= "underline  "
+                    // textDecoration= "underline  "
                     marginRight = {100}
                     marginLeft = {100}
                     marginTop = {20}
@@ -186,7 +192,7 @@ class ActivityCreate extends React.Component {
                 <Block color="#4B0082"
                 fontWeight={900}
                 fontStyle="oblique"
-                textDecoration= "underline  "
+                // textDecoration= "underline  "
                 marginRight = {100}
                 marginLeft = {100}
                 marginTop = {20}
@@ -260,7 +266,7 @@ class ActivityCreate extends React.Component {
                     <Control
                                 type="number"
                                 model=".max_age"
-                                placeholder="5"
+                                placeholder="16"
                                 required
                                 max={16}
                                 validateOn="blur"
@@ -268,7 +274,7 @@ class ActivityCreate extends React.Component {
                     <Errors
                                 className="errors"
                                 model=".age"
-                                show="touched"
+                                show="true"
                                 messages={{
                                     valueMissing: 'Age is required',
                                     typeMismatch: 'Must be a number',
