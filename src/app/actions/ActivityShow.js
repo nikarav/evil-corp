@@ -21,6 +21,24 @@ function fetchActivitiesFailure(error) {
         payload: error
     };
 }
+function beginGetActivity() {
+    return {
+        type: types.FETCH_ACT
+    };
+}
+function fetchActivitySuccess(activity) {
+    return {
+        type: types.FETCH_ACT_SUCCESS,
+        payload: activity
+    };
+}
+
+function fetchActivityFailure(error) {
+    return {
+        type: types.FETCH_ACT_FAILURE,
+        payload: error
+    };
+}
 function beginCreateActivity() {
     return {
         type: types.CREATE_ACTIVITY
@@ -92,6 +110,19 @@ export function getActivities() {
             })
             .catch((err) => {
                 dispatch(fetchActivitiesFailure(err));
+            });
+    };
+}
+export function getActivity(id) {
+    return (dispatch) => {
+        dispatch(beginGetActivity());
+
+        return ActivityService().getActivity(id)
+            .then((response) => {
+                dispatch(fetchActivitySuccess(response.data));
+            })
+            .catch((err) => {
+                dispatch(fetchActivityFailure(err));
             });
     };
 }
