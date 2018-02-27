@@ -61,27 +61,6 @@ class ActivitiesList extends React.Component {
 </Media>
 </div>
 
-
-
-
-
-                // <li className="list-group-item    " key={post._id}
-                //     style={{backgroundColor: 'powderblue'}, {textDecoration: 'underline'} ,{textAlign : "center"}   }    >
-                //   <img src={post.photo}  height={100} width={100}/>
-                //   <h3 >{post.name}</h3>
-                //   <h3 >{post.description}</h3>
-                //   <h4>{post.price} </h4>
-                //   <h5> Ηλικία από {post.min_age} έως {post.max_age}</h5>
-                //     <Link id={post._id} style={{color:'black'}} to={"act/" + post._id}
-                //     onClick={(e) => this.handleClick(post)}>
-                //     <h2> Περισσότερα </h2>
-                //   </Link>
-                // </li>
-
-
-
-
-
               );
 
 

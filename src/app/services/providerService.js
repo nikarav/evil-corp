@@ -28,5 +28,9 @@ export default () => {
         password
       }
     }),
+    getProviderActivities: () => client.request({
+      method: 'GET',
+      url: '/api/provider/activities',
+    }),
   };
 };
