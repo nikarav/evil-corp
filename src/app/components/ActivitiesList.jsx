@@ -2,7 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Navbar, Nav, NavItem, Button, FormGroup, FormControl , Media} from 'react-bootstrap';
-import { getActivities, updateCurrentActivity } from '../actions/ActivityShow';
+import { getActivities, updateCurrentActivity, search } from '../actions/ActivityShow';
+import FilterPanel from '../components/FilterPanel';
 
 class ActivitiesList extends React.Component {
   componentWillMount() {
@@ -102,9 +103,14 @@ class ActivitiesList extends React.Component {
     return (
       <div className="container">
         <h1>Activities</h1>
+
+        <FilterPanel
+          search={this.props.search}
+        />
+
         <Link  style={{color:'black'} , {textDecoration: 'underline'}   } to="/map"
-      //  onClick={(e) => this.handleClickMap(posts)}
-      >
+            //  onClick={(e) => this.handleClickMap(posts)}
+            >
         <h2> Χάρτης Αποτελεσμάτων </h2>
       </Link>
         <ul className="list-group">
@@ -121,4 +127,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps, {getActivities, updateCurrentActivity})(ActivitiesList);
+export default connect(mapStateToProps, {getActivities, updateCurrentActivity, search})(ActivitiesList);
