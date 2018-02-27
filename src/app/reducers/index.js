@@ -8,6 +8,7 @@ import ActivityCreate from '../reducers/ActivityCreate';
 import parent from '../reducers/parent';
 import provider from '../reducers/provider';
 import administrator from '../reducers/administrator';
+import ticketPdf from '../reducers/ticketBuy';
 import {reducer as notifications} from 'react-notification-system-redux';
 
 
@@ -86,6 +87,7 @@ const rootReducer = combineReducers({
   parent,
   provider,
   notifications,
+  ticketPdf,
   Forms: combineForms({
     providerSignUp: initialProviderState,
     userSignUp: initialUserSate,
@@ -101,6 +103,7 @@ const rootReducer = combineReducers({
     resetProvider: {password: ''},
     filterPanel: {text: '', min_age: '', max_age: '', min_price: '', max_price: '', distance: '', lat_lon: '', tags: ''},
     newActivity: initialActivityState,
+    ticketbuy: {numberOfTickets: 0},
   }, 'Forms'
   ),
 });

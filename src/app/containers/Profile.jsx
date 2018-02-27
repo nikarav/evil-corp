@@ -5,8 +5,8 @@ import { Button, FormControl , Alert} from 'react-bootstrap';
 import { Block, Inline } from 'jsxstyle';
 import ParentProfile from 'components/ParentProfile';
 import ProviderProfile from 'components/ProviderProfile';
-import { addCredits, getCredits, changeCredentialsUser,changeProfileUser, getParentData } from '../actions/parents'
-import { changeCredentialsProvider, changeProfileProvider, getProviderData } from '../actions/providers'
+import { addCredits, getCredits, changeCredentialsUser,changeProfileUser, getParentData } from '../actions/parents';
+import { changeCredentialsProvider, changeProfileProvider, getProviderData } from '../actions/providers';
 
 
 class Profile extends React.Component {

@@ -70,6 +70,7 @@ export function buyTickettwophasecommit(req, res, next) {
   const activityId = req.body.activityId;
   const numberOfTickets = Number(req.body.numberOfTickets);
   const profileId = req.user.profile.id;
+  console.log(activityId, numberOfTickets, profileId);
   const ticket = new Ticket({
     activity: activityId,
     parent: profileId,

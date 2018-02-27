@@ -92,7 +92,7 @@ export default (app) => {
   // ticket routes
   if (ticketController) {
     app.post('/api/parent/ticket/buy', parentController.authorizeParent, ticketController.buyTickettwophasecommit);
-    app.get('/api/parent/ticket/:ticketId/pdf/', parentController.authorizeParent, ticketController.generateAndEmailPdf);
+    app.get('/api/parent/ticket/:ticketId/pdf/', ticketController.generateAndEmailPdf);
   } else {
     console.warn(unsupportedMessage('ticket routes'));
   }

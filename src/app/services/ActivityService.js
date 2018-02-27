@@ -16,6 +16,11 @@ export default () => {
             'Content-Type': 'multipart/form-data'
           },
           data: formData
+        }),
+        getActivity: ({id}) => client.request({
+            method: 'GET',
+            url: `/api/activity/${id}`
+
         })
     };
 };

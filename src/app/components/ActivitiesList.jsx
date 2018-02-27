@@ -45,7 +45,7 @@ class ActivitiesList extends React.Component {
       </p>
 
   <p>  Τιμή: {post.price} </p>
-  <p>  Ημερομηνία: {post.date} </p>
+  <p>  Ημερομηνία: {post.date.substring(0,10)}   {post.date.substring(14,19)} </p>
 
   <p>  Ηλικία από {post.min_age} έως {post.max_age} </p>
 
@@ -61,7 +61,7 @@ class ActivitiesList extends React.Component {
 </Media>
 </div>
 
-              );
+    );
 
 
 
