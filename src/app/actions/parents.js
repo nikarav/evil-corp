@@ -130,8 +130,21 @@ export function addCredits(credits) {
 // user triggered function CHANGE PROFILE - CREDENTIALS
 // user triggered function -> changeCredentials
 export function changeCredentialsUser(data) {
+
+  const credentialSuccess = {
+  // uid: 'once-please', // you can specify your own uid if required
+  title: 'Your credentials were changed successfully!',
+  message: 'Your password and username has been changed',
+  position: 'tr',
+  autoDismiss: 0,
+  action: {
+    label: 'parent!!',
+    callback: () => alert('clicked!')
+  }};
+
   return (dispatch) => {
     dispatch(beginChangeCredentialsUser());
+    dispatch( success(credentialSuccess));
 
     return parentService().changeCredentials(data)
       .then((response) => {
@@ -147,8 +160,21 @@ export function changeCredentialsUser(data) {
 // user triggered function CHANGE PROFILE - CREDENTIALS
 // user triggered function -> changeCredentials
 export function changeProfileUser(data) {
+
+  const ProfileSuccess = {
+ title: 'Your profile has  been changed successfully!',
+ message: 'Parent profile has been changed',
+ position: 'tr',
+ autoDismiss: 0,
+ action: {
+   label: 'parent!!',
+   callback: () => alert('clicked!')
+ }};
+
   return (dispatch) => {
     dispatch(beginChangeProfileUser());
+      dispatch( success(ProfileSuccess));
+
 
     return parentService().changeProfile(data)
       .then((response) => {

@@ -62,8 +62,24 @@ function changeProfileProviderError(message) {
 // user triggered function CHANGE PROFILE - CREDENTIALS
 // user triggered function -> changeCredentials
 export function changeCredentialsProvider(data) {
+
+  const credentialSuccess = {
+  // uid: 'once-please', // you can specify your own uid if required
+  title: 'Your credentials were changed successfully!',
+  message: 'Your password and username has been changed',
+  position: 'tr',
+  autoDismiss: 0,
+  action: {
+    label: 'parent!!',
+    callback: () => alert('clicked!')
+  }};
+
+
+
   return (dispatch) => {
     dispatch(beginChangeCredentialsProvider());
+    dispatch( success(credentialSuccess));
+
 
     return providerService().changeCredentials(data)
       .then((response) => {
@@ -79,8 +95,20 @@ export function changeCredentialsProvider(data) {
 // user triggered function CHANGE PROFILE - CREDENTIALS
 // user triggered function -> changeCredentials
 export function changeProfileProvider(data) {
+
+   const ProfileSuccess = {
+  title: 'Your profile has  been changed successfully!',
+  message: 'Provider profile has been changed',
+  position: 'tr',
+  autoDismiss: 0,
+  action: {
+    label: 'parent!!',
+    callback: () => alert('clicked!')
+  }};
+
   return (dispatch) => {
     dispatch(beginChangeProfileProvider());
+      dispatch( success(ProfileSuccess));
 
     return providerService().changeProfile(data)
       .then((response) => {
