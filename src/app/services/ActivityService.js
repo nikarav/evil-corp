@@ -34,5 +34,6 @@ export default () => {
         getActivity: ({id}) => client.request({
             method: 'GET',
             url: `/api/activity/${id}`
-    }),
+        })
   };
+}

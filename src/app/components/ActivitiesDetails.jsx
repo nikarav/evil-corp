@@ -14,7 +14,7 @@ class Test extends React.Component {
     }
   handleSubmit(val, id){
     this.props.buyTicket({numberOfTickets: val.numberOfTickets, activityId: id});
-    this.props.ticketPdf({ticketId: this.props.profile.tickets[this.props.profile.tickets.length -1]});
+    // this.props.ticketPdf({ticketId: this.props.profile.tickets[this.props.profile.tickets.length -1]});
   }
 
   render() {
