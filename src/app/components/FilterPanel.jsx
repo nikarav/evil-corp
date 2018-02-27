@@ -10,8 +10,12 @@ class FilterPanel extends React.Component {
   handleSubmit(val){
     console.log("handleSubmit");
     console.log(val);
-    this.props.search(val);
-  }
+    if (val.text == ""){
+        this.props.search({...val, text: null});
+    } else{
+      this.props.search(val);
+      }
+}
 
 
   render() {
@@ -27,6 +31,7 @@ class FilterPanel extends React.Component {
         <div className="field">
           <label> Κείμενο </label>
           <Control.text
+            required
             component={FormControl}
             model=".text"
           />
@@ -54,6 +59,19 @@ class FilterPanel extends React.Component {
             model=".max_price"
           />
         </div>
+
+        <label> Επιλέξτε κατηγορία δραστηριότητας: </label>
+        <Control.select
+                    model=".tags"
+                    validateOn="blur"
+                >
+          <option value="athletics,">Αθλητισμός</option>
+          <option value="music,">Μουσική</option>
+          <option value="dance,">Χορός</option>
+          <option value="kallitexnika,">Καλλιτεχνικά</option>
+          <option value="theater,">Θέατρο</option>
+
+        </Control.select>
 
 
 

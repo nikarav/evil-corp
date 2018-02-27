@@ -31,7 +31,7 @@ function processResults(results, tags) {
 // Currently default region is assumed to be 10km from
 // Athens
 export function search(req, res, next) {
-  const queryText = req.body.text || '*';
+  var queryText = req.body.text || '*';
   const min_age = req.body.min_age || 0;
   const max_age = req.body.max_age || 20;
   const min_price = req.body.min_price || 0;

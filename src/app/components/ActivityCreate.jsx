@@ -313,8 +313,8 @@ class ActivityCreate extends React.Component {
                       <option value="athletics">Αθλητισμός</option>
                       <option value="music">Μουσική</option>
                       <option value="dance">Χορός</option>
-                      <option value="dance">Καλλιτεχνικά</option>
-                      <option value="dance">Θέατρο</option>
+                      <option value="kallitexnika">Καλλιτεχνικά</option>
+                      <option value="theater">Θέατρο</option>
 
                     </Control.select>
                   </div>

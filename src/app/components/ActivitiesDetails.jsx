@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { resetActiveActivity } from '../actions/ActivityShow';
+import {Button } from 'react-bootstrap';
 class Test extends React.Component {
 
   componentWillUnmount() {
