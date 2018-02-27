@@ -48,7 +48,19 @@ class AdminPanel extends React.Component {
     console.log(provider.username);
   }
 
+
+
+
+
+
+
+
+
   renderProviders(providers) {
+
+
+
+
     return !providers?
     <div><h3> Δεν υπάρχουν πάροχοι για έγκριση </h3></div>
     :
@@ -71,6 +83,9 @@ class AdminPanel extends React.Component {
 
       if (this.props.administrator.userData.role == "Parent"){
         get_userData = (
+
+
+
           <div>
               <h2> Στοιχεία parent που ζητήθηκαν </h2>
             name: '', {this.props.administrator.userData.parentData.name}
@@ -86,7 +101,10 @@ class AdminPanel extends React.Component {
 
 
     } else if (this.props.administrator.userData.role == "Provider"){
-       get_userData = (<div>
+       get_userData = (
+
+
+         <div>
          <h2> Στοιχεία provider που ζητήθηκαν </h2>
         brand_name: '',  {this.props.administrator.userData.providerData.brand_name}
         email:    '',   {this.props.administrator.userData.providerData.email}
@@ -101,11 +119,29 @@ class AdminPanel extends React.Component {
 
 
           return(
+
+
+
             <div>
+
+
+
               <div>
-                Username: {this.props.administrator.profile.username}
+                <Block
+                  fontWeight={900}
+                  fontStyle="oblique"
+                  textDecoration= "underline  "
+
+
+                  >
+
+
+                Admin Username: {this.props.administrator.profile.username}
                 email:    {this.props.administrator.profile.email}
+
+                </Block>
               </div>
+
 
             <Form
               model="Forms.adminPanel"
@@ -122,17 +158,20 @@ class AdminPanel extends React.Component {
             </div>
           </Form>
 
-          <Button bsStyle="danger" onClick={() => this.handleButton1()}> isLocked  </Button>
-          <Button bsStyle="danger" onClick={() => this.handleButton2()}> toggleLock  </Button>
-          <Button bsStyle="danger" onClick={() => this.handleButton3()}> approveProvider </Button>
-          <Button bsStyle="danger" onClick={() => this.handleButton4()}> rejectProvider </Button>
+          <Button bsStyle="primary" onClick={() => this.handleButton1()}> isLocked  </Button>
+          <Button bsStyle="success" onClick={() => this.handleButton2()}> toggleLock  </Button>
+          <Button bsStyle="info" onClick={() => this.handleButton3()}> approveProvider </Button>
+          <Button bsStyle="warning" onClick={() => this.handleButton4()}> rejectProvider </Button>
           <Button bsStyle="danger" onClick={() => this.handleButton5()}> forgot </Button>
-          <Button bsStyle="danger" onClick={() => this.handleButton6()}> get data of a user </Button>
+          <Button bsStyle="primary" onClick={() => this.handleButton6()}> get data of a user </Button>
 
           <Form
             model="Forms.adminPanel"
             onSubmit={(val) => this.changeEmail(val)}
           >
+
+
+
           <div className="field">
               <label> Email </label>
               <Control.text
@@ -153,7 +192,7 @@ class AdminPanel extends React.Component {
 
         {get_userData}
 
-        
+
         </div>
 
           );
