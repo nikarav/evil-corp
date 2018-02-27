@@ -2,10 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Control, Errors, combineForms } from 'react-redux-form';
 import { connect } from 'react-redux';
-import { Button, FormControl } from 'react-bootstrap';
+import { Button, TableHeaderColumn,BootstrapTable,FormControl, PageHeader, Row, Col, Grid, Table } from 'react-bootstrap';
 import { Block, Inline } from 'jsxstyle';
 import { isLocked, toogleLock, approveProvider, rejectProvider, forgot, changeEmail, getData, providersForApproval, userData} from '../actions/administrator'
-
 
 
 
@@ -64,16 +63,51 @@ class AdminPanel extends React.Component {
     return !providers?
     <div><h3> Δεν υπάρχουν πάροχοι για έγκριση </h3></div>
     :
-    <div><h3> Πάροχοι προς έγκριση </h3>
+    <div>
+
+
+      <Block
+        marginTop="auto"
+        color="#48D1CC"
+        textDecoration= "underline  "
+        backgroundColor = "#F5F5DC"
+>
+
+
+      <h1> Πάροχοι προς έγκριση :</h1>
+
+
+</Block>
+
+
+
+
+
     {providers.map((provider, index) => {
       return (
-          <li key={index}>
-              <h2>  {provider.username} </h2>
-          </li>
+
+
+
+
+             <li key={index}  style={{color:  '	#C71585'}    }>
+
+              <h2>  User {index+1} : {provider.username} </h2>
+             </li>
+
+
+
+
+
           );
+
+
+
+
           }
+
         )
     }
+
         </div>
       }
   render() {
@@ -120,33 +154,77 @@ class AdminPanel extends React.Component {
 
           return(
 
-
+<div>
 
             <div>
 
 
+              <Block
+              marginTop={60}
+              marginLeft="auto"
+              marginRight="auto"
+              textAlign="center"
+              textDecoration= "underline  "
+              backgroundColor = "#F5F5DC"
+              color="#FF6347"
 
-              <div>
+
+              >
+
+              <h1>ΠΙΝΑΚΑΣ ΕΛΕΓΧΟΥ</h1>
+
+
+            </Block>
+
+            <Block
+            marginTop={60}
+
+            textAlign="center"
+            textDecoration= "underline  "
+            backgroundColor = "#F5F5DC"
+
+
+            >
+
+              <h2>Διαχείριση χρηστών απο τον administrator</h2>
+
+            </Block>
+
+          </div>
+
+
+
+
+
+<div>
+
+
                 <Block
                   fontWeight={900}
                   fontStyle="oblique"
                   textDecoration= "underline  "
+                  backgroundColor = "#F5F5DC"
 
 
                   >
-
-
-                Admin Username: {this.props.administrator.profile.username}
-                email:    {this.props.administrator.profile.email}
+                  <h3>Administrator's Username: {this.props.administrator.profile.username}</h3>
+                  <h3>Administrator's Email:    {this.props.administrator.profile.email}</h3>
 
                 </Block>
               </div>
 
 
+
+
+
             <Form
               model="Forms.adminPanel"
             >
+
+
             <div className="field">
+
+              <h3>Δώστε το όνομα χρήστη που θέλετε να διαχειριστείτε:</h3>
                 <label> Username </label>
                 <Control.text
                   model=".username"
@@ -158,6 +236,8 @@ class AdminPanel extends React.Component {
             </div>
           </Form>
 
+
+          <h3>Επιλογή ενέργειας:</h3>
           <Button bsStyle="primary" onClick={() => this.handleButton1()}> isLocked  </Button>
           <Button bsStyle="success" onClick={() => this.handleButton2()}> toggleLock  </Button>
           <Button bsStyle="info" onClick={() => this.handleButton3()}> approveProvider </Button>
@@ -173,7 +253,10 @@ class AdminPanel extends React.Component {
 
 
           <div className="field">
-              <label> Email </label>
+
+
+              <h3>Φόρμα αλλαγής στοιχείων Administrator:</h3>
+              <label> Αλλαγή Email </label>
               <Control.text
                 model=".email"
                 placeholder="email"
