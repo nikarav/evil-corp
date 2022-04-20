@@ -5,6 +5,16 @@ The purpose of this project is the creation of a web platform where parents
 will be able to buy tickets for various activities aimed at their children and
 providers will be able to promote their activities.
 
+## Team
+
+| Ονοματεπώνυμο          | Α.Μ.    | Email                   |
+| :---                   | :---    | :---                    |
+| Karavasilis Nikoloas   | 3113012 | nicholaos.karavasilis@gmail.com     |
+| Adamis Dimitrios       | 3113077 | jimadamis95@yahoo.com   |
+| Anastasiou Manolis   | 3113078 | el13078@mail.ntua.gr    |
+| Vlachou Vasiliki        | 3113015 | silvia713@msn.com       |
+| Dimitriou Konstantinos | 3113167 | el13167@central.ntua.gr |
+| Sotiriou Dimitrios     | 3112059 | el12059@mail.ntua.gr    |
 Software and Technical Requirements
 =====================
 
