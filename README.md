@@ -15,6 +15,7 @@ providers will be able to promote their activities.
 | Vlachou Vasiliki        | 3113015 | silvia713@msn.com       |
 | Dimitriou Konstantinos | 3113167 | el13167@central.ntua.gr |
 | Sotiriou Dimitrios     | 3112059 | el12059@mail.ntua.gr    |
+
 Software and Technical Requirements
 =====================
 
